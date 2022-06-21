@@ -1,0 +1,29 @@
+.button {
+  width: 100px;
+  height: 40px;
+  margin-right: 15px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+};
+
+.valid {
+  background-color: #50C878;
+  &:hover {
+    background-color: white;
+    color: #50C878;
+    transition: all 0.2s ease-out;
+  }
+};
+
+.reset {
+  background-color: #fd5c63;
+  &:hover {
+    background-color: white;
+    color: #fd5c63;
+    transition: all 0.2s ease-out;
+  }
+};

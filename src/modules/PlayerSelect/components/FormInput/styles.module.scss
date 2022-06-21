@@ -1,0 +1,14 @@
+.input {
+  padding: 15px;
+  margin: 0 10px 0 0;
+  border: 3px solid white;
+  border-radius: 10px;
+  width: 200px;
+  font-size: 16px;
+  &:disabled {
+    background-color: lightgray;
+    border: 3px solid #50C878;
+    color: forestgreen;
+    font-weight: 800;
+  }
+};
