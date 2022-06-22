@@ -1,22 +1,3 @@
-.selectContainer {
-  padding: 20px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  
-  // background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(14,174,87,1) 0%, rgba(12,116,117,1) 90% );
-  
-  // background: #dd3e54;
-  // background: -webkit-linear-gradient(to right, #6be585, #dd3e54);
-  // background: linear-gradient(to right, #6be585, #dd3e54);
-
-  background: #43C6AC;
-  background: -webkit-linear-gradient(to right, #191654, #43C6AC);
-  background: linear-gradient(to right, #191654, #43C6AC); 
-
-};
-
 .inputsBox {
   display: flex;
   align-items: center;
@@ -56,9 +37,4 @@
 
 .checkCircleIcon {
   color: #50C878;
-};
-
-.separator {
-  margin: 20px 0;
-  color: white;
 };

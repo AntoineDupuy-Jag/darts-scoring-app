@@ -1,7 +1,6 @@
 .chipContainer {
   padding: 10px;
-  width: 150px;
-  color: white;
+  // width: 150px; -> occupe toute la largeur du bloc ou juste une partie ?
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,8 +12,17 @@
 
 .redBackground {
   background-color: crimson;
+  color: white;
 };
 
 .greenBackground {
   background-color: forestgreen;
+  color: white;
+};
+
+.blackBackground {
+  // background-color: #efd7b3;
+  // color: #18181b;
+  background-color: #383838;
+  color: white;
 };

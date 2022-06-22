@@ -1,0 +1,40 @@
+.superLabel {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  font-style: italic;
+  margin-bottom: 10px;
+  padding-left: 8px; // -> for alignment with labels
+  word-spacing: 4px;
+};
+
+.radio {
+  display: flex;
+  align-items: center;
+  color: white;
+  margin-right: 20px;
+};
+
+.input {
+  display: none
+};
+
+.input + label {
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover {
+    padding: 8px;
+    border-radius: 10px;
+    background-color: #50C878;
+    transition: 0.5s all ease;
+  }
+};
+
+.input:checked + label {
+  background-color: #50C878;
+}
+
+.radioBox {
+  display: flex;
+};

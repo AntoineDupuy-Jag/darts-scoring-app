@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 
 import { CheckCircle } from '@mui/icons-material';
 
-import { Button } from '../../common-ui/Button';
-import { Chip } from '../components/Chip/Chip';
+import { Container } from '../../common-ui/Container/Container';
+import { Chip } from '../../common-ui/Chip/Chip';
 import { FormInput } from '../components/FormInput/FormInput';
+import { Button } from '../../common-ui/Button/Button';
+import { Separator } from '../../common-ui/Separator/Separator';
 
 import styles from './styles.module.scss';
 
@@ -119,8 +121,8 @@ export const PlayerSelect = () => {
   };
 
   return (
-    <div className={styles.selectContainer}>
-      {/* EQUIPE 1 (GREEN) : AJOUTER LES NOMS DES JOUEURS */}     
+    <Container>
+      {/* EQUIPE 1 (GREEN) : AJOUTER LES NOMS DES JOUEURS (voir pour faire de <form> un composant..*/}     
       <form onSubmit={handleSubmit}>
         <Chip name={"Équipe 1"} color="green" />
         <div className={styles.inputsBox}>
@@ -159,7 +161,7 @@ export const PlayerSelect = () => {
           }}>{"Annuler"}</Button>
         </div>
       </form>
-      <hr className={styles.separator} />
+      <Separator verticalMargin={20} />
       {/* EQUIPE 2 (RED) : AJOUTER LES NOMS DES JOUEURS */}
       <form onSubmit={handleSubmit}>
         <Chip name={"Équipe 2"} color="red" />
@@ -199,6 +201,6 @@ export const PlayerSelect = () => {
           }}>{"Annuler"}</Button>
         </div>
       </form>
-    </div>
+    </Container>
   )
 };
