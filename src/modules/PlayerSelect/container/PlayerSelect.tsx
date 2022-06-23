@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { CheckCircle } from '@mui/icons-material';
 
+import { teamType } from '../../../App';
 import { Container } from '../../common-ui/Container/Container';
 import { Chip } from '../../common-ui/Chip/Chip';
 import { FormInput } from '../components/FormInput/FormInput';
@@ -10,18 +11,27 @@ import { Separator } from '../../common-ui/Separator/Separator';
 
 import styles from './styles.module.scss';
 
-type teamType = {
-  number: number,
-  color: string,
-  namePlayer1GreenTeam?: string,
-  namePlayer2GreenTeam?: string,
-  namePlayer3GreenTeam?: string,
-  namePlayer1RedTeam?: string,
-  namePlayer2RedTeam?: string,
-  namePlayer3RedTeam?: string,
+// Déplacer dans le composant parent (App)
+// type teamType = {
+//   number: number,
+//   color: string,
+//   namePlayer1GreenTeam?: string,
+//   namePlayer2GreenTeam?: string,
+//   namePlayer3GreenTeam?: string,
+//   namePlayer1RedTeam?: string,
+//   namePlayer2RedTeam?: string,
+//   namePlayer3RedTeam?: string,
+// };
+
+type PlayerSelectProps = {
+  greenTeam: teamType,
+  redTeam: teamType,
+  setGreenTeam: any,
+  setRedTeam: any,
+  setGameStart: any
 };
 
-export const PlayerSelect = () => {
+export const PlayerSelect = ({ greenTeam, redTeam, setGreenTeam, setRedTeam, setGameStart }: PlayerSelectProps) => {
 
   const [indexMaxGreenTeam, setIndexMaxGreenTeam] = useState(1);
   const [indexMaxRedTeam, setIndexMaxRedTeam] = useState(1);
@@ -29,37 +39,39 @@ export const PlayerSelect = () => {
   const [isValidRedTeam, setIsValidRedTeam] = useState(false);
   const [isDisabledGreenTeam, setIsDisabledGreenTeam] = useState(false);
   const [isDisabledRedTeam, setIsDisabledRedTeam] = useState(false);
-  const [greenTeam, setGreenTeam] = useState({
-    number: 1,
-    color: "green",
-    namePlayer1GreenTeam: "",
-    namePlayer2GreenTeam: "",
-    namePlayer3GreenTeam: "",
-  } as teamType);
-  const [redTeam, setRedTeam] = useState({
-    number: 2,
-    color: "red",
-    namePlayer1RedTeam: "",
-    namePlayer2RedTeam: "",
-    namePlayer3RedTeam: "",
-  } as teamType);
+  
+  // Déplacer dans le composant parent (App)
+  // const [greenTeam, setGreenTeam] = useState({
+  //   number: 1,
+  //   color: "green",
+  //   namePlayer1GreenTeam: "",
+  //   namePlayer2GreenTeam: "",
+  //   namePlayer3GreenTeam: "",
+  // } as teamType);
+  // const [redTeam, setRedTeam] = useState({
+  //   number: 2,
+  //   color: "red",
+  //   namePlayer1RedTeam: "",
+  //   namePlayer2RedTeam: "",
+  //   namePlayer3RedTeam: "",
+  // } as teamType);
 
   const inputs = {
     greenTeam: [
       {
-        id: 1,
+        id: "1",
         name: "namePlayer1GreenTeam",
         type: "text",
         placeholder: "Joueur 1"
       },
       {
-        id: 2,
+        id: "2",
         name: "namePlayer2GreenTeam",
         type: "text",
         placeholder: "Joueur 2"
       },
       {
-        id: 3,
+        id: "3",
         name: "namePlayer3GreenTeam",
         type: "text",
         placeholder: "Joueur 3"
@@ -67,19 +79,19 @@ export const PlayerSelect = () => {
     ],
     redTeam: [
       {
-        id: 1,
+        id: "1",
         name: "namePlayer1RedTeam",
         type: "text",
         placeholder: "Joueur 1"
       },
       {
-        id: 2,
+        id: "2",
         name: "namePlayer2RedTeam",
         type: "text",
         placeholder: "Joueur 2"
       },
       {
-        id: 3,
+        id: "3",
         name: "namePlayer3RedTeam",
         type: "text",
         placeholder: "Joueur 3"
@@ -89,16 +101,17 @@ export const PlayerSelect = () => {
 
   const onChangeGreenTeam = (e: any) => {
     setGreenTeam({...greenTeam, [e.target.name]: e.target.value})
-  }
+  };
   
   const onChangeRedTeam = (e: any) => {
     setRedTeam({...redTeam, [e.target.name]: e.target.value })
-  }
+  };
   
   const handleSubmit = (e: any) => {
-    e.preventDefault(); // => pour éviter à la page de s'actualiser 
+    e.preventDefault(); // --> pour éviter à la page de s'actualiser 
     console.log("GREEN TEAM ==>", greenTeam)
     console.log("RED TEAM ==>", redTeam)
+    setGameStart(true) // --> Pour lancer la page des scores (test)
   };
 
   const resetInputs = (e: any, teamNumber: number) => {
@@ -137,6 +150,7 @@ export const PlayerSelect = () => {
           )}
           <button
             className={styles.addButton}
+            type="button" // --> Pour éviter le comportement "submit" par défaut ?
             onClick={() => setIndexMaxGreenTeam(indexMaxGreenTeam + 1)}
             disabled={indexMaxGreenTeam === 3 || isDisabledGreenTeam}
           >
@@ -177,6 +191,7 @@ export const PlayerSelect = () => {
           )}
           <button
             className={styles.addButton}
+            type="button" // --> Pour éviter le comportement "submit" par défaut ?
             onClick={() => setIndexMaxRedTeam(indexMaxRedTeam + 1)}
             disabled={indexMaxRedTeam === 3 || isDisabledRedTeam}
           >
@@ -199,6 +214,12 @@ export const PlayerSelect = () => {
             setIsDisabledRedTeam(false)
             resetInputs(e, 2)
           }}>{"Annuler"}</Button>
+        </div>
+      </form>
+      <Separator verticalMargin={20} />
+      <form onSubmit={handleSubmit}>
+        <div className={styles.startButton}>
+          <Button type="submit">{"Démarrer"}</Button>
         </div>
       </form>
     </Container>

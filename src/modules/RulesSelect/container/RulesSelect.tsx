@@ -8,11 +8,11 @@ import { Button } from '../../common-ui/Button/Button';
 
 import styles from './styles.module.scss';
 
-type RulesSelectType = {
+type RulesSelectProps = {
   setContinues: any
 };
 
-export const RulesSelect = (props: RulesSelectType) => {
+export const RulesSelect = ({ setContinues }: RulesSelectProps) => {
 
   const ffaOrTeam = {
     ruleLabel: "Répartition des joueurs :",
@@ -88,21 +88,18 @@ export const RulesSelect = (props: RulesSelectType) => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    props.setContinues(true);
-    console.log("inAndOutRule ->", inAndOut)
+    setContinues(true);
   };
 
   return (
     <Container>
       <Chip name={"Paramètre ta partie"} color="black" />
       <form className={styles.form} onSubmit={handleSubmit}>
-        {/* <Separator verticalMargin={20}/> */}
         <RadioForm rule={ffaOrTeam} />
         <Separator verticalMargin={20}/>
         <RadioForm rule={scoreToGoal} />
         <Separator verticalMargin={20}/>
         <RadioForm rule={inAndOut} />
-        {/* <Separator verticalMargin={20} /> */}
         <div className={styles.buttonsContainer}>
           <Button type="submit">{"Continuer"}</Button>
           <Button type="reset">{"Annuler"}</Button>

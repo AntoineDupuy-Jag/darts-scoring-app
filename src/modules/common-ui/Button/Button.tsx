@@ -6,19 +6,22 @@ import styles from './styles.module.scss';
 
 type ButtonProps = {
   children?: React.ReactNode,
-  type?: "submit" | "reset",
-  onClick?: (e: any) => void
+  type?: "button" | "submit" | "reset" | undefined,
+  onClick?: (e?: any) => void,
+  styleOff?: boolean,
+  isDisabled?: boolean
 };
 
-export const Button = (props: ButtonProps) => {
+export const Button = ({ children, type, onClick, styleOff, isDisabled }: ButtonProps) => {
   
   return (
     <button
-      className={classNames(styles.button, { [styles.valid]: props.type === "submit", [styles.reset]: props.type === "reset" })}
-      type={props.type}
-      onClick={props.onClick}
+      className={classNames(!styleOff && styles.button, { [styles.valid]: type === "submit", [styles.reset]: type === "reset" })}
+      type={type}
+      onClick={onClick}
+      disabled={isDisabled}
     >
-      {props.children}
+      {children}
     </button>
   )
 };

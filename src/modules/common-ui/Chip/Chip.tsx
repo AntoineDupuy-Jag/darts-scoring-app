@@ -4,22 +4,22 @@ import classNames from 'classnames';
 
 import styles from './styles.module.scss';
 
-type ChipType = {
-  name: string
+type ChipProps = {
+  name: string,
   color: "red" | "green" | "black"
 };
 
-export const Chip = (props : ChipType) => {
+export const Chip = ({ name, color }: ChipProps) => {
   
   return (
     <div
       className={classNames(styles.chipContainer, {
-        [styles.redBackground]: props.color === "red",
-        [styles.greenBackground]: props.color === "green",
-        [styles.blackBackground]: props.color === "black" }
+        [styles.redBackground]: color === "red",
+        [styles.greenBackground]: color === "green",
+        [styles.blackBackground]: color === "black" }
       )}
     >
-      {props.name}
+      {name}
     </div>
   )
 };

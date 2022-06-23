@@ -4,17 +4,17 @@ import classNames from 'classnames';
 
 import styles from './styles.module.scss';
 
-type SeparatorType = {
+type SeparatorProps = {
   verticalMargin?: number
-}
+};
 
-export const Separator = (props: SeparatorType) => {
+export const Separator = ({ verticalMargin }: SeparatorProps) => {
 
   return (
    <hr className={classNames(styles.separator,
-      {[styles.tenPx]: props.verticalMargin === 10},
-      {[styles.twentyPx]: props.verticalMargin === 20},
-      {[styles.thirtyPx]: props.verticalMargin === 30},
+      {[styles.tenPx]: verticalMargin === 10},
+      {[styles.twentyPx]: verticalMargin === 20},
+      {[styles.thirtyPx]: verticalMargin === 30},
     )} />
   )
 };
