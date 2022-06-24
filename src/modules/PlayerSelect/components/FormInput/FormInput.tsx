@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styles from "./styles.module.scss";
 
@@ -8,12 +8,17 @@ type FormInputProps = {
   placeholder: string,
   value: any,
   onChange: React.ChangeEventHandler<HTMLInputElement>,
-  isDisabled: boolean
+  errorMessage: string,
+  pattern: string,
 };
 
-export const FormInput = ({ id, name, placeholder, value, onChange, isDisabled }: FormInputProps) => {
+export const FormInput = ({ id, name, placeholder, value, onChange, errorMessage, pattern }: FormInputProps) => {
 
-  // const { id, onChange, isDisabled, ...inputProps } = props;
+  const [focused, setFocused] = useState(false);
+
+  const handleFocus = (e: any) => {
+    setFocused(true)
+  };
 
   return (
     <div>
@@ -23,9 +28,14 @@ export const FormInput = ({ id, name, placeholder, value, onChange, isDisabled }
         name={name}
         placeholder={placeholder}
         value={value}
+        pattern={pattern}
         onChange={onChange}
-        disabled={isDisabled}
+        onBlur={handleFocus}
+        // onFocus={() => ((name === "namePlayer3GreenTeam") || (name === "namePlayer3RedTeam")) && setFocused(true)}
+        data-focused={focused}
+        required
       />
+      <div className={styles.errorMessage}>{errorMessage}</div>
     </div>
   )
 };

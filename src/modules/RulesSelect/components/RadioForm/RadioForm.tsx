@@ -14,9 +14,10 @@ type RadioFormProps = {
     ruleLabel: string,
     ruleProperties: rulePropertiesType[];
   }
+  onChange: React.ChangeEventHandler<HTMLInputElement>,
 };
 
-export const RadioForm = ({ rule }: RadioFormProps) => {
+export const RadioForm = ({ rule, onChange }: RadioFormProps) => {
 
   return (
     <div>
@@ -31,6 +32,7 @@ export const RadioForm = ({ rule }: RadioFormProps) => {
               key={property.id}
               name={property.name}
               value={property.value}
+              onChange={onChange}
             />
             <label htmlFor={property.id}>{property.selectLabel}</label>
           </div>

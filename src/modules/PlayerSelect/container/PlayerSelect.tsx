@@ -1,27 +1,16 @@
 import React, { useState } from 'react';
 
-import { CheckCircle } from '@mui/icons-material';
-
-import { teamType } from '../../../App';
-import { Container } from '../../common-ui/Container/Container';
-import { Chip } from '../../common-ui/Chip/Chip';
+import classNames from 'classnames';
 import { FormInput } from '../components/FormInput/FormInput';
+import { Container } from '../../common-ui/Container/Container';
 import { Button } from '../../common-ui/Button/Button';
+import { Chip } from '../../common-ui/Chip/Chip';
 import { Separator } from '../../common-ui/Separator/Separator';
 
-import styles from './styles.module.scss';
+import { teamType } from '../../../utils/types';
+import { inputs } from '../../../utils/constants';
 
-// Déplacer dans le composant parent (App)
-// type teamType = {
-//   number: number,
-//   color: string,
-//   namePlayer1GreenTeam?: string,
-//   namePlayer2GreenTeam?: string,
-//   namePlayer3GreenTeam?: string,
-//   namePlayer1RedTeam?: string,
-//   namePlayer2RedTeam?: string,
-//   namePlayer3RedTeam?: string,
-// };
+import styles from './styles.module.scss';
 
 type PlayerSelectProps = {
   greenTeam: teamType,
@@ -33,193 +22,117 @@ type PlayerSelectProps = {
 
 export const PlayerSelect = ({ greenTeam, redTeam, setGreenTeam, setRedTeam, setGameStart }: PlayerSelectProps) => {
 
-  const [indexMaxGreenTeam, setIndexMaxGreenTeam] = useState(1);
-  const [indexMaxRedTeam, setIndexMaxRedTeam] = useState(1);
-  const [isValidGreenTeam, setIsValidGreenTeam] = useState(false);
-  const [isValidRedTeam, setIsValidRedTeam] = useState(false);
-  const [isDisabledGreenTeam, setIsDisabledGreenTeam] = useState(false);
-  const [isDisabledRedTeam, setIsDisabledRedTeam] = useState(false);
-  
-  // Déplacer dans le composant parent (App)
-  // const [greenTeam, setGreenTeam] = useState({
-  //   number: 1,
-  //   color: "green",
-  //   namePlayer1GreenTeam: "",
-  //   namePlayer2GreenTeam: "",
-  //   namePlayer3GreenTeam: "",
-  // } as teamType);
-  // const [redTeam, setRedTeam] = useState({
-  //   number: 2,
-  //   color: "red",
-  //   namePlayer1RedTeam: "",
-  //   namePlayer2RedTeam: "",
-  //   namePlayer3RedTeam: "",
-  // } as teamType);
-
-  const inputs = {
-    greenTeam: [
-      {
-        id: "1",
-        name: "namePlayer1GreenTeam",
-        type: "text",
-        placeholder: "Joueur 1"
-      },
-      {
-        id: "2",
-        name: "namePlayer2GreenTeam",
-        type: "text",
-        placeholder: "Joueur 2"
-      },
-      {
-        id: "3",
-        name: "namePlayer3GreenTeam",
-        type: "text",
-        placeholder: "Joueur 3"
-      }
-    ],
-    redTeam: [
-      {
-        id: "1",
-        name: "namePlayer1RedTeam",
-        type: "text",
-        placeholder: "Joueur 1"
-      },
-      {
-        id: "2",
-        name: "namePlayer2RedTeam",
-        type: "text",
-        placeholder: "Joueur 2"
-      },
-      {
-        id: "3",
-        name: "namePlayer3RedTeam",
-        type: "text",
-        placeholder: "Joueur 3"
-      }
-    ]
-  };
+  const [indexGreenTeam, setIndexGreenTeam] = useState(1);
+  const [indexRedTeam, setIndexRedTeam] = useState(1);
 
   const onChangeGreenTeam = (e: any) => {
     setGreenTeam({...greenTeam, [e.target.name]: e.target.value})
   };
   
   const onChangeRedTeam = (e: any) => {
-    setRedTeam({...redTeam, [e.target.name]: e.target.value })
+    setRedTeam({...redTeam, [e.target.name]: e.target.value})
   };
   
   const handleSubmit = (e: any) => {
-    e.preventDefault(); // --> pour éviter à la page de s'actualiser 
-    console.log("GREEN TEAM ==>", greenTeam)
-    console.log("RED TEAM ==>", redTeam)
-    setGameStart(true) // --> Pour lancer la page des scores (test)
+    e.preventDefault(); // --> to avoid page refresh 
+    setGameStart(true) // --> Pour lancer la page des scores (!! to modify !!)
   };
 
-  const resetInputs = (e: any, teamNumber: number) => {
-    if (teamNumber === 1)
-      setGreenTeam({
-        number: 1,
-        color: "green",
-        namePlayer1GreenTeam: "",
-        namePlayer2GreenTeam: "",
-        namePlayer3GreenTeam: "",
-      })
-    if (teamNumber === 2)
-      setRedTeam({
-        number: 2,
-        color: "red",
-        namePlayer1RedTeam: "",
-        namePlayer2RedTeam: "",
-        namePlayer3RedTeam: "",
-      })
+  const resetInputs = (e: any) => {
+    setGreenTeam({
+      number: 1,
+      color: "green",
+      namePlayer1GreenTeam: "",
+      namePlayer2GreenTeam: "",
+      namePlayer3GreenTeam: "",
+    });
+    setRedTeam({
+      number: 2,
+      color: "red",
+      namePlayer1RedTeam: "",
+      namePlayer2RedTeam: "",
+      namePlayer3RedTeam: "",
+    });
   };
 
   return (
     <Container>
-      {/* EQUIPE 1 (GREEN) : AJOUTER LES NOMS DES JOUEURS (voir pour faire de <form> un composant..*/}     
+      {/* TEAM 1 (GREEN) : ADD PLAYERS NAMES (maybe make a component with <form> ?*/}     
       <form onSubmit={handleSubmit}>
         <Chip name={"Équipe 1"} color="green" />
         <div className={styles.inputsBox}>
-          {inputs.greenTeam.slice(0, indexMaxGreenTeam).map((input) => 
+          {inputs.greenTeam.slice(0, indexGreenTeam).map((input) => 
             <FormInput
               {...input}
               key={input.id}
               value={greenTeam[input.name as keyof typeof greenTeam]}
               onChange={onChangeGreenTeam}
-              isDisabled={isDisabledGreenTeam}
             />
           )}
+          {(indexGreenTeam > 1) &&
+            <button
+              className={classNames(styles.addButton, styles.removeButton)}
+              type="button" // --> to avoid default behavior "submit" ?
+              onClick={() => {
+                setIndexGreenTeam(indexGreenTeam - 1)
+                if (indexGreenTeam === 2)
+                  setGreenTeam({...greenTeam, namePlayer2GreenTeam: ""})
+                if (indexGreenTeam === 3)
+                  setGreenTeam({...greenTeam, namePlayer3GreenTeam: ""})
+              }}
+            >
+              -
+            </button>
+          }
           <button
             className={styles.addButton}
-            type="button" // --> Pour éviter le comportement "submit" par défaut ?
-            onClick={() => setIndexMaxGreenTeam(indexMaxGreenTeam + 1)}
-            disabled={indexMaxGreenTeam === 3 || isDisabledGreenTeam}
+            type="button"
+            onClick={() => setIndexGreenTeam(indexGreenTeam + 1)}
+            disabled={indexGreenTeam === 3}
           >
             +
           </button>
         </div>
-        <div className={styles.buttonContainer}>
-          {!isValidGreenTeam ? (
-            <Button type="submit" onClick={() => {
-              setIsValidGreenTeam(true)
-              setIsDisabledGreenTeam(true)
-            }}>{"Valider"}</Button>
-          ) : (
-            <div className={styles.CheckCircleContainer}>
-              <CheckCircle className={styles.checkCircleIcon} fontSize="large"/>
-            </div>
-          )}
-          <Button type="reset" onClick={(e) => {
-             setIsValidGreenTeam(false)
-             setIsDisabledGreenTeam(false)
-             resetInputs(e, 1)
-          }}>{"Annuler"}</Button>
-        </div>
-      </form>
-      <Separator verticalMargin={20} />
-      {/* EQUIPE 2 (RED) : AJOUTER LES NOMS DES JOUEURS */}
-      <form onSubmit={handleSubmit}>
+        <Separator verticalMargin={20} />
+        {/* TEAM 2 (RED) : ADD PLAYERS NAMES */}
         <Chip name={"Équipe 2"} color="red" />
         <div className={styles.inputsBox}>
-          {inputs.redTeam.slice(0, indexMaxRedTeam).map((input) => 
+          {inputs.redTeam.slice(0, indexRedTeam).map((input) => 
             <FormInput
               {...input}
               key={input.id}
               value={redTeam[input.name as keyof typeof redTeam]}
               onChange={onChangeRedTeam}
-              isDisabled={isDisabledRedTeam}
             />
           )}
+          {(indexRedTeam > 1) &&
+            <button
+              className={classNames(styles.addButton, styles.removeButton)}
+              type="button"
+              onClick={() => {
+                setIndexRedTeam(indexRedTeam - 1)
+                if (indexRedTeam === 2)
+                  setRedTeam({...redTeam, namePlayer2RedTeam: ""})
+                if (indexRedTeam === 3)
+                  setRedTeam({...redTeam, namePlayer3RedTeam: ""})
+              }}
+            >
+              -
+            </button>
+          }
           <button
             className={styles.addButton}
-            type="button" // --> Pour éviter le comportement "submit" par défaut ?
-            onClick={() => setIndexMaxRedTeam(indexMaxRedTeam + 1)}
-            disabled={indexMaxRedTeam === 3 || isDisabledRedTeam}
+            type="button"
+            onClick={() => setIndexRedTeam(indexRedTeam + 1)}
+            disabled={indexRedTeam === 3}
           >
             +
           </button>
         </div>  
-        <div className={styles.buttonContainer}>
-          {!isValidRedTeam ? (
-            <Button type="submit" onClick={() => {
-              setIsValidRedTeam(true)
-              setIsDisabledRedTeam(true)
-            }}>{"Valider"}</Button>
-          ) : (
-            <div className={styles.CheckCircleContainer}>
-              <CheckCircle className={styles.checkCircleIcon} fontSize="large"/>
-            </div>
-          )}
-          <Button type="reset" onClick={(e) => {
-            setIsValidRedTeam(false)
-            setIsDisabledRedTeam(false)
-            resetInputs(e, 2)
-          }}>{"Annuler"}</Button>
-        </div>
-      </form>
-      <Separator verticalMargin={20} />
-      <form onSubmit={handleSubmit}>
-        <div className={styles.startButton}>
+        <Separator verticalMargin={20} />
+        <div className={styles.startAndResetButtons}>
           <Button type="submit">{"Démarrer"}</Button>
+          <Button type="reset" onClick={(e) => resetInputs(e)}>{"Annuler"}</Button>
         </div>
       </form>
     </Container>

@@ -3,24 +3,16 @@ import React, { useState } from 'react';
 import { PlayerSelect } from './modules/PlayerSelect/container/PlayerSelect';
 import { RulesSelect } from './modules/RulesSelect/container/RulesSelect';
 import { ScoreTable } from './modules/ScoreTable/container/ScoreTable';
+import { selectedRulesType, teamType } from './utils/types';
 
 import styles from './styles.module.scss';
-
-export type teamType = {
-  number: number,
-  color: string,
-  namePlayer1GreenTeam?: string,
-  namePlayer2GreenTeam?: string,
-  namePlayer3GreenTeam?: string,
-  namePlayer1RedTeam?: string,
-  namePlayer2RedTeam?: string,
-  namePlayer3RedTeam?: string,
-};
 
 function App() {
 
   const [continues, setContinues] = useState(false);
-  const [gameStart, setGameStart] = useState(false)
+  const [gameStart, setGameStart] = useState(false);
+  
+  // Players by team
   const [greenTeam, setGreenTeam] = useState({
     number: 1,
     color: "green",
@@ -36,12 +28,15 @@ function App() {
     namePlayer3RedTeam: "",
   } as teamType);
 
+  // Rules
+  const [selectedRules, setSelectedRules] = useState({} as selectedRulesType);
+
   return (
     <div className={styles.background}>
       <div className={styles.container}>
         <div className={styles.title}>Darts Scoring App</div>
         {!continues && 
-          <RulesSelect setContinues={setContinues} />
+          <RulesSelect setContinues={setContinues} selectedRules={selectedRules} setSelectedRules={setSelectedRules} />
         }
         {continues && !gameStart &&
           <PlayerSelect
@@ -53,7 +48,7 @@ function App() {
           />
         }
         {gameStart &&
-          <ScoreTable greenTeam={greenTeam} redTeam={redTeam} />
+          <ScoreTable greenTeam={greenTeam} redTeam={redTeam} selectedRules={selectedRules} />
         }
       </div>
     </div>
