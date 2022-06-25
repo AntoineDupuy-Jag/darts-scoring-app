@@ -12,36 +12,39 @@ import { ffaOrTeam, inAndOut, scoreToGoal } from '../../../utils/constants';
 import styles from './styles.module.scss';
 
 type RulesSelectProps = {
-  setContinues: any,
-  selectedRules: selectedRulesType,
-  setSelectedRules: any
+	setContinues: any;
+	selectedRules: selectedRulesType;
+	setSelectedRules: any;
 };
 
 export const RulesSelect = ({ setContinues, selectedRules, setSelectedRules }: RulesSelectProps) => {
+	const handleSubmit = (e: any) => {
+		e.preventDefault();
+		setContinues(true);
+	};
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    setContinues(true);
-  };
+	const onChange = (e: any) => {
+		setSelectedRules({ ...selectedRules, [e.target.name]: e.target.value });
+	};
 
-  const onChange = (e: any) => {
-    setSelectedRules({...selectedRules, [e.target.name]: e.target.value});
-  };
-
-  return (
-    <Container>
-      <Chip name={"Paramètre ta partie"} color="black" />
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <RadioForm rule={ffaOrTeam} onChange={onChange} />
-        <Separator verticalMargin={20}/>
-        <RadioForm rule={scoreToGoal} onChange={onChange} />
-        <Separator verticalMargin={20}/>
-        <RadioForm rule={inAndOut} onChange={onChange} />
-        <div className={styles.buttonsContainer}>
-          <Button type="submit">{"Continuer"}</Button>
-          <Button type="reset">{"Annuler"}</Button>
-        </div>
-      </form>
-    </Container>
-  )
+	return (
+		<Container>
+			<Chip name={'Paramètre ta partie'} color="black" />
+			<form className={styles.form} onSubmit={handleSubmit}>
+				<RadioForm rule={ffaOrTeam} onChange={onChange} />
+				<Separator verticalMargin={20} />
+				<RadioForm rule={scoreToGoal} onChange={onChange} />
+				<Separator verticalMargin={20} />
+				<RadioForm rule={inAndOut} onChange={onChange} />
+				<div className={styles.buttonsContainer}>
+					<Button type="submit" style="valid">
+						{'Continuer'}
+					</Button>
+					<Button type="reset" style="cancel">
+						{'Annuler'}
+					</Button>
+				</div>
+			</form>
+		</Container>
+	);
 };

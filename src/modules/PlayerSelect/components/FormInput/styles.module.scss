@@ -7,18 +7,24 @@
   font-size: 16px;
   &:invalid[data-focused=true] {
     border: 2px solid red;
+    background-color: rgb(255, 231, 231);
     outline: none;
   };
+  &:valid {
+    border: 2px solid green;
+    outline: none;
+  }
 };
 
 .errorMessage {
   font-size: 12px;
-  padding: 4px;
-  color: red;
-  display: none;
+  padding-left: 4px;
+  color: transparent;
   height: 20px;
+  margin-bottom: -20px;
 };
 
 .input:invalid[data-focused=true] ~ .errorMessage {
-  display: block;
+  color: red;
+  margin-bottom: -20px;
 }; 

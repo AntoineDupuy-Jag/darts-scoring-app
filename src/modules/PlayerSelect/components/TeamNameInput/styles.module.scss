@@ -1,0 +1,93 @@
+.box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: forestgreen;
+  border-radius: 10px;
+  width: 200px;
+};
+
+.boxGreen {
+  background-color: forestgreen;
+};
+
+.boxRed {
+  background-color: crimson;
+};
+
+.boxPurple {
+  background-color: #662d91;
+};
+
+.boxBlue {
+  background-color: #3457D5;
+};
+
+.input {
+  width: 80%;
+  padding: 10px;
+  margin: 2px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 24px;
+  font-style: italic;
+  word-spacing: 6px;
+  text-align: center;
+  &:disabled {
+    cursor: default;
+    outline: none;
+    border: none;
+  };
+};
+
+.backgroundGreen {
+  background-color: white;
+  color: forestgreen;
+  &:disabled {
+    background-color: forestgreen;
+    color: white;
+  };
+};
+
+.backgroundRed {
+  background-color: white;
+  color: crimson;
+  &:disabled {
+    background-color: crimson;
+    color: white;
+  };
+};
+
+.backgroundPurple {
+  background-color: white;
+  color: #662d91;
+  &:disabled {
+    background-color: #662d91;
+    color: white;
+  };
+};
+
+.backgroundBlue {
+  background-color: white;
+  color: #3457D5;
+  &:disabled {
+    background-color: #3457D5;
+    color: white;
+  };
+};
+
+.editIcon {
+  color: white;
+  margin-right: 8px;
+  padding: 2px;
+  cursor: pointer;
+  &:hover {
+    background-color: white;
+    color: rgb(42, 42, 42);
+    padding: 2px;
+    border-radius: 50px;
+  };
+};
+
+// roku purple : #662d91
+// byzantine blue: #3457D5

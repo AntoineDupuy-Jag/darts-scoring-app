@@ -1,46 +1,23 @@
 .inputsBox {
   display: flex;
-  // align-items: center; -> to align with errorMessage
   margin: 10px 0;
 };
 
-.buttonContainer {
+.addAndRemovePlayers {
+  margin-top: 4px;
   display: flex;
-  align-items: center;
 };
 
-.addButton {
-  background-color: white;
-  border: none;
-  border-radius: 5px;
-  height: 50px;
-  width: 50px;
-  font-size: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 4px; // -> to align with inputsBox
-  margin-right: 8px;
-  &:hover:enabled {
-    border: 2px solid #43C6AC;
-    color: #43C6AC;
-    font-size: 40px;
-    cursor: pointer;
-    transition: all 0.2s ease-out;
-    margin-left: 4px;
-  };
-  &:disabled {
-    color: lightgray
-  };
+.addAndRemoveTeams {
+  margin-bottom: 10px;
 };
 
-.removeButton {
-  &:hover:enabled {
-    margin-left: -4px;
-  };
+.emptyDiv {
+  height: 20px;
 };
 
 .startAndResetButtons {
   display: flex;
   justify-content: center;
+  margin-top: 10px;
 };

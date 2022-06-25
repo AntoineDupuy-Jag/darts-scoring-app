@@ -1,140 +1,125 @@
-import React, { useState } from 'react';
-
-import classNames from 'classnames';
-import { FormInput } from '../components/FormInput/FormInput';
 import { Container } from '../../common-ui/Container/Container';
-import { Button } from '../../common-ui/Button/Button';
+import { SquareButton } from '../../common-ui/SquareButton/SquareButton';
 import { Chip } from '../../common-ui/Chip/Chip';
+import { Button } from '../../common-ui/Button/Button';
 import { Separator } from '../../common-ui/Separator/Separator';
 
-import { teamType } from '../../../utils/types';
-import { inputs } from '../../../utils/constants';
+import { FormInput } from '../components/FormInput/FormInput';
+import { teamsType } from '../../../utils/types';
 
 import styles from './styles.module.scss';
+import { TeamNameInput } from '../components/TeamNameInput/TeamNameInput';
+import { useState } from 'react';
+import { teamColors } from '../../../utils/constants';
 
 type PlayerSelectProps = {
-  greenTeam: teamType,
-  redTeam: teamType,
-  setGreenTeam: any,
-  setRedTeam: any,
-  setGameStart: any
+	teams: teamsType;
+	setTeams: React.Dispatch<React.SetStateAction<teamsType>>;
+	setGameStart: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const PlayerSelect = ({ greenTeam, redTeam, setGreenTeam, setRedTeam, setGameStart }: PlayerSelectProps) => {
+export const PlayerSelect = ({ teams, setTeams, setGameStart }: PlayerSelectProps) => {
+	const [numTeam, setNumTeam] = useState(2);
 
-  const [indexGreenTeam, setIndexGreenTeam] = useState(1);
-  const [indexRedTeam, setIndexRedTeam] = useState(1);
+	const addOrRemoveTeam = (action: string) => {
+		const newTeams = [...teams];
+		if (action === 'add')
+			newTeams.push({
+				name: `Équipe ${numTeam + 1}`,
+				color: teamColors[numTeam],
+				players: [''],
+			});
+		if (action === 'remove') newTeams.pop();
+		setTeams(newTeams);
+	};
 
-  const onChangeGreenTeam = (e: any) => {
-    setGreenTeam({...greenTeam, [e.target.name]: e.target.value})
-  };
-  
-  const onChangeRedTeam = (e: any) => {
-    setRedTeam({...redTeam, [e.target.name]: e.target.value})
-  };
-  
-  const handleSubmit = (e: any) => {
-    e.preventDefault(); // --> to avoid page refresh 
-    setGameStart(true) // --> Pour lancer la page des scores (!! to modify !!)
-  };
+	const addOrRemovePlayer = (teamIndex: number, action: string) => {
+		const newTeams = [...teams];
+		if (action === 'add') newTeams[teamIndex].players.push('');
+		if (action === 'remove') newTeams[teamIndex].players.pop();
+		setTeams(newTeams);
+	};
 
-  const resetInputs = (e: any) => {
-    setGreenTeam({
-      number: 1,
-      color: "green",
-      namePlayer1GreenTeam: "",
-      namePlayer2GreenTeam: "",
-      namePlayer3GreenTeam: "",
-    });
-    setRedTeam({
-      number: 2,
-      color: "red",
-      namePlayer1RedTeam: "",
-      namePlayer2RedTeam: "",
-      namePlayer3RedTeam: "",
-    });
-  };
+	const onChange = (e: any, teamIndex: number, playerIndex: number) => {
+		const newTeams = [...teams];
+		newTeams[teamIndex].players[playerIndex] = e.target.value;
+		setTeams(newTeams);
+	};
 
-  return (
-    <Container>
-      {/* TEAM 1 (GREEN) : ADD PLAYERS NAMES (maybe make a component with <form> ?*/}     
-      <form onSubmit={handleSubmit}>
-        <Chip name={"Équipe 1"} color="green" />
-        <div className={styles.inputsBox}>
-          {inputs.greenTeam.slice(0, indexGreenTeam).map((input) => 
-            <FormInput
-              {...input}
-              key={input.id}
-              value={greenTeam[input.name as keyof typeof greenTeam]}
-              onChange={onChangeGreenTeam}
-            />
-          )}
-          {(indexGreenTeam > 1) &&
-            <button
-              className={classNames(styles.addButton, styles.removeButton)}
-              type="button" // --> to avoid default behavior "submit" ?
-              onClick={() => {
-                setIndexGreenTeam(indexGreenTeam - 1)
-                if (indexGreenTeam === 2)
-                  setGreenTeam({...greenTeam, namePlayer2GreenTeam: ""})
-                if (indexGreenTeam === 3)
-                  setGreenTeam({...greenTeam, namePlayer3GreenTeam: ""})
-              }}
-            >
-              -
-            </button>
-          }
-          <button
-            className={styles.addButton}
-            type="button"
-            onClick={() => setIndexGreenTeam(indexGreenTeam + 1)}
-            disabled={indexGreenTeam === 3}
-          >
-            +
-          </button>
-        </div>
-        <Separator verticalMargin={20} />
-        {/* TEAM 2 (RED) : ADD PLAYERS NAMES */}
-        <Chip name={"Équipe 2"} color="red" />
-        <div className={styles.inputsBox}>
-          {inputs.redTeam.slice(0, indexRedTeam).map((input) => 
-            <FormInput
-              {...input}
-              key={input.id}
-              value={redTeam[input.name as keyof typeof redTeam]}
-              onChange={onChangeRedTeam}
-            />
-          )}
-          {(indexRedTeam > 1) &&
-            <button
-              className={classNames(styles.addButton, styles.removeButton)}
-              type="button"
-              onClick={() => {
-                setIndexRedTeam(indexRedTeam - 1)
-                if (indexRedTeam === 2)
-                  setRedTeam({...redTeam, namePlayer2RedTeam: ""})
-                if (indexRedTeam === 3)
-                  setRedTeam({...redTeam, namePlayer3RedTeam: ""})
-              }}
-            >
-              -
-            </button>
-          }
-          <button
-            className={styles.addButton}
-            type="button"
-            onClick={() => setIndexRedTeam(indexRedTeam + 1)}
-            disabled={indexRedTeam === 3}
-          >
-            +
-          </button>
-        </div>  
-        <Separator verticalMargin={20} />
-        <div className={styles.startAndResetButtons}>
-          <Button type="submit">{"Démarrer"}</Button>
-          <Button type="reset" onClick={(e) => resetInputs(e)}>{"Annuler"}</Button>
-        </div>
-      </form>
-    </Container>
-  )
+	return (
+		<Container>
+			{teams.map((team, teamIndex) => (
+				<div>
+					<TeamNameInput
+						id={String(teamIndex)}
+						name={'teamName'}
+						placeholder={`Équipe ${teamIndex + 1}`}
+						value={team.name}
+						color={team.color}
+						onChange={(e: any) => {
+							const newTeams = [...teams];
+							newTeams[teamIndex].name = e.target.value;
+							setTeams(newTeams);
+						}}
+					/>
+					<div className={styles.inputsBox}>
+						{team.players.map((player, playerIndex) => (
+							<FormInput
+								id={String(playerIndex)}
+								name="playerName"
+								placeholder={`Joueur ${playerIndex + 1}`}
+								value={player}
+								onChange={(e) => onChange(e, teamIndex, playerIndex)}
+								errorMessage={'3 à 16 caractères max.'}
+								pattern="^[A-Za-z0-9]{3,16}$"
+							/>
+						))}
+						<div className={styles.addAndRemovePlayers}>
+							{team.players.length > 1 && (
+								<SquareButton onClick={() => addOrRemovePlayer(teamIndex, 'remove')}>-</SquareButton>
+							)}
+							<SquareButton
+								onClick={() => addOrRemovePlayer(teamIndex, 'add')}
+								isDisabled={team.players.length === 6}
+							>
+								+
+							</SquareButton>
+						</div>
+					</div>
+					<Separator verticalMargin={20} />
+				</div>
+			))}
+			<div className={styles.addAndRemoveTeams}>
+				<Button
+					style="add-team"
+					onClick={() => {
+						addOrRemoveTeam('add');
+						setNumTeam(numTeam + 1);
+					}}
+					isDisabled={teams.length === 4}
+				>
+					{'Ajouter une équipe'}
+				</Button>
+				{teams.length > 2 && (
+					<Button
+						style="remove-team"
+						onClick={() => {
+							addOrRemoveTeam('remove');
+							setNumTeam(numTeam - 1);
+						}}
+					>
+						{'Supprimer une équipe'}
+					</Button>
+				)}
+			</div>
+			<div className={styles.startAndResetButtons}>
+				<Button type="submit" style="valid" onClick={() => setGameStart(true)}>
+					{'Démarrer'}
+				</Button>
+				<Button type="reset" style="cancel">
+					{'Annuler'}
+				</Button>
+			</div>
+		</Container>
+	);
 };

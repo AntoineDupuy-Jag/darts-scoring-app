@@ -8,11 +8,15 @@
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
+  &:disabled {
+    background-color: lightgray;
+    cursor: default;
+  };
 };
 
 .valid {
   background-color: #50C878;
-  &:hover {
+  &:hover:enabled {
     background-color: white;
     color: #50C878;
     transition: all 0.2s ease-out;
@@ -21,9 +25,29 @@
 
 .reset {
   background-color: #fd5c63;
-  &:hover {
+  &:hover:enabled {
     background-color: white;
     color: #fd5c63;
+    transition: all 0.2s ease-out;
+  }
+};
+
+.addTeam {
+  width: 220px;
+  background-color: #6699CC;
+  &:hover:enabled {
+    background-color: white;
+    color: #6699CC;
+    transition: all 0.2s ease-out;
+  }
+};
+
+.removeTeam {
+  width: 220px;
+  background-color: #F08080;
+  &:hover:enabled {
+    background-color: white;
+    color: #F08080;
     transition: all 0.2s ease-out;
   }
 };

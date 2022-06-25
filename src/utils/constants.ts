@@ -1,67 +1,10 @@
-/*----------------------------------------
-|  INPUTS FOR <PlayerSelect /> COMPONENT  |
------------------------------------------*/
+/*----------------------
+|  DEFAULT TEAM COLORS  |
+-----------------------*/
 
-export const inputs = {
-  greenTeam: [
-    {
-      id: "1",
-      name: "namePlayer1GreenTeam",
-      type: "text",
-      placeholder: "Joueur 1",
-      errorMessage: "3 et 16 caractères max",
-      pattern: "^[A-Za-z0-9]{3,16}$",
-      required: true
-    },
-    {
-      id: "2",
-      name: "namePlayer2GreenTeam",
-      type: "text",
-      placeholder: "Joueur 2",
-      errorMessage: "3 à 16 caractères max",
-      pattern: "^[A-Za-z0-9]{3,16}$",
-      required: true
-    },
-    {
-      id: "3",
-      name: "namePlayer3GreenTeam",
-      type: "text",
-      placeholder: "Joueur 3",
-      errorMessage: "3 à 16 caractères max",
-      pattern: "^[A-Za-z0-9]{3,16}$",
-      required: true
-    }
-  ],
-  redTeam: [
-    {
-      id: "1",
-      name: "namePlayer1RedTeam",
-      type: "text",
-      placeholder: "Joueur 1",
-      errorMessage: "3 à 16 caractères max",
-      pattern: "^[A-Za-z0-9]{3,16}$",
-      required: true
-    },
-    {
-      id: "2",
-      name: "namePlayer2RedTeam",
-      type: "text",
-      placeholder: "Joueur 2",
-      errorMessage: "3 à 16 caractères max",
-      pattern: "^[A-Za-z0-9]{3,16}$",
-      required: true
-    },
-    {
-      id: "3",
-      name: "namePlayer3RedTeam",
-      type: "text",
-      placeholder: "Joueur 3",
-      errorMessage: "3 à 16 caractères max",
-      pattern: "^[A-Za-z0-9]{3,16}$",
-      required: true
-    }
-  ]
-};
+export const teamColors = [
+  "forest-green", "crimson", "roku-purple", "byzantin-blue"
+];
 
 /*--------------------------------------
 |  RULES FOR <RulesSelect /> COMPONENT  |
