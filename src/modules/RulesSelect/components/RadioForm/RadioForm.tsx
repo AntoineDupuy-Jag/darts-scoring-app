@@ -1,19 +1,10 @@
 import React from 'react';
+import { rulesType } from '../../../../utils/types';
 
 import styles from './styles.module.scss';
 
-type rulePropertiesType = {
-	id: string;
-	name: string;
-	value: string;
-	selectLabel: string;
-};
-
 type RadioFormProps = {
-	rule: {
-		ruleLabel: string;
-		ruleProperties: rulePropertiesType[];
-	};
+	rule: rulesType;
 	onChange: React.ChangeEventHandler<HTMLInputElement>;
 };
 
@@ -22,19 +13,18 @@ export const RadioForm = ({ rule, onChange }: RadioFormProps) => {
 		<div>
 			<div className={styles.superLabel}>{rule.ruleLabel}</div>
 			<div className={styles.radioBox}>
-				{rule.ruleProperties.map((property) => (
-					<div className={styles.radio}>
+				{rule.ruleProperties.map((property, index) => (
+					<div className={styles.radio} key={index}>
 						<input
 							className={styles.input}
 							type="radio"
 							id={property.id}
-							key={property.id}
 							name={property.name}
-							value={property.value}
+							value={[property.value, property.label]}
 							onChange={onChange}
 							required
 						/>
-						<label htmlFor={property.id}>{property.selectLabel}</label>
+						<label htmlFor={property.id}>{property.label}</label>
 					</div>
 				))}
 			</div>

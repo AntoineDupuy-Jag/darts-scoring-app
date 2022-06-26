@@ -9,17 +9,17 @@ type ButtonProps = {
 	type?: 'button' | 'submit' | 'reset' | undefined;
 	onClick?: (e?: any) => void;
 	isDisabled?: boolean;
-	style: 'valid' | 'cancel' | 'add-team' | 'remove-team';
+	customStyle: 'valid' | 'cancel' | 'add-team' | 'remove-team';
 };
 
-export const Button = ({ children, type, onClick, isDisabled, style }: ButtonProps) => {
+export const Button = ({ children, type, onClick, isDisabled, customStyle }: ButtonProps) => {
 	return (
 		<button
 			className={classNames(styles.button, {
-				[styles.valid]: style === 'valid',
-				[styles.reset]: style === 'cancel',
-				[styles.addTeam]: style === 'add-team',
-				[styles.removeTeam]: style === 'remove-team',
+				[styles.valid]: customStyle === 'valid',
+				[styles.reset]: customStyle === 'cancel',
+				[styles.addTeam]: customStyle === 'add-team',
+				[styles.removeTeam]: customStyle === 'remove-team',
 			})}
 			type={type}
 			onClick={onClick}

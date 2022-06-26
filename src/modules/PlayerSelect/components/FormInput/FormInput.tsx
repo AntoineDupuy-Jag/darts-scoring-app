@@ -28,7 +28,7 @@ export const FormInput = ({
 	};
 
 	return (
-		<div>
+		<>
 			<input
 				className={styles.input}
 				id={id}
@@ -42,6 +42,6 @@ export const FormInput = ({
 				required
 			/>
 			<div className={styles.errorMessage}>{errorMessage}</div>
-		</div>
+		</>
 	);
 };

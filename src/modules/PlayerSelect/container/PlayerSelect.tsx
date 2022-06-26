@@ -1,6 +1,5 @@
 import { Container } from '../../common-ui/Container/Container';
 import { SquareButton } from '../../common-ui/SquareButton/SquareButton';
-import { Chip } from '../../common-ui/Chip/Chip';
 import { Button } from '../../common-ui/Button/Button';
 import { Separator } from '../../common-ui/Separator/Separator';
 
@@ -48,78 +47,82 @@ export const PlayerSelect = ({ teams, setTeams, setGameStart }: PlayerSelectProp
 
 	return (
 		<Container>
-			{teams.map((team, teamIndex) => (
-				<div>
-					<TeamNameInput
-						id={String(teamIndex)}
-						name={'teamName'}
-						placeholder={`Équipe ${teamIndex + 1}`}
-						value={team.name}
-						color={team.color}
-						onChange={(e: any) => {
-							const newTeams = [...teams];
-							newTeams[teamIndex].name = e.target.value;
-							setTeams(newTeams);
-						}}
-					/>
-					<div className={styles.inputsBox}>
-						{team.players.map((player, playerIndex) => (
-							<FormInput
-								id={String(playerIndex)}
-								name="playerName"
-								placeholder={`Joueur ${playerIndex + 1}`}
-								value={player}
-								onChange={(e) => onChange(e, teamIndex, playerIndex)}
-								errorMessage={'3 à 16 caractères max.'}
-								pattern="^[A-Za-z0-9]{3,16}$"
-							/>
-						))}
-						<div className={styles.addAndRemovePlayers}>
-							{team.players.length > 1 && (
-								<SquareButton onClick={() => addOrRemovePlayer(teamIndex, 'remove')}>-</SquareButton>
-							)}
-							<SquareButton
-								onClick={() => addOrRemovePlayer(teamIndex, 'add')}
-								isDisabled={team.players.length === 6}
-							>
-								+
-							</SquareButton>
+			<form>
+				{teams.map((team, teamIndex) => (
+					<div key={teamIndex}>
+						<TeamNameInput
+							id={String(teamIndex)}
+							name={'teamName'}
+							placeholder={`Équipe ${teamIndex + 1}`}
+							value={team.name}
+							color={team.color}
+							onChange={(e: any) => {
+								const newTeams = [...teams];
+								newTeams[teamIndex].name = e.target.value;
+								setTeams(newTeams);
+							}}
+						/>
+						<div className={styles.inputsBox}>
+							{team.players.map((player, playerIndex) => (
+								<div key={playerIndex}>
+									<FormInput
+										id={String(playerIndex)}
+										name="playerName"
+										placeholder={`Joueur ${playerIndex + 1}`}
+										value={player}
+										onChange={(e) => onChange(e, teamIndex, playerIndex)}
+										errorMessage={'3 à 16 caractères max.'}
+										pattern="^[A-Za-z0-9]{3,16}$"
+									/>
+								</div>
+							))}
+							<div className={styles.addAndRemovePlayers}>
+								{team.players.length > 1 && (
+									<SquareButton onClick={() => addOrRemovePlayer(teamIndex, 'remove')}>-</SquareButton>
+								)}
+								<SquareButton
+									onClick={() => addOrRemovePlayer(teamIndex, 'add')}
+									isDisabled={team.players.length === 6}
+								>
+									+
+								</SquareButton>
+							</div>
 						</div>
+						<Separator verticalMargin={20} />
 					</div>
-					<Separator verticalMargin={20} />
-				</div>
-			))}
-			<div className={styles.addAndRemoveTeams}>
-				<Button
-					style="add-team"
-					onClick={() => {
-						addOrRemoveTeam('add');
-						setNumTeam(numTeam + 1);
-					}}
-					isDisabled={teams.length === 4}
-				>
-					{'Ajouter une équipe'}
-				</Button>
-				{teams.length > 2 && (
+				))}
+				<div className={styles.addAndRemoveTeams}>
 					<Button
-						style="remove-team"
+						customStyle="add-team"
 						onClick={() => {
-							addOrRemoveTeam('remove');
-							setNumTeam(numTeam - 1);
+							addOrRemoveTeam('add');
+							setNumTeam(numTeam + 1);
 						}}
+						isDisabled={teams.length === 4}
 					>
-						{'Supprimer une équipe'}
+						{'Ajouter une équipe'}
 					</Button>
-				)}
-			</div>
-			<div className={styles.startAndResetButtons}>
-				<Button type="submit" style="valid" onClick={() => setGameStart(true)}>
-					{'Démarrer'}
-				</Button>
-				<Button type="reset" style="cancel">
-					{'Annuler'}
-				</Button>
-			</div>
+					{teams.length > 2 && (
+						<Button
+							customStyle="remove-team"
+							onClick={() => {
+								addOrRemoveTeam('remove');
+								setNumTeam(numTeam - 1);
+							}}
+						>
+							{'Supprimer une équipe'}
+						</Button>
+					)}
+				</div>
+				<div className={styles.startAndResetButtons}>
+					<Button type="submit" customStyle="valid" onClick={() => setGameStart(true)}>
+						{'Démarrer'}
+					</Button>
+					<Button type="reset" customStyle="cancel">
+						{'Annuler'}
+					</Button>
+				</div>
+			</form>
 		</Container>
 	);
 };

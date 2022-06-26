@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Container } from '../../common-ui/Container/Container';
 import { Chip } from '../../common-ui/Chip/Chip';
 import { Separator } from '../../common-ui/Separator/Separator';
@@ -14,7 +12,7 @@ import styles from './styles.module.scss';
 type RulesSelectProps = {
 	setContinues: any;
 	selectedRules: selectedRulesType;
-	setSelectedRules: any;
+	setSelectedRules: React.Dispatch<React.SetStateAction<selectedRulesType>>;
 };
 
 export const RulesSelect = ({ setContinues, selectedRules, setSelectedRules }: RulesSelectProps) => {
@@ -37,10 +35,10 @@ export const RulesSelect = ({ setContinues, selectedRules, setSelectedRules }: R
 				<Separator verticalMargin={20} />
 				<RadioForm rule={inAndOut} onChange={onChange} />
 				<div className={styles.buttonsContainer}>
-					<Button type="submit" style="valid">
+					<Button type="submit" customStyle="valid">
 						{'Continuer'}
 					</Button>
-					<Button type="reset" style="cancel">
+					<Button type="reset" customStyle="cancel">
 						{'Annuler'}
 					</Button>
 				</div>
