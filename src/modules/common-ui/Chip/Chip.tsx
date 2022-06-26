@@ -1,25 +1,15 @@
-import React from 'react';
-
-import classNames from 'classnames';
-
 import styles from './styles.module.scss';
 
 type ChipProps = {
-  name: string,
-  color: "red" | "green" | "black"
+	name: string;
+	bgColor?: string;
+	width?: string;
 };
 
-export const Chip = ({ name, color }: ChipProps) => {
-  
-  return (
-    <div
-      className={classNames(styles.chipContainer, {
-        [styles.redBackground]: color === "red",
-        [styles.greenBackground]: color === "green",
-        [styles.blackBackground]: color === "black" }
-      )}
-    >
-      {name}
-    </div>
-  )
+export const Chip = ({ name, bgColor, width }: ChipProps) => {
+	return (
+		<div className={styles.chipContainer} style={{ width: width, backgroundColor: bgColor }}>
+			{name}
+		</div>
+	);
 };

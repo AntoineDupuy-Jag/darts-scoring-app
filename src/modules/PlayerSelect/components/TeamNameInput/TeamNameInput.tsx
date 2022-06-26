@@ -19,18 +19,18 @@ export const TeamNameInput = ({ id, name, placeholder, value, color, onChange }:
 	return (
 		<div
 			className={classNames(styles.box, {
-				[styles.boxGreen]: color === 'forest-green',
+				[styles.boxGreen]: color === 'forestgreen',
 				[styles.boxRed]: color === 'crimson',
-				[styles.boxPurple]: color === 'roku-purple',
-				[styles.boxBlue]: color === 'byzantin-blue',
+				[styles.boxPurple]: color === '#662d91',
+				[styles.boxBlue]: color === '#3457D5',
 			})}
 		>
 			<input
 				className={classNames(styles.input, {
-					[styles.backgroundGreen]: color === 'forest-green',
+					[styles.backgroundGreen]: color === 'forestgreen',
 					[styles.backgroundRed]: color === 'crimson',
-					[styles.backgroundPurple]: color === 'roku-purple',
-					[styles.backgroundBlue]: color === 'byzantin-blue',
+					[styles.backgroundPurple]: color === '#662d91',
+					[styles.backgroundBlue]: color === '#3457D5',
 				})}
 				id={id}
 				name={name}

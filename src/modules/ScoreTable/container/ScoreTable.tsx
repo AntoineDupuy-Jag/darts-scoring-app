@@ -1,8 +1,15 @@
-import { Chip } from '../../common-ui/Chip/Chip';
+import { useState } from 'react';
+
 import { Container } from '../../common-ui/Container/Container';
+import { Chip } from '../../common-ui/Chip/Chip';
+import { Separator } from '../../common-ui/Separator/Separator';
+import { RulesReminder } from '../components/RulesReminder/RulesReminder';
+import { TargetContainer } from '../components/TargetContainer/TargetContainer';
 import { selectedRulesType, teamsType } from '../../../utils/types';
+import { arrayScoreButtons } from '../../../utils/constants';
 
 import styles from './styles.module.scss';
+import classNames from 'classnames';
 
 type ScoreTableProps = {
 	teams: teamsType;
@@ -10,34 +17,40 @@ type ScoreTableProps = {
 };
 
 export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
+	const [score, setScore] = useState(252);
+
 	// WORK IN PROGRESS !!!
 	console.log('selectedRules ->', selectedRules);
-
-	const sliceLabel = (str: string) => {
-		const index = str.indexOf(',');
-		const label = str.slice(index + 1);
-		return label;
-	};
+	console.log('teams ->', teams);
 
 	return (
 		<Container>
-			<Chip color="black" name={'Scores'} />
-			{/* RAPPEL DES REGLES */}
-			<div className={styles.selectedRules}>
-				<div className={styles.rule}>{sliceLabel(selectedRules.ffaOrTeam)}</div>
-				<div className={styles.rule}>{'Score à atteindre : ' + sliceLabel(selectedRules.scoreToGoal)}</div>
-				<div className={styles.rule}>{sliceLabel(selectedRules.inAndOut)}</div>
-			</div>
-			<div className={styles.table}>
-				<Chip color="green" name={teams[0].name} />
-				{teams[0].players.map((player) => (
-					<div>{player}</div>
+			<Chip name={'Scores'} />
+			<RulesReminder selectedRules={selectedRules} />
+			<Separator />
+			<div className={styles.teamContainer}>
+				{teams.map((team, index) => (
+					<div className={styles.teamSection} style={{ width: `calc(100% / ${teams.length})` }} key={index}>
+						<Chip name={team.name} bgColor={team.color} width={'150px'} />
+						<TargetContainer score={score} />
+					</div>
 				))}
 			</div>
-			<div className={styles.table}>
-				<Chip color="red" name={teams[1].name} />
-				{teams[1].players.map((player) => (
-					<div>{player}</div>
+
+			<div className={styles.labelsContainer}>
+				<input className={styles.radioInput} type="radio" id="x1" name="multiplierX1" />
+				<label htmlFor={'x1'}>{'x1'}</label>
+				<input className={styles.radioInput} type="radio" id="x2" name="multiplierX2" />
+				<label htmlFor={'x2'}>{'x2'}</label>
+				<input className={styles.radioInput} type="radio" id="x3" name="multiplierX3" />
+				<label htmlFor={'x3'}>{'x3'}</label>
+			</div>
+
+			<div className={styles.buttonsContainer}>
+				{arrayScoreButtons.map((a, index) => (
+					<button className={classNames(styles.button, { [styles.buttonPair]: index % 2 === 0 })} key={index}>
+						{a}
+					</button>
 				))}
 			</div>
 		</Container>

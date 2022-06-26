@@ -27,7 +27,7 @@ export const RulesSelect = ({ setContinues, selectedRules, setSelectedRules }: R
 
 	return (
 		<Container>
-			<Chip name={'Paramètre ta partie'} color="black" />
+			<Chip name={'Paramètre ta partie'} />
 			<form className={styles.form} onSubmit={handleSubmit}>
 				<RadioForm rule={ffaOrTeam} onChange={onChange} />
 				<Separator verticalMargin={20} />

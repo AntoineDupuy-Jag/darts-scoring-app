@@ -15,7 +15,7 @@ function App() {
 	const [teams, setTeams] = useState([
 		{
 			name: 'Équipe 1',
-			color: 'forest-green',
+			color: 'forestgreen',
 			players: ['', ''],
 		},
 		{

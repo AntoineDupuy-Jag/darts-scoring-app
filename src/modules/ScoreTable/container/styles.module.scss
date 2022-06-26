@@ -1,17 +1,90 @@
-.table {
-  color: white;
-  font-size: 16px;
-};
-
-.selectedRules {
+.teamContainer {
   display: flex;
-  margin: 10px 0;
+  justify-content: space-between;
+  margin-top: 20px;
 };
 
-.rule {
-  background-color: #50C878;
+// ====== TEAM NAME AND SCORE ======
+
+.teamSection {
   color: white;
-  padding: 4px 10px;
-  border-radius: 20px;
-  margin-right: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid white;
+  &:last-child {
+    border-right: none
+  }
 };
+
+// ====== RADIO INPUTS MULTIPLIER ======
+
+.labelsContainer {
+  width: 20%;
+  margin: 20px auto 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.radioInput {
+  display: none;
+};
+
+.radioInput + label {
+  padding: 2px 10px;
+  border-radius: 10px;
+  color: white;
+  font-size: 28px;
+  font-style: italic;
+  cursor: pointer;
+  &:hover {
+    padding: 2px 10px;
+    border-radius: 10px;
+    background-color: #50C878;
+    transition: 0.5s all ease;
+  };
+};
+
+.radioInput:checked + label {
+  background-color: #50C878;
+};
+
+// ====== KEYBOARD BUTTONS ======
+
+.buttonsContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+  flex-wrap: wrap;
+  border: 1px solid white;
+  border-radius: 10px;
+  overflow: hidden;
+};
+
+.button {
+  width: 20%;
+  color: white;
+  font-style: italic;
+  font-size: 16px;
+  height: 30px;
+  background-color: #21485a;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    color: #21485a;
+    background-color: white;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s all ease;
+  };
+};
+
+.buttonPair {
+  background-color: #132735;
+  &:hover {
+    color: #132735;
+    background-color: white;
+  };
+}

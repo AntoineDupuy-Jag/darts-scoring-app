@@ -1,0 +1,23 @@
+.container {
+  margin: 10px 0 20px 0;
+};
+
+.label {
+  color: white;
+  font-size: 18px;
+  font-style: italic;
+  margin: 0 0 5px 5px;
+  word-spacing: 4px;
+};
+
+.chipContainer {
+  display: flex;
+};
+
+.chip {
+  background-color: #50C878;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-right: 8px;
+};

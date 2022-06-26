@@ -3,8 +3,34 @@
 -----------------------*/
 
 export const teamColors = [
-  "forest-green", "crimson", "roku-purple", "byzantin-blue"
+  "forestgreen", "crimson", "#662d91", "#3457D5"
 ];
+
+export const bgColors = {
+  green: {
+    code: "forestgreen",
+    label: "forest-green"
+  },
+  red: {
+    code: "crimson",
+    label: "crimson"
+  },
+  purple: {
+    code: "#662d91",
+    label: "roku-purple"
+  },
+  blue: {
+    code: "#3457D5",
+    label: "byzantin-blue"
+  }
+};
+
+/*------------------------------------------
+|  FOR BUTTONS OF <ScoreTable /> COMPONENT  |
+-------------------------------------------*/
+
+export const arrayScoreButtons = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"];
+export const array = new Array(20);
 
 /*--------------------------------------
 |  RULES FOR <RulesSelect /> COMPONENT  |
