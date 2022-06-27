@@ -41,11 +41,19 @@ export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
 			<RulesReminder selectedRules={selectedRules} />
 			<Separator />
 			{!isLoading && (
-				<div className={styles.teamContainer}>
+				<div className={styles.teamsContainer}>
 					{teamsWithScore.map((team, index) => (
-						<div className={styles.teamSection} style={{ width: `calc(100% / ${teams.length})` }} key={index}>
-							<Chip name={team.name} bgColor={team.color} width={'150px'} />
-							<TargetContainer score={team.score} />
+						<div className={styles.teamBox} style={{ width: `calc(100% / ${teams.length})` }}>
+							<div className={styles.teamNameLabel}>{'Joueurs'}</div>
+							<div className={styles.teamNames}>
+								{team.players.map((player) => (
+									<div className={styles.playerName}>{player}</div>
+								))}
+							</div>
+							<div className={styles.teamScore} key={index}>
+								<Chip name={team.name} bgColor={team.color} width={'150px'} small />
+								<TargetContainer score={team.score} />
+							</div>
 						</div>
 					))}
 				</div>
@@ -65,6 +73,11 @@ export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
 						{a}
 					</button>
 				))}
+			</div>
+			<div className={styles.othersButtonsContainer}>
+				<button className={classNames(styles.button, styles.missed)}>{'Manqué...'}</button>
+				<button className={classNames(styles.button, styles.fifty)}>{'50 !'}</button>
+				<button className={classNames(styles.button, styles.twentyFive)}>{'25'}</button>
 			</div>
 		</Container>
 	);
