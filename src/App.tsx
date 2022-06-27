@@ -16,11 +16,13 @@ function App() {
 		{
 			name: 'Équipe 1',
 			color: 'forestgreen',
+			score: 0,
 			players: ['', ''],
 		},
 		{
 			name: 'Équipe 2',
 			color: 'crimson',
+			score: 0,
 			players: ['', ''],
 		},
 	] as teamsType);

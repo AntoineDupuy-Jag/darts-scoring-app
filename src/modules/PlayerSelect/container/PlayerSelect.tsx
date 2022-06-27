@@ -26,6 +26,7 @@ export const PlayerSelect = ({ teams, setTeams, setGameStart }: PlayerSelectProp
 			newTeams.push({
 				name: `Équipe ${numTeam + 1}`,
 				color: teamColors[numTeam],
+				score: 0,
 				players: [''],
 			});
 		if (action === 'remove') newTeams.pop();

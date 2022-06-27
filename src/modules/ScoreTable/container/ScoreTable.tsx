@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Container } from '../../common-ui/Container/Container';
 import { Chip } from '../../common-ui/Chip/Chip';
@@ -17,26 +17,39 @@ type ScoreTableProps = {
 };
 
 export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
-	const [score, setScore] = useState(252);
+	const [teamsWithScore, setTeamsWithScore] = useState({} as teamsType);
+	const [isLoading, setIsLoading] = useState(true);
 
-	// WORK IN PROGRESS !!!
-	console.log('selectedRules ->', selectedRules);
-	console.log('teams ->', teams);
+	const findScore = (scoreString: string) => {
+		if (scoreString === '301,301') return 301;
+		if (scoreString === '501,501') return 501;
+		if (scoreString === '1001,1001') return 1001;
+		return 0;
+	};
+
+	useEffect(() => {
+		const newTeams = teams.map((t) => ({ ...t, score: findScore(selectedRules.scoreToGoal) }));
+		setTeamsWithScore(newTeams);
+		setIsLoading(false);
+	}, []);
+
+	console.log('teamsWithScore ->', teamsWithScore);
 
 	return (
 		<Container>
 			<Chip name={'Scores'} />
 			<RulesReminder selectedRules={selectedRules} />
 			<Separator />
-			<div className={styles.teamContainer}>
-				{teams.map((team, index) => (
-					<div className={styles.teamSection} style={{ width: `calc(100% / ${teams.length})` }} key={index}>
-						<Chip name={team.name} bgColor={team.color} width={'150px'} />
-						<TargetContainer score={score} />
-					</div>
-				))}
-			</div>
-
+			{!isLoading && (
+				<div className={styles.teamContainer}>
+					{teamsWithScore.map((team, index) => (
+						<div className={styles.teamSection} style={{ width: `calc(100% / ${teams.length})` }} key={index}>
+							<Chip name={team.name} bgColor={team.color} width={'150px'} />
+							<TargetContainer score={team.score} />
+						</div>
+					))}
+				</div>
+			)}
 			<div className={styles.labelsContainer}>
 				<input className={styles.radioInput} type="radio" id="x1" name="multiplierX1" />
 				<label htmlFor={'x1'}>{'x1'}</label>

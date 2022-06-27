@@ -5,6 +5,7 @@
 export type teamType = {
   name: string,
   color: string,
+  score: number,
   players: string[]
 };
 
