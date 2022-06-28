@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 
+import classNames from 'classnames';
 import { Container } from '../../common-ui/Container/Container';
 import { Chip } from '../../common-ui/Chip/Chip';
 import { Separator } from '../../common-ui/Separator/Separator';
+import { DartIcon1 } from '../../common-ui/Svg';
 import { RulesReminder } from '../components/RulesReminder/RulesReminder';
 import { TargetContainer } from '../components/TargetContainer/TargetContainer';
 import { selectedRulesType, teamsType } from '../../../utils/types';
 import { arrayScoreButtons } from '../../../utils/constants';
 
 import styles from './styles.module.scss';
-import classNames from 'classnames';
 
 type ScoreTableProps = {
 	teams: teamsType;
@@ -40,16 +41,34 @@ export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
 			<Chip name={'Scores'} />
 			<RulesReminder selectedRules={selectedRules} />
 			<Separator />
+
+			{/* TEAMS CONTAINER */}
 			{!isLoading && (
 				<div className={styles.teamsContainer}>
 					{teamsWithScore.map((team, index) => (
-						<div className={styles.teamBox} style={{ width: `calc(100% / ${teams.length})` }}>
+						// TEAM BOXES
+						<div className={styles.teamBox}>
+							{/* NAMES AND DARTS */}
 							<div className={styles.teamNameLabel}>{'Joueurs'}</div>
 							<div className={styles.teamNames}>
-								{team.players.map((player) => (
-									<div className={styles.playerName}>{player}</div>
-								))}
+								<div>
+									{team.players.map((player) => (
+										<div
+											className={classNames(styles.playerName, {
+												[styles.playerNameOn]: player === 'Antoine',
+											})}
+										>
+											{player}
+										</div>
+									))}
+								</div>
+								<div className={styles.dartsContainer}>
+									<DartIcon1 color="white" />
+									<DartIcon1 />
+									<DartIcon1 />
+								</div>
 							</div>
+							{/* TEAM SCORE */}
 							<div className={styles.teamScore} key={index}>
 								<Chip name={team.name} bgColor={team.color} width={'150px'} small />
 								<TargetContainer score={team.score} />
@@ -58,6 +77,8 @@ export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
 					))}
 				</div>
 			)}
+
+			{/* X1 X2 X3 --> make a component ? */}
 			<div className={styles.labelsContainer}>
 				<input className={styles.radioInput} type="radio" id="x1" name="multiplierX1" />
 				<label htmlFor={'x1'}>{'x1'}</label>
@@ -67,6 +88,7 @@ export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
 				<label htmlFor={'x3'}>{'x3'}</label>
 			</div>
 
+			{/* KEYBOARD BUTTONS --> make a component ? */}
 			<div className={styles.buttonsContainer}>
 				{arrayScoreButtons.map((a, index) => (
 					<button className={classNames(styles.button, { [styles.buttonPair]: index % 2 === 0 })} key={index}>

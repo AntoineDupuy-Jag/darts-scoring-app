@@ -1,18 +1,19 @@
 .teamsContainer {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   margin-top: 20px;
   &:last-child {
     border-right: none;
   }
 };
 
-// ====== TEAM NAME, PLAYERS NAMES AND SCORE ======
+// ====== TEAM NAME, PLAYERS NAMES, DARTS AND SCORE ======
 
 .teamBox {
   display: flex;
-  // justify-content: space-between;
-  // border-right: 1px solid white;
+  width: 50%;
+  margin-bottom: 20px;
 };
 
 .teamNameLabel {
@@ -31,6 +32,9 @@
 .teamNames {
   width: 25%;
   padding-left: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between
 };
 
 .teamScore {
@@ -41,18 +45,28 @@
   align-items: center;
 };
 
-
 .playerName {
   color: white;
   font-style: italic;
   font-size: 16px;
 };
 
+.playerNameOn {
+  color: #50C878;
+  text-transform: uppercase;
+  font-size: 18px;
+  text-shadow: 1px 1px 1px black;
+};
+
+.dartsContainer {
+  display: flex;
+};
+
 // ====== RADIO INPUTS MULTIPLIER ======
 
 .labelsContainer {
   width: 20%;
-  margin: 20px auto 0 auto;
+  margin: 10px auto 0 auto;
   display: flex;
   justify-content: space-between;
 }
