@@ -37,3 +37,22 @@ export type selectedRulesType = {
 //   value: string,
 //   label: string
 // }[];
+
+/*----------------------
+|   ARRAY BUTTONS TYPE  |
+-----------------------*/
+
+export type arrayScoreButtonsType = {
+  name: string,
+  value: number
+}[];
+
+/*--------------------
+|     SCORES TYPE     |
+---------------------*/
+
+// Usefull ???
+export type scores = {
+  team: string,
+  score: number
+}[];
