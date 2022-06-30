@@ -18,8 +18,8 @@ export const TargetContainer = ({ score }: TargetContainerProps) => {
 
 	return (
 		<div className={styles.scoreContainer}>
-			{circlesClasses.map((circleClass) => (
-				<div className={classNames(styles.circle, circleClass)}></div>
+			{circlesClasses.map((circleClass, index) => (
+				<div className={classNames(styles.circle, circleClass)} key={index}></div>
 			))}
 			<div className={styles.score}>{score}</div>
 		</div>
