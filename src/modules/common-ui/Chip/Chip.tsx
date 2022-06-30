@@ -3,18 +3,18 @@ import styles from './styles.module.scss';
 
 type ChipProps = {
 	name: string;
-	bgColor?: string;
+	backgroundColor?: string;
 	width?: string;
 	small?: boolean;
 };
 
-export const Chip = ({ name, bgColor, width, small }: ChipProps) => {
+export const Chip = ({ name, backgroundColor, width, small }: ChipProps) => {
 	return (
 		<div
 			className={classNames(styles.chipContainer, {
 				[styles.smallChip]: small === true,
 			})}
-			style={{ width: width, backgroundColor: bgColor }}
+			style={{ width, backgroundColor }}
 		>
 			{name}
 		</div>

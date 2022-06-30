@@ -6,7 +6,7 @@ import { Separator } from '../../common-ui/Separator/Separator';
 import { DartIcon1 } from '../../common-ui/Svg';
 import { RulesReminder } from '../components/RulesReminder/RulesReminder';
 import { TargetContainer } from '../components/TargetContainer/TargetContainer';
-import { arrayScoreButtonsType, selectedRulesType, teamsType } from '../../../utils/types';
+import { selectedRulesType, teamsType } from '../../../utils/types';
 import classNames from 'classnames';
 
 import styles from './styles.module.scss';
@@ -18,32 +18,22 @@ type ScoreTableProps = {
 
 export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
 	const [teamsWithScore, setTeamsWithScore] = useState({} as teamsType);
-	const [keyboardButtons, setKeyboardButtons] = useState([] as arrayScoreButtonsType);
 	const [isLoading, setIsLoading] = useState(true);
 
-	// TEST
+	// Pas forcément utile...
 	const [dartValue, setDartValue] = useState(0);
 	const [multiplier, setMultiplier] = useState(1);
+	// OK : à réutiliser
 	const [playerTurn, setPlayerTurn] = useState({ team: 0, player: 0 });
-
-	const findScore = (scoreString: string) => {
-		if (scoreString === '301,301') return 301;
-		if (scoreString === '501,501') return 501;
-		if (scoreString === '1001,1001') return 1001;
-		return 0;
-	};
-
-	const fillArrayButtons = () => {
-		const arrayScoreButtons: arrayScoreButtonsType = [];
-		for (let i = 0; i < 20; i++) {
-			arrayScoreButtons.push({ name: `${i + 1}`, value: i + 1 });
-		}
-		setKeyboardButtons(arrayScoreButtons);
-	};
 
 	// Get values of buttons keyboard
 	const handleDartValue = (e: any) => {
 		setDartValue(e.target.value);
+		// créer variable tableau vide pour les 3 fléchettes
+		// à la 4ème valeur réinitialiser le tableau à zéro
+		// décrementer le score à partir de la value dart
+		// utiliser le multiplier
+		// setTeamTurn + 1 au bout des 3 fléchettes
 	};
 
 	// Get value of multiplier radio inputs
@@ -51,80 +41,20 @@ export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
 		setMultiplier(e.target.value);
 	};
 
-	// Get value of darts with multiplier
-	const dartScore = dartValue * multiplier;
-	console.log('dartScore ->', dartScore);
-
-	// Get number of team and number of players per team
-	const howManyTeams = teams.map((team, index) => index);
-	const howManyPlayers = teams.map((team) => team.players.length);
-	console.log('howManyTeams', howManyTeams);
-	console.log('howManyPlayers', howManyPlayers);
-
 	useEffect(() => {
-		const newTeams = teams.map((t) => ({ ...t, score: findScore(selectedRules.scoreToGoal) }));
+		const newTeams = teams.map((t) => ({ ...t, score: +selectedRules.scoreToGoal }));
 		setTeamsWithScore(newTeams);
-		fillArrayButtons();
 		setIsLoading(false);
 	}, []);
 
-	useEffect(() => {
-		round();
-	}, [isLoading, dartValue]);
-
-	// IT WORKS
-	const updateScore = (teamIndex: number) => {
-		if (!isLoading) {
-			const scoreUpdated = [...teamsWithScore];
-			teamsWithScore[teamIndex] = {
-				...scoreUpdated[teamIndex],
-				score: scoreUpdated[teamIndex].score - dartValue * multiplier,
-			};
-			setTeamsWithScore(scoreUpdated);
-		}
-	};
-
-	const updateScorePerPlayer = (teamIndex: number) => {
-		if (!isLoading) {
-			const scoreUpdated = [...teamsWithScore];
-			teamsWithScore[teamIndex] = {
-				...scoreUpdated[teamIndex],
-				score: scoreUpdated[teamIndex].score - dartValue * multiplier,
-			};
-			setTeamsWithScore(scoreUpdated);
-		}
-	};
-
-	const round = () => {
-		updateScorePerPlayer(1);
-	};
-
-	// const round = () => {
-	// 	if (!isLoading) {
-	// 		teamsWithScore.map((team, indexTeam) =>
-	// 			team.players.map((player, indexPlayer) => {
-	// 				console.log(`Fléchette 1 du joueur ${player} (${indexPlayer})`);
-	// 				console.log(`Fléchette 2 du joueur ${player} (${indexPlayer})`);
-	// 				console.log(`Fléchette 3 du joueur ${player} (${indexPlayer})`);
-	// 				console.log(
-	// 					`BOUCLE FINIE // FOCUS ON PLAYER : Equipe ${indexTeam + 1} - Joueur ${indexPlayer + 1}`,
-	// 				);
-	// 				setPlayerTurn({ team: indexTeam, player: indexPlayer });
-	// 			}),
-	// 		);
-	// 	} else {
-	// 		console.log("loading n'a pas marché !");
-	// 	}
+	// // OK : réutiliser dans handleDartValue()
+	// const newArray = [...teamsWithScore];
+	// newArray[teamIndex] = {
+	// ...newArray[teamIndex],
+	// score: newArray[teamIndex].score - dartValue * multiplier,
 	// };
-
-	// const round = () => {
-	// 	teamsWithScore.map((team, indexTeam) => {
-	// 		setPlayerTurn({ ...playerTurn, team: indexTeam });
-	// 		team.players.map((player, indexPlayer) => {
-	// 			if (playerTurn.team === indexTeam && playerTurn.player === indexPlayer) updateScore(indexTeam);
-	// 		});
-	// 	});
-	// };
+	// setTeamsWithScore(newArray);
+	// setPlayerTurn(. . .)
 
 	return (
 		<Container>
@@ -162,7 +92,7 @@ export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
 							</div>
 							{/* TEAM SCORE */}
 							<div className={styles.teamScore} key={indexTeam}>
-								<Chip name={team.name} bgColor={team.color} width={'150px'} small />
+								<Chip name={team.name} backgroundColor={team.color} width={'150px'} small />
 								<TargetContainer score={team.score} />
 							</div>
 						</div>
@@ -204,15 +134,15 @@ export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
 
 			{/* KEYBOARD BUTTONS --> make a component ? */}
 			<div className={styles.buttonsContainer}>
-				{keyboardButtons.map((button, index) => (
+				{[...Array(20).keys()].map((index) => (
 					<button
 						className={classNames(styles.button, { [styles.buttonPair]: index % 2 === 0 })}
 						key={index}
-						name={button.name}
-						value={button.value}
+						name={String(index)}
+						value={index}
 						onClick={handleDartValue}
 					>
-						{button.name}
+						{index}
 					</button>
 				))}
 			</div>
