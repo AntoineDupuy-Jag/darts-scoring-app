@@ -10,6 +10,8 @@ import { selectedRulesType, teamsType } from '../../../utils/types';
 import classNames from 'classnames';
 
 import styles from './styles.module.scss';
+import { Multiplier } from '../components/Multiplier/Multiplier';
+import { ScoreButtons } from '../components/ScoreButtons/ScoreButtons';
 
 type ScoreTableProps = {
 	teams: teamsType;
@@ -35,11 +37,13 @@ export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
 		// utiliser le multiplier
 		// setTeamTurn + 1 au bout des 3 fléchettes
 	};
+	console.log('dartValue ->', dartValue);
 
 	// Get value of multiplier radio inputs
 	const handleMultiplier = (e: any) => {
 		setMultiplier(e.target.value);
 	};
+	console.log('multiplierValue ->', multiplier);
 
 	useEffect(() => {
 		const newTeams = teams.map((t) => ({ ...t, score: +selectedRules.scoreToGoal }));
@@ -100,63 +104,8 @@ export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
 				</div>
 			)}
 
-			{/* X1 X2 X3 --> make a component ? */}
-			<div className={styles.labelsContainer}>
-				<input
-					className={styles.radioInput}
-					type="radio"
-					id="x1"
-					name="multiplier"
-					value={1}
-					onChange={handleMultiplier}
-					defaultChecked
-				/>
-				<label htmlFor={'x1'}>{'x1'}</label>
-				<input
-					className={styles.radioInput}
-					type="radio"
-					id="x2"
-					name="multiplier"
-					value={2}
-					onChange={handleMultiplier}
-				/>
-				<label htmlFor={'x2'}>{'x2'}</label>
-				<input
-					className={styles.radioInput}
-					type="radio"
-					id="x3"
-					name="multiplier"
-					value={3}
-					onChange={handleMultiplier}
-				/>
-				<label htmlFor={'x3'}>{'x3'}</label>
-			</div>
-
-			{/* KEYBOARD BUTTONS --> make a component ? */}
-			<div className={styles.buttonsContainer}>
-				{[...Array(20).keys()].map((index) => (
-					<button
-						className={classNames(styles.button, { [styles.buttonPair]: index % 2 === 0 })}
-						key={index}
-						name={String(index)}
-						value={index}
-						onClick={handleDartValue}
-					>
-						{index}
-					</button>
-				))}
-			</div>
-			<div className={styles.othersButtonsContainer}>
-				<button className={classNames(styles.button, styles.missed)} value={0}>
-					{'Manqué...'}
-				</button>
-				<button className={classNames(styles.button, styles.fifty)} value={50}>
-					{'50 !'}
-				</button>
-				<button className={classNames(styles.button, styles.twentyFive)} value={25}>
-					{'25'}
-				</button>
-			</div>
+			<Multiplier onChange={handleMultiplier} />
+			<ScoreButtons onClick={handleDartValue} />
 		</Container>
 	);
 };

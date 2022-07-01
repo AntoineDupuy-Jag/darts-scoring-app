@@ -1,0 +1,90 @@
+// -- Buttons : even and odd --
+
+.buttonsContainer {
+	display: flex;
+	justify-content: center;
+	margin-top: 5px;
+	flex-wrap: wrap;
+	border: 1px solid white;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.button {
+	width: 20%;
+	color: white;
+	font-style: italic;
+	font-size: 16px;
+	height: 30px;
+	background-color: #21485a;
+	border: none;
+	cursor: pointer;
+	&:hover {
+		color: #21485a;
+		background-color: white;
+		font-size: 30px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transition: 0.4s all ease;
+	}
+	&:nth-child(even) {
+		background-color: #132735;
+		&:hover {
+			color: #132735;
+			background-color: white;
+		}
+	}
+}
+
+// -- Three last buttons : missed, 50 and 25 --
+
+.othersButtonsContainer {
+	display: flex;
+	justify-content: center;
+}
+
+.missed {
+	background-color: red;
+	border-left: 1px solid white;
+	border-bottom: 1px solid white;
+	border-radius: 0 0 0 10px;
+	&:hover {
+		color: red;
+		background-color: white;
+		font-size: 22px;
+	}
+}
+
+// Exception (about &:nth-child(even) of button class)
+.fiftyButton {
+	width: 20%;
+	color: black;
+	font-style: italic;
+	font-size: 16px;
+	height: 30px;
+	background-color: yellow;
+	border: none;
+	border-bottom: 1px solid white;
+	cursor: pointer;
+	&:hover {
+		color: black;
+		background-color: white;
+		font-size: 30px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transition: 0.4s all ease;
+	}
+}
+
+.twentyFive {
+	background-color: green;
+	border-right: 1px solid white;
+	border-bottom: 1px solid white;
+	border-radius: 0 0 10px 0;
+	&:hover {
+		color: green;
+		background-color: white;
+	}
+}

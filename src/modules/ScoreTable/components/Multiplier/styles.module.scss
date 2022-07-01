@@ -1,0 +1,29 @@
+.labelsContainer {
+  width: 20%;
+  margin: 10px auto 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.radioInput {
+  display: none;
+};
+
+.radioInput + label {
+  padding: 2px 10px;
+  border-radius: 10px;
+  color: white;
+  font-size: 28px;
+  font-style: italic;
+  cursor: pointer;
+  &:hover {
+    padding: 2px 10px;
+    border-radius: 10px;
+    background-color: #50C878;
+    transition: 0.5s all ease;
+  };
+};
+
+.radioInput:checked + label {
+  background-color: #50C878;
+};
