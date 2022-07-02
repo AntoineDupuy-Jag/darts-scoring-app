@@ -1,3 +1,4 @@
-export { default as DartBoard } from "./DartBoard";
-export { default as DartIcon1 } from "./DartIcon1";
-export { default as DartIcon2 } from "./DartIcon2";
+export { default as BackArrowIcon } from './BackArrowIcon';
+export { default as BackIcon } from './BackIcon';
+export { default as CancelIcon } from './CancelIcon';
+export { default as DartIcon1 } from './DartIcon1';

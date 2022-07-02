@@ -11,10 +11,13 @@
 }
 
 .button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 20%;
 	color: white;
 	font-style: italic;
-	font-size: 16px;
+	font-size: 20px;
 	height: 30px;
 	background-color: #21485a;
 	border: none;
@@ -58,10 +61,13 @@
 
 // Exception (about &:nth-child(even) of button class)
 .fiftyButton {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 20%;
 	color: black;
 	font-style: italic;
-	font-size: 16px;
+	font-size: 20px;
 	height: 30px;
 	background-color: yellow;
 	border: none;

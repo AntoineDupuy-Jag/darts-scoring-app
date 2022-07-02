@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Container } from '../../common-ui/Container/Container';
 import { Chip } from '../../common-ui/Chip/Chip';
 import { Separator } from '../../common-ui/Separator/Separator';
-import { DartIcon1 } from '../../common-ui/Svg';
+import { BackArrowIcon, DartIcon1 } from '../../common-ui/Svg';
 import { RulesReminder } from '../components/RulesReminder/RulesReminder';
 import { TargetContainer } from '../components/TargetContainer/TargetContainer';
 import { Multiplier } from '../components/Multiplier/Multiplier';
@@ -38,7 +38,7 @@ export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
 
 	// ONCLICK FUNCTION ON SCORE'S BUTTONS
 	const handleDartValue = (e: any) => {
-		const dartValue = e.target.value;
+		const dartValue = e.target.value * multiplier;
 		const newDartArray = [...dartArray];
 		newDartArray.push(dartValue);
 		setDartArray(newDartArray);
@@ -57,14 +57,31 @@ export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
 		const newArray = [...teamsWithScore];
 		newArray[indexTeam] = {
 			...newArray[indexTeam],
-			score: newArray[indexTeam].score - dartValue * multiplier,
+			score:
+				newArray[indexTeam].score - dartValue < 0
+					? newArray[indexTeam].score
+					: newArray[indexTeam].score - dartValue,
 		};
 		setTeamsWithScore(newArray);
 	};
 
+	// CANCEL DART FUNCTION
+	const cancelDart = () => {
+		const newDartArray = [...dartArray];
+		const cancelDart = newDartArray[newDartArray.length - 1];
+		const newArray = [...teamsWithScore];
+		newArray[turnToPlay.team] = {
+			...newArray[turnToPlay.team],
+			score: newArray[turnToPlay.team].score + cancelDart,
+		};
+		setTeamsWithScore(newArray);
+		newDartArray.pop();
+		setDartArray(newDartArray);
+	};
+
 	// --- TESTS ---
-	console.log('dartArray.length', dartArray.length);
-	console.log('dartArray ->', dartArray);
+	// console.log('dartArray.length', dartArray.length);
+	// console.log('dartArray ->', dartArray);
 
 	return (
 		<Container>
@@ -111,6 +128,12 @@ export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
 					))}
 				</div>
 			)}
+			<div className={styles.cancelDart}>
+				<button className={styles.cancelButton} onClick={cancelDart} disabled={dartArray.length < 1}>
+					<BackArrowIcon />
+				</button>
+				<div className={styles.cancelButtonLabel}>{'Annuler la dernière fléchette'}</div>
+			</div>
 			<Multiplier onChange={handleMultiplier} />
 			<ScoreButtons onClick={handleDartValue} />
 		</Container>
