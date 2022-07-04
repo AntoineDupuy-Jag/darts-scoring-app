@@ -50,13 +50,61 @@
 	color: white;
 	font-style: italic;
 	font-size: 16px;
+	margin-top: 2px;
 }
 
 .playerNameOn {
-	color: #50c878;
-	text-transform: uppercase;
-	font-size: 18px;
-	text-shadow: 1px 1px 1px black;
+	font-style: italic;
+	font-size: 16px;
+	margin-top: 2px;
+	border-radius: 20px;
+	position: relative;
+	// Animation
+	animation: playerTurn 1s;
+	animation-fill-mode: forwards;
+}
+
+.playerNameOnSecond {
+	font-style: italic;
+	font-size: 16px;
+	margin-top: 2px;
+	border-radius: 20px;
+	position: relative;
+	// Animation
+	animation: playerTurn2 1s;
+	animation-fill-mode: forwards;
+}
+
+// Animation for player turn visibility (.playerNameOn)
+@keyframes playerTurn {
+	from {
+		color: white;
+		top: 0%;
+		left: 0%;
+	}
+	to {
+		text-align: center;
+		color: #383838;
+		background-color: rgb(249, 249, 87);
+		top: 86%;
+		left: 180%;
+	}
+}
+
+// Animation for player turn visibility (.playerNameOn)
+@keyframes playerTurn2 {
+	from {
+		color: white;
+		top: 0%;
+		left: 0%;
+	}
+	to {
+		text-align: center;
+		color: #383838;
+		background-color: rgb(249, 249, 87);
+		top: 36%;
+		left: 180%;
+	}
 }
 
 .dartsContainer {

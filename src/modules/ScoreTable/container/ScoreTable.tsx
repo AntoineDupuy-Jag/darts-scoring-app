@@ -23,6 +23,7 @@ export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [multiplier, setMultiplier] = useState(1);
 	const [dartArray, setDartArray] = useState([] as number[]);
+	const [roundsNumber, setRoundsNumber] = useState(0);
 	const [turnToPlay, setTurnToPlay] = useState({ team: 0, player: 0 });
 
 	// useEffect() à garder ?
@@ -42,10 +43,20 @@ export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
 		const newDartArray = [...dartArray];
 		newDartArray.push(dartValue);
 		setDartArray(newDartArray);
+		// To know if all the teams have played
+		if (teamsWithScore.length - 1 === turnToPlay.team && turnToPlay.player === 0) setRoundsNumber(1);
+		if (teamsWithScore.length - 1 === turnToPlay.team && turnToPlay.player === 1) setRoundsNumber(0);
+		console.log('teamsWithScore.length ->', teamsWithScore.length - 1);
+		console.log('turnToPlay.team ->', turnToPlay.team);
+		console.log('roundsNumber ->', roundsNumber);
+		// Setup team turn and player turn
 		if (newDartArray.length >= 3) {
 			setTurnToPlay({
-				team: turnToPlay.team + 1 !== teamsWithScore.length ? turnToPlay.team + 1 : turnToPlay.team - 1,
-				player: 0,
+				team:
+					turnToPlay.team + 1 !== teamsWithScore.length
+						? turnToPlay.team + 1
+						: turnToPlay.team - (teamsWithScore.length - 1),
+				player: roundsNumber === 1 ? 1 : 0,
 			});
 			setDartArray([]);
 		}
@@ -102,7 +113,13 @@ export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
 										<div
 											className={classNames(styles.playerName, {
 												[styles.playerNameOn]:
-													indexTeam === turnToPlay.team && indexPlayer === turnToPlay.player,
+													indexTeam === turnToPlay.team &&
+													indexPlayer === turnToPlay.player &&
+													turnToPlay.player === 0,
+												[styles.playerNameOnSecond]:
+													indexTeam === turnToPlay.team &&
+													indexPlayer === turnToPlay.player &&
+													turnToPlay.player === 1,
 											})}
 											key={indexPlayer}
 										>

@@ -1,67 +1,67 @@
 // MAIN CONTAINER
 .scoreContainer {
-  width: 150px;
-  height: 150px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-};
+	width: 150px;
+	height: 150px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 28px;
+}
 
 // COMMON PROPERTIES
 .circle {
-  float: left;
-  position: absolute;
-  border-radius: 100%;
-  opacity: 0.7;
-};
+	float: left;
+	position: absolute;
+	border-radius: 100%;
+	opacity: 0.7;
+}
 
 // ALL CIRCLES
 .circleOne {
-  width: 140px;
-  height: 140px;
-  background-color: rgb(226, 76, 106);
-};
+	width: 140px;
+	height: 140px;
+	background-color: rgb(226, 76, 106);
+}
 
 .circleTwo {
-  width: 120px;
-  height: 120px;
-  background-color: white;
-};
+	width: 120px;
+	height: 120px;
+	background-color: white;
+}
 
 .circleThree {
-  width: 100px;
-  height: 100px;
-  background-color: rgb(226, 76, 106);
-};
+	width: 100px;
+	height: 100px;
+	background-color: rgb(226, 76, 106);
+}
 
 .circleFour {
-  width: 80px;
-  height: 80px;
-  background-color: white;
-};
+	width: 80px;
+	height: 80px;
+	background-color: white;
+}
 
 .circleFive {
-  width: 60px;
-  height: 60px;
-  background-color: rgb(226, 76, 106);
-};
+	width: 60px;
+	height: 60px;
+	background-color: rgb(226, 76, 106);
+}
 
 .circleSix {
-  width: 40px;
-  height: 40px;
-  background-color: white;
-};
+	width: 40px;
+	height: 40px;
+	background-color: white;
+}
 
 // THE SCORE
 .score {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 58px;
-  font-weight: 700;
-  font-style: italic;
-  color: black;
-  text-shadow: 1px 1px 1px white;
-};
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 58px;
+	font-weight: 700;
+	font-style: italic;
+	color: black;
+	text-shadow: 1px 1px 1px white;
+}
