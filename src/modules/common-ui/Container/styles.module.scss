@@ -1,10 +1,13 @@
 .container {
-  padding: 20px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: #43C6AC;
-  background: -webkit-linear-gradient(to right, #191654, #43C6AC);
-  background: linear-gradient(to right, #191654, #43C6AC); 
-};
+	padding: 20px;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background: #43c6ac;
+	background: -webkit-linear-gradient(to right, #191654, #43c6ac);
+	background: linear-gradient(to right, #191654, #43c6ac);
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+}

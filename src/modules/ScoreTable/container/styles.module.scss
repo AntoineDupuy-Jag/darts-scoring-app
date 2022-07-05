@@ -16,6 +16,10 @@
 	margin-bottom: 20px;
 }
 
+.teamBoxPerThree {
+	width: calc(100% / 3);
+}
+
 .teamNameLabel {
 	display: flex;
 	justify-content: center;

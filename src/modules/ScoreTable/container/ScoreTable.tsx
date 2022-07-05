@@ -46,9 +46,11 @@ export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
 		// To know if all the teams have played
 		if (teamsWithScore.length - 1 === turnToPlay.team && turnToPlay.player === 0) setRoundsNumber(1);
 		if (teamsWithScore.length - 1 === turnToPlay.team && turnToPlay.player === 1) setRoundsNumber(0);
-		console.log('teamsWithScore.length ->', teamsWithScore.length - 1);
-		console.log('turnToPlay.team ->', turnToPlay.team);
-		console.log('roundsNumber ->', roundsNumber);
+
+		// console.log('teamsWithScore.length ->', teamsWithScore.length - 1);
+		// console.log('turnToPlay.team ->', turnToPlay.team);
+		// console.log('roundsNumber ->', roundsNumber);
+
 		// Setup team turn and player turn
 		if (newDartArray.length >= 3) {
 			setTurnToPlay({
@@ -104,7 +106,12 @@ export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
 				<div className={styles.teamsContainer}>
 					{teamsWithScore.map((team, indexTeam) => (
 						// TEAM BOXES
-						<div className={styles.teamBox} key={indexTeam}>
+						<div
+							className={classNames(styles.teamBox, {
+								[styles.teamBoxPerThree]: teamsWithScore.length === 3,
+							})}
+							key={indexTeam}
+						>
 							{/* PLAYER'S NAMES */}
 							<div className={styles.teamNameLabel}>{'Joueurs'}</div>
 							<div className={styles.teamNames}>

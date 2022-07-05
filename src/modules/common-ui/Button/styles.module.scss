@@ -1,53 +1,53 @@
 .button {
-  width: 100px;
-  height: 40px;
-  margin-right: 15px;
-  border: none;
-  border-radius: 10px;
-  color: white;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  &:disabled {
-    background-color: lightgray;
-    cursor: default;
-  };
-};
+	width: 100px;
+	height: 40px;
+	margin-right: 15px;
+	border: none;
+	border-radius: 10px;
+	color: white;
+	font-size: 16px;
+	font-weight: 500;
+	cursor: pointer;
+	&:disabled {
+		background-color: lightgray;
+		cursor: default;
+	}
+}
 
 .valid {
-  background-color: #50C878;
-  &:hover:enabled {
-    background-color: white;
-    color: #50C878;
-    transition: all 0.2s ease-out;
-  }
-};
+	background-color: #50c878;
+	&:hover:enabled {
+		background-color: white;
+		color: #50c878;
+		transition: all 0.4s ease;
+	}
+}
 
 .reset {
-  background-color: #fd5c63;
-  &:hover:enabled {
-    background-color: white;
-    color: #fd5c63;
-    transition: all 0.2s ease-out;
-  }
-};
+	background-color: #fd5c63;
+	&:hover:enabled {
+		background-color: white;
+		color: #fd5c63;
+		transition: all 0.4s ease;
+	}
+}
 
 .addTeam {
-  width: 220px;
-  background-color: #6699CC;
-  &:hover:enabled {
-    background-color: white;
-    color: #6699CC;
-    transition: all 0.2s ease-out;
-  }
-};
+	width: 220px;
+	background-color: #6699cc;
+	&:hover:enabled {
+		background-color: white;
+		color: #6699cc;
+		transition: all 0.4s ease;
+	}
+}
 
 .removeTeam {
-  width: 220px;
-  background-color: #F08080;
-  &:hover:enabled {
-    background-color: white;
-    color: #F08080;
-    transition: all 0.2s ease-out;
-  }
-};
+	width: 220px;
+	background-color: #f08080;
+	&:hover:enabled {
+		background-color: white;
+		color: #f08080;
+		transition: all 0.4s ease;
+	}
+}
