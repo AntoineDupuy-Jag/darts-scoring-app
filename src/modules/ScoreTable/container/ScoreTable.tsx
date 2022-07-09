@@ -25,6 +25,7 @@ export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
 	const [dartArray, setDartArray] = useState([] as number[]);
 	const [roundsNumber, setRoundsNumber] = useState(0);
 	const [turnToPlay, setTurnToPlay] = useState({ team: 0, player: 0 });
+	const [disabledScoreButtons, setDisabledScoreButtons] = useState(false);
 
 	// useEffect() : à garder ?
 	useEffect(() => {
@@ -32,10 +33,6 @@ export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
 		setTeamsWithScore(newTeams);
 		setIsLoading(false);
 	}, []);
-
-	const handleMultiplier = (e: any) => {
-		setMultiplier(e.target.value);
-	};
 
 	// ONCLICK FUNCTION ON SCORE'S BUTTONS
 	const handleDartValue = (e: any) => {
@@ -210,8 +207,8 @@ export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
 				</button>
 				<div className={styles.cancelButtonLabel}>{'Annuler la dernière fléchette'}</div>
 			</div>
-			<Multiplier onChange={handleMultiplier} />
-			<ScoreButtons onClick={handleDartValue} />
+			<Multiplier setMultiplier={setMultiplier} setDisabled={setDisabledScoreButtons} />
+			<ScoreButtons onClick={handleDartValue} isDisabled={disabledScoreButtons} />
 		</Container>
 	);
 };

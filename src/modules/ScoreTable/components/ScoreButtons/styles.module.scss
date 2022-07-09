@@ -22,7 +22,7 @@
 	background-color: #21485a;
 	border: none;
 	cursor: pointer;
-	&:hover {
+	&:hover:enabled {
 		color: #21485a;
 		background-color: white;
 		font-size: 30px;
@@ -42,7 +42,7 @@
 
 // -- Three last buttons : missed, 50 and 25 --
 
-.othersButtonsContainer {
+.threeLastButtonsContainer {
 	display: flex;
 	justify-content: center;
 }
@@ -52,7 +52,7 @@
 	border-left: 1px solid white;
 	border-bottom: 1px solid white;
 	border-radius: 0 0 0 10px;
-	&:hover {
+	&:hover:enabled {
 		color: red;
 		background-color: white;
 		font-size: 22px;
@@ -73,7 +73,7 @@
 	border: none;
 	border-bottom: 1px solid white;
 	cursor: pointer;
-	&:hover {
+	&:hover:enabled {
 		color: black;
 		background-color: white;
 		font-size: 30px;
@@ -82,6 +82,10 @@
 		align-items: center;
 		transition: 0.4s all ease;
 	}
+	&:disabled {
+		cursor: default;
+		background-color: lightgray;
+	}
 }
 
 .twentyFive {
@@ -89,8 +93,12 @@
 	border-right: 1px solid white;
 	border-bottom: 1px solid white;
 	border-radius: 0 0 10px 0;
-	&:hover {
+	&:hover:enabled {
 		color: green;
 		background-color: white;
+	}
+	&:disabled {
+		cursor: default;
+		background-color: gray;
 	}
 }
