@@ -1,18 +1,17 @@
 import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
 import { PlayerSelect } from './modules/PlayerSelect/container/PlayerSelect';
 import { RulesSelect } from './modules/RulesSelect/container/RulesSelect';
 import { ScoreTable } from './modules/ScoreTable/container/ScoreTable';
+import { Footer } from './modules/Footer/Footer';
+import { AppTitle } from './modules/AppTitle/AppTitle';
 import { selectedRulesType, teamsType } from './utils/types';
 
 import styles from './styles.module.scss';
-import { Footer } from './modules/Footer/Footer';
-import { AppTitle } from './modules/AppTitle/AppTitle';
+import { HomePage } from './modules/HomePage/HomePage';
 
 function App() {
-	const [continues, setContinues] = useState(false);
-	const [gameStart, setGameStart] = useState(false);
-
 	// Teams
 	const [teams, setTeams] = useState([
 		{
@@ -28,27 +27,22 @@ function App() {
 			players: ['', ''],
 		},
 	] as teamsType);
-
 	// Rules
 	const [selectedRules, setSelectedRules] = useState({} as selectedRulesType);
 
 	return (
 		<div className={styles.mainContainer}>
-			{/* <div className={styles.container}> */}
-			{!gameStart && <AppTitle title="darts scoring app" />}
-			{!continues && (
-				<RulesSelect
-					setContinues={setContinues}
-					selectedRules={selectedRules}
-					setSelectedRules={setSelectedRules}
+			<AppTitle title="darts scoring app" />
+			<Routes>
+				<Route path="/" element={<HomePage />} />
+				<Route
+					path="/rules"
+					element={<RulesSelect selectedRules={selectedRules} setSelectedRules={setSelectedRules} />}
 				/>
-			)}
-			{continues && !gameStart && (
-				<PlayerSelect teams={teams} setTeams={setTeams} setGameStart={setGameStart} />
-			)}
-			{gameStart && <ScoreTable teams={teams} selectedRules={selectedRules} />}
-			{/* </div> */}
-			{!gameStart && <Footer />}
+				<Route path="/players-select" element={<PlayerSelect teams={teams} setTeams={setTeams} />} />
+				<Route path="/scores" element={<ScoreTable teams={teams} selectedRules={selectedRules} />} />
+			</Routes>
+			<Footer />
 		</div>
 	);
 }

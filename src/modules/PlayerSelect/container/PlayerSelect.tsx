@@ -10,15 +10,37 @@ import styles from './styles.module.scss';
 import { TeamNameInput } from '../components/TeamNameInput/TeamNameInput';
 import { useState } from 'react';
 import { teamColors } from '../../../utils/constants';
+import { useNavigate } from 'react-router-dom';
 
 type PlayerSelectProps = {
 	teams: teamsType;
 	setTeams: React.Dispatch<React.SetStateAction<teamsType>>;
-	setGameStart: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const PlayerSelect = ({ teams, setTeams, setGameStart }: PlayerSelectProps) => {
+export const PlayerSelect = ({ teams, setTeams }: PlayerSelectProps) => {
+	const navigate = useNavigate();
 	const [numTeam, setNumTeam] = useState(2);
+	const [emptyField, setEmptyField] = useState(true);
+
+	// const checkEmptyFields = () => {
+	// 	let isEmpty: boolean = false;
+	// 	teams.forEach((team) =>
+	// 		team.players.forEach((player) => {
+	// 			if (player === '') isEmpty = true;
+	// 		}),
+	// 	);
+	// 	return isEmpty;
+	// };
+
+	// const isEmpty = () => {
+	// 	teams.forEach((team) =>
+	// 		team.players.forEach((player) => {
+	// 			if (player === '') setEmptyField(false);
+	// 		}),
+	// 	);
+	// };
+
+	console.log('emptyField ->', emptyField);
 
 	const addOrRemoveTeam = (action: string) => {
 		const newTeams = [...teams];
@@ -116,7 +138,13 @@ export const PlayerSelect = ({ teams, setTeams, setGameStart }: PlayerSelectProp
 					)}
 				</div>
 				<div className={styles.startAndResetButtons}>
-					<Button type="submit" customStyle="valid" onClick={() => setGameStart(true)}>
+					<Button
+						type="submit"
+						customStyle="valid"
+						onClick={() => {
+							navigate('/scores');
+						}}
+					>
 						{'Démarrer'}
 					</Button>
 					<Button type="reset" customStyle="cancel">

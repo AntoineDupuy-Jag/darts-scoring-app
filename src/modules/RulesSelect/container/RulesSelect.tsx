@@ -8,23 +8,20 @@ import { selectedRulesType } from '../../../utils/types';
 
 import styles from './styles.module.scss';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type RulesSelectProps = {
-	setContinues: React.Dispatch<React.SetStateAction<boolean>>;
 	selectedRules: selectedRulesType;
 	setSelectedRules: React.Dispatch<React.SetStateAction<selectedRulesType>>;
 };
 
-export const RulesSelect = ({ setContinues, selectedRules, setSelectedRules }: RulesSelectProps) => {
-	const handleSubmit = (e: any) => {
-		e.preventDefault();
-		setContinues(true);
-	};
+export const RulesSelect = ({ selectedRules, setSelectedRules }: RulesSelectProps) => {
+	const navigate = useNavigate();
 
 	return (
 		<Container>
 			<Chip name={'Paramètre ta partie'} />
-			<form className={styles.form} onSubmit={handleSubmit}>
+			<form className={styles.form}>
 				{rules.map((rule, index) => (
 					<React.Fragment key={index}>
 						<RadioForm
@@ -35,8 +32,17 @@ export const RulesSelect = ({ setContinues, selectedRules, setSelectedRules }: R
 					</React.Fragment>
 				))}
 				<div className={styles.buttonsContainer}>
-					<Button type="submit" customStyle="valid">
-						{'Continuer'}
+					<Button
+						customStyle="valid"
+						onClick={() => {
+							Object.values(selectedRules).length === 3
+								? navigate('/players-select')
+								: window.alert(
+										'Veuillez séléctionner une option pour chacune des 3 règles avant de pouvoir commencer !',
+								  );
+						}}
+					>
+						{'Valider'}
 					</Button>
 					<Button type="reset" customStyle="cancel">
 						{'Annuler'}

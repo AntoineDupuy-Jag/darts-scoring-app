@@ -1,0 +1,33 @@
+.title {
+	text-align: center;
+	font-size: 38px;
+	font-style: italic;
+	color: white;
+}
+
+.content {
+	margin: 20px 0;
+	color: white;
+	text-align: center;
+}
+
+.startButton {
+	width: 35%;
+	height: 25px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+	text-decoration: none;
+	color: white;
+	padding: 6px;
+	background-color: #50c878;
+	border: none;
+	border-radius: 10px;
+	&:hover {
+		background-color: white;
+		color: #50c878;
+		font-size: 18px;
+		transition: all 0.4s ease;
+	}
+}
