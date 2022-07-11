@@ -1,18 +1,18 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import { PlayerSelect } from './modules/PlayerSelect/container/PlayerSelect';
-import { RulesSelect } from './modules/RulesSelect/container/RulesSelect';
-import { ScoreTable } from './modules/ScoreTable/container/ScoreTable';
-import { Footer } from './modules/Footer/Footer';
 import { AppTitle } from './modules/AppTitle/AppTitle';
-import { selectedRulesType, teamsType } from './utils/types';
+import { HomePage } from './modules/HomePage/HomePage';
+import { RulesSelect } from './modules/RulesSelect/container/RulesSelect';
+import { PlayerSelect } from './modules/PlayerSelect/container/PlayerSelect';
+import { ScoreTable } from './modules/ScoreTable/container/ScoreTable';
+import { Results } from './modules/Results/container/Results';
+import { Footer } from './modules/Footer/Footer';
+import { selectedRulesType, teamsType, teamType } from './utils/types';
 
 import styles from './styles.module.scss';
-import { HomePage } from './modules/HomePage/HomePage';
 
 function App() {
-	// Teams
 	const [teams, setTeams] = useState([
 		{
 			name: 'Équipe 1',
@@ -27,8 +27,8 @@ function App() {
 			players: ['', ''],
 		},
 	] as teamsType);
-	// Rules
 	const [selectedRules, setSelectedRules] = useState({} as selectedRulesType);
+	const [winningTeam, setWinningTeam] = useState({} as teamType);
 
 	return (
 		<div className={styles.mainContainer}>
@@ -40,7 +40,11 @@ function App() {
 					element={<RulesSelect selectedRules={selectedRules} setSelectedRules={setSelectedRules} />}
 				/>
 				<Route path="/players-select" element={<PlayerSelect teams={teams} setTeams={setTeams} />} />
-				<Route path="/scores" element={<ScoreTable teams={teams} selectedRules={selectedRules} />} />
+				<Route
+					path="/scores"
+					element={<ScoreTable teams={teams} selectedRules={selectedRules} setWinningTeam={setWinningTeam} />}
+				/>
+				<Route path="/results" element={<Results winningTeam={winningTeam} />} />
 			</Routes>
 			<Footer />
 		</div>

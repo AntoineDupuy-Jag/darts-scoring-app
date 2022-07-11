@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Container } from '../../common-ui/Container/Container';
 import { Chip } from '../../common-ui/Chip/Chip';
@@ -8,7 +9,7 @@ import { RulesReminder } from '../components/RulesReminder/RulesReminder';
 import { TargetContainer } from '../components/TargetContainer/TargetContainer';
 import { Multiplier } from '../components/Multiplier/Multiplier';
 import { ScoreButtons } from '../components/ScoreButtons/ScoreButtons';
-import { selectedRulesType, teamsType } from '../../../utils/types';
+import { selectedRulesType, teamsType, teamType } from '../../../utils/types';
 import classNames from 'classnames';
 
 import styles from './styles.module.scss';
@@ -16,9 +17,10 @@ import styles from './styles.module.scss';
 type ScoreTableProps = {
 	teams: teamsType;
 	selectedRules: selectedRulesType;
+	setWinningTeam: React.Dispatch<React.SetStateAction<teamType>>;
 };
 
-export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
+export const ScoreTable = ({ teams, selectedRules, setWinningTeam }: ScoreTableProps) => {
 	const [teamsWithScore, setTeamsWithScore] = useState({} as teamsType);
 	const [isLoading, setIsLoading] = useState(true);
 	const [multiplier, setMultiplier] = useState(1 as number);
@@ -26,6 +28,7 @@ export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
 	const [roundsNumber, setRoundsNumber] = useState(0);
 	const [turnToPlay, setTurnToPlay] = useState({ team: 0, player: 0 });
 	const [disabledScoreButtons, setDisabledScoreButtons] = useState(false);
+	const navigate = useNavigate();
 
 	// useEffect() : à garder ?
 	useEffect(() => {
@@ -60,6 +63,10 @@ export const ScoreTable = ({ teams, selectedRules }: ScoreTableProps) => {
 			setDartArray([]);
 		}
 		updateScoreWithDoubleRules(turnToPlay.team, dartValue);
+		if (teamsWithScore[turnToPlay.team].score - dartValue === 0) {
+			setWinningTeam(teamsWithScore[turnToPlay.team]);
+			navigate('/results');
+		}
 	};
 
 	// UPDATE SCORE SIMPLE

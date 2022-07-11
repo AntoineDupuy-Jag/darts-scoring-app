@@ -1,3 +1,6 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { Container } from '../../common-ui/Container/Container';
 import { Chip } from '../../common-ui/Chip/Chip';
 import { Separator } from '../../common-ui/Separator/Separator';
@@ -7,8 +10,6 @@ import { rules } from '../../../utils/constants';
 import { selectedRulesType } from '../../../utils/types';
 
 import styles from './styles.module.scss';
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 type RulesSelectProps = {
 	selectedRules: selectedRulesType;
@@ -17,6 +18,7 @@ type RulesSelectProps = {
 
 export const RulesSelect = ({ selectedRules, setSelectedRules }: RulesSelectProps) => {
 	const navigate = useNavigate();
+	const errorMsg = 'Veuillez séléctionner une option pour chacune des 3 règles avant de pouvoir commencer !';
 
 	return (
 		<Container>
@@ -34,13 +36,9 @@ export const RulesSelect = ({ selectedRules, setSelectedRules }: RulesSelectProp
 				<div className={styles.buttonsContainer}>
 					<Button
 						customStyle="valid"
-						onClick={() => {
-							Object.values(selectedRules).length === 3
-								? navigate('/players-select')
-								: window.alert(
-										'Veuillez séléctionner une option pour chacune des 3 règles avant de pouvoir commencer !',
-								  );
-						}}
+						onClick={() =>
+							Object.values(selectedRules).length === 3 ? navigate('/players-select') : window.alert(errorMsg)
+						}
 					>
 						{'Valider'}
 					</Button>

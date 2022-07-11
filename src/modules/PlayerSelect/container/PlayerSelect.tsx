@@ -18,29 +18,10 @@ type PlayerSelectProps = {
 };
 
 export const PlayerSelect = ({ teams, setTeams }: PlayerSelectProps) => {
-	const navigate = useNavigate();
 	const [numTeam, setNumTeam] = useState(2);
-	const [emptyField, setEmptyField] = useState(true);
-
-	// const checkEmptyFields = () => {
-	// 	let isEmpty: boolean = false;
-	// 	teams.forEach((team) =>
-	// 		team.players.forEach((player) => {
-	// 			if (player === '') isEmpty = true;
-	// 		}),
-	// 	);
-	// 	return isEmpty;
-	// };
-
-	// const isEmpty = () => {
-	// 	teams.forEach((team) =>
-	// 		team.players.forEach((player) => {
-	// 			if (player === '') setEmptyField(false);
-	// 		}),
-	// 	);
-	// };
-
-	console.log('emptyField ->', emptyField);
+	const checkingArray: boolean[] = [];
+	const errorMsg = 'Veuillez saisir un nom de joueur valide pour chaque champ disponibe.';
+	const navigate = useNavigate();
 
 	const addOrRemoveTeam = (action: string) => {
 		const newTeams = [...teams];
@@ -66,6 +47,14 @@ export const PlayerSelect = ({ teams, setTeams }: PlayerSelectProps) => {
 		const newTeams = [...teams];
 		newTeams[teamIndex].players[playerIndex] = e.target.value;
 		setTeams(newTeams);
+	};
+
+	const checkIfFieldIsValid = () => {
+		teams.forEach((team) =>
+			team.players.forEach((player) => {
+				if (player.length < 3 || player.length > 16) checkingArray.push(true);
+			}),
+		);
 	};
 
 	return (
@@ -139,10 +128,10 @@ export const PlayerSelect = ({ teams, setTeams }: PlayerSelectProps) => {
 				</div>
 				<div className={styles.startAndResetButtons}>
 					<Button
-						type="submit"
 						customStyle="valid"
 						onClick={() => {
-							navigate('/scores');
+							checkIfFieldIsValid();
+							checkingArray.includes(true) ? window.alert(errorMsg) : navigate('/scores');
 						}}
 					>
 						{'Démarrer'}
