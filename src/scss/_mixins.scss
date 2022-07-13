@@ -1,0 +1,17 @@
+@mixin flexCenter($direction, $background-color: null, $background-image: null) {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: $direction;
+	background-color: $background-color;
+	background-image: $background-image;
+	@if ($background-image) {
+		background-size: cover;
+	}
+}
+
+@mixin fontStyleTitle($font-size) {
+	font-weight: 700;
+	font-style: italic;
+	font-size: $font-size;
+}

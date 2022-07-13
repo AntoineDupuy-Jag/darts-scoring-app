@@ -1,0 +1,63 @@
+// COLORS
+
+$default-team1: forestgreen;
+$default-team2: crimson;
+$default-team3: #662d91;
+$default-team4: #3457d5;
+
+$custom-black: #383838;
+$custom-white: white;
+
+$valid-primary: #50c878;
+$valid-secondary: #6699cc;
+$cancel-primary: #fd5c63;
+$disabled-primary: lightgray;
+$error-primary: red;
+$error-secondary: rgb(255, 231, 231);
+
+$background-radient-1: #191654;
+$background-radient-2: #43c6ac;
+
+// FONTS
+
+$font-size-small: 12px;
+$font-size-medium: 16px;
+$font-size-large: 20px;
+$font-size-extra-large: 24px;
+$font-size-big: 38px;
+
+$thin-weight: 100;
+$light-weight: 300;
+$regular-weight: 400;
+$bold-weight: 700;
+$extra-bold-weight: 900;
+// weight avaible with italic style : 100, 700
+
+// MARGINS & PADDINGS
+
+$margin-extra-small: 4px;
+$margin-small: 8px;
+$margin-medium: 16px;
+$margin-medium2: 20px;
+$margin-large: 24px;
+$margin-extra-large: 32px;
+
+$padding-extra-small: 4px;
+$padding-small: 8px;
+$padding-medium: 16px;
+$padding-medium2: 20px;
+$padding-large: 24px;
+$padding-extra-large: 32px;
+
+// BORDER-RADIUS
+
+$border-radius-light: 10px;
+$border-radius-medium: 15px;
+$border-radius-large: 20px;
+$border-radius-full: 100%;
+
+// TRANSITIONS
+
+$quick-transition: all 0.2s ease;
+$smooth-transition: all 0.4s ease;
+$slow-transition: all 0.6s ease;

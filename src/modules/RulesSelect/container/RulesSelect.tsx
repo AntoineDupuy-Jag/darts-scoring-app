@@ -30,7 +30,7 @@ export const RulesSelect = ({ selectedRules, setSelectedRules }: RulesSelectProp
 							rule={rule}
 							onChange={(e) => setSelectedRules({ ...selectedRules, [e.target.name]: e.target.value })}
 						/>
-						<Separator verticalMargin={20} />
+						<Separator margin={'20px 0'} />
 					</React.Fragment>
 				))}
 				<div className={styles.buttonsContainer}>

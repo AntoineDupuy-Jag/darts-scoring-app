@@ -1,40 +1,37 @@
+@import '../../../../scss/variables';
+@import '../../../../scss/mixins';
+
 .superLabel {
-  color: white;
-  font-size: 20px;
-  font-weight: 700;
-  font-style: italic;
-  margin-bottom: 10px;
-  padding-left: 8px; // -> for alignment with labels
-  word-spacing: 4px;
-};
-
-.radio {
-  display: flex;
-  align-items: center;
-  color: white;
-  margin-right: 20px;
-};
-
-.input {
-  display: none
-};
-
-.input + label {
-  padding: 8px;
-  border-radius: 10px;
-  cursor: pointer;
-  &:hover {
-    padding: 8px;
-    border-radius: 10px;
-    background-color: #50C878;
-    transition: 0.5s all ease;
-  };
-};
-
-.input:checked + label {
-  background-color: #50C878;
-};
+	font-size: $font-size-large;
+	font-weight: $extra-bold-weight;
+	margin-bottom: $margin-small;
+	padding-left: $padding-small;
+	word-spacing: 4px;
+}
 
 .radioBox {
-  display: flex;
-};
+	display: flex;
+}
+
+.radio {
+	@include flexCenter(row);
+	margin-right: $margin-medium;
+}
+
+.input {
+	display: none;
+}
+
+.input + label {
+	padding: $padding-small;
+	border-radius: $border-radius-light;
+	cursor: pointer;
+	&:hover {
+		background-color: $valid-primary;
+		transition: $smooth-transition;
+	}
+}
+
+.input:checked + label {
+	background-color: $valid-primary;
+}

@@ -1,24 +1,27 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
 .inputsBox {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 10px 0;
-};
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	margin: 10px 0;
+}
 
 .addAndRemovePlayers {
-  margin-top: 4px;
-  display: flex;
-};
+	margin-top: 4px;
+	display: flex;
+}
 
 .addAndRemoveTeams {
-  margin-bottom: 10px;
-};
+	margin-bottom: $margin-small;
+}
 
 .emptyDiv {
-  height: 20px;
-};
+	height: 20px;
+}
 
 .startAndResetButtons {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-};
+	@include flexCenter(row);
+	margin-top: $margin-medium2;
+}

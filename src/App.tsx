@@ -10,7 +10,7 @@ import { Results } from './modules/Results/container/Results';
 import { Footer } from './modules/Footer/Footer';
 import { selectedRulesType, teamsType, teamType } from './utils/types';
 
-import styles from './styles.module.scss';
+import styles from './scss/global.module.scss';
 
 function App() {
 	const [teams, setTeams] = useState([

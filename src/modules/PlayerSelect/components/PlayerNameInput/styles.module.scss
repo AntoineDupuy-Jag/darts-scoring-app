@@ -1,0 +1,30 @@
+@import '../../../../scss/variables';
+@import '../../../../scss/mixins';
+
+.input {
+	width: max(200px);
+	margin-right: $margin-medium;
+	padding: $padding-medium;
+	border: 2px solid white;
+	border-radius: $border-radius-light;
+	font-size: $font-size-medium;
+	&:invalid[data-focused='true'] {
+		border: 2px solid $error-primary;
+		background-color: $error-secondary;
+		outline: none;
+	}
+	&:valid {
+		border: 2px solid $valid-primary;
+		outline: none;
+	}
+}
+
+.errorMessage {
+	font-size: $font-size-small;
+	padding-left: $padding-small;
+	color: transparent;
+}
+
+.input:invalid[data-focused='true'] ~ .errorMessage {
+	color: $error-primary;
+}

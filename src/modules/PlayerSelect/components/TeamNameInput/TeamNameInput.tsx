@@ -3,35 +3,36 @@ import { Edit } from '@mui/icons-material';
 
 import styles from './styles.module.scss';
 import classNames from 'classnames';
+import { minHeight } from '@mui/system';
 
 type TeamNameInputProps = {
 	id: string;
 	name: string;
 	placeholder: string;
-	value: any;
-	color: string;
+	value: string;
+	backgroundColor: string;
 	onChange: any;
 };
 
-export const TeamNameInput = ({ id, name, placeholder, value, color, onChange }: TeamNameInputProps) => {
+export const TeamNameInput = ({
+	id,
+	name,
+	placeholder,
+	value,
+	backgroundColor,
+	onChange,
+}: TeamNameInputProps) => {
 	const [disabled, setDisabled] = useState(true);
 
 	return (
-		<div
-			className={classNames(styles.box, {
-				[styles.boxGreen]: color === 'forestgreen',
-				[styles.boxRed]: color === 'crimson',
-				[styles.boxPurple]: color === '#662d91',
-				[styles.boxBlue]: color === '#3457D5',
-			})}
-		>
+		<div className={styles.box} style={{ backgroundColor }}>
 			<input
-				className={classNames(styles.input, {
-					[styles.backgroundGreen]: color === 'forestgreen',
-					[styles.backgroundRed]: color === 'crimson',
-					[styles.backgroundPurple]: color === '#662d91',
-					[styles.backgroundBlue]: color === '#3457D5',
-				})}
+				className={styles.input}
+				style={
+					disabled
+						? { backgroundColor, color: 'white' }
+						: { backgroundColor: 'white', color: backgroundColor }
+				}
 				id={id}
 				name={name}
 				placeholder={placeholder}

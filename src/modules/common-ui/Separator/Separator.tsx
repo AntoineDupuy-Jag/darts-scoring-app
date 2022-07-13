@@ -1,20 +1,7 @@
-import React from 'react';
-
-import classNames from 'classnames';
-
-import styles from './styles.module.scss';
-
 type SeparatorProps = {
-  verticalMargin?: number
+	margin?: string;
 };
 
-export const Separator = ({ verticalMargin }: SeparatorProps) => {
-
-  return (
-   <hr className={classNames(styles.separator,
-      {[styles.tenPx]: verticalMargin === 10},
-      {[styles.twentyPx]: verticalMargin === 20},
-      {[styles.thirtyPx]: verticalMargin === 30},
-    )} />
-  )
+export const Separator = ({ margin }: SeparatorProps) => {
+	return <hr style={{ margin, color: 'white' }} />;
 };

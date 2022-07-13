@@ -3,7 +3,7 @@ import { SquareButton } from '../../common-ui/SquareButton/SquareButton';
 import { Button } from '../../common-ui/Button/Button';
 import { Separator } from '../../common-ui/Separator/Separator';
 
-import { FormInput } from '../components/FormInput/FormInput';
+import { PlayerNameInput } from '../components/PlayerNameInput/FormInput';
 import { teamsType } from '../../../utils/types';
 
 import styles from './styles.module.scss';
@@ -67,7 +67,7 @@ export const PlayerSelect = ({ teams, setTeams }: PlayerSelectProps) => {
 							name={'teamName'}
 							placeholder={`Équipe ${teamIndex + 1}`}
 							value={team.name}
-							color={team.color}
+							backgroundColor={team.color}
 							onChange={(e: any) => {
 								const newTeams = [...teams];
 								newTeams[teamIndex].name = e.target.value;
@@ -77,7 +77,7 @@ export const PlayerSelect = ({ teams, setTeams }: PlayerSelectProps) => {
 						<div className={styles.inputsBox}>
 							{team.players.map((player, playerIndex) => (
 								<div key={playerIndex}>
-									<FormInput
+									<PlayerNameInput
 										id={String(playerIndex)}
 										name="playerName"
 										placeholder={`Joueur ${playerIndex + 1}`}
@@ -100,7 +100,7 @@ export const PlayerSelect = ({ teams, setTeams }: PlayerSelectProps) => {
 								</SquareButton>
 							</div>
 						</div>
-						<Separator verticalMargin={20} />
+						<Separator margin={'0px 0px 20px 0'} />
 					</div>
 				))}
 				<div className={styles.addAndRemoveTeams}>

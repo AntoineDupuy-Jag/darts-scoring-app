@@ -1,11 +1,9 @@
+@import '../../scss/variables';
+
 .title {
-	font-size: 38px;
-	font-style: italic;
-	font-weight: 900;
-	color: #18181b;
-	text-shadow: 1px 1px 4px white;
+	font-size: $font-size-big;
+	font-weight: $extra-bold-weight;
+	color: black;
+	text-shadow: 1px 1px 4px $custom-white;
 	text-transform: uppercase;
-	width: calc(60% + 40px);
-	margin-left: auto;
-	margin-right: auto;
 }

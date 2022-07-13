@@ -6,13 +6,13 @@ type FormInputProps = {
 	id: string;
 	name: string;
 	placeholder: string;
-	value: any;
+	value: string;
 	onChange: React.ChangeEventHandler<HTMLInputElement>;
 	errorMessage: string;
 	pattern: string;
 };
 
-export const FormInput = ({
+export const PlayerNameInput = ({
 	id,
 	name,
 	placeholder,

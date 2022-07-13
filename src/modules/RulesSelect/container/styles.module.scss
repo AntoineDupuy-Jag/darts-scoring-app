@@ -1,17 +1,10 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
 .form {
-	padding-top: 20px;
+	padding-top: $padding-medium2;
 }
 
 .buttonsContainer {
-	display: flex;
-	justify-content: center;
-	margin-top: 30px;
-}
-
-.link {
-	text-decoration: none;
-	color: white;
-	&:hover {
-		color: #50c850;
-	}
+	@include flexCenter(row);
 }
