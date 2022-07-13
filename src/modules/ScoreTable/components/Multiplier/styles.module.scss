@@ -1,29 +1,31 @@
+@import '../../../../scss/variables';
+@import '../../../../scss/mixins';
+
 .labelsContainer {
-  width: 20%;
-  margin: 10px auto 0 auto;
-  display: flex;
-  justify-content: space-between;
+	width: 18%;
+	margin: $margin-small auto 0 auto;
+	display: flex;
+	justify-content: space-between;
 }
 
 .radioInput {
-  display: none;
-};
+	display: none;
+}
 
 .radioInput + label {
-  padding: 2px 10px;
-  border-radius: 10px;
-  color: white;
-  font-size: 28px;
-  font-style: italic;
-  cursor: pointer;
-  &:hover {
-    padding: 2px 10px;
-    border-radius: 10px;
-    background-color: #50C878;
-    transition: 0.5s all ease;
-  };
-};
+	padding: 2px $padding-small;
+	border-radius: $border-radius-light;
+	font-size: $font-size-extra-large;
+	font-weight: $extra-bold-weight;
+	cursor: pointer;
+	&:hover {
+		padding: 2px $padding-small;
+		border-radius: $border-radius-light;
+		background-color: $valid-primary;
+		transition: $smooth-transition;
+	}
+}
 
 .radioInput:checked + label {
-  background-color: #50C878;
-};
+	background-color: $valid-primary;
+}
