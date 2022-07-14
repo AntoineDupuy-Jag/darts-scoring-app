@@ -1,5 +1,3 @@
-import classNames from 'classnames';
-
 import styles from './styles.module.scss';
 
 type TargetContainerProps = {
@@ -8,20 +6,31 @@ type TargetContainerProps = {
 
 export const TargetContainer = ({ score }: TargetContainerProps) => {
 	const circlesClasses = [
-		styles.circleOne,
-		styles.circleTwo,
-		styles.circleThree,
-		styles.circleFour,
-		styles.circleFive,
-		styles.circleSix,
+		styles.circle1,
+		styles.circle2,
+		styles.circle3,
+		styles.circle4,
+		styles.circle5,
+		styles.circle6,
 	];
 
 	return (
 		<div className={styles.scoreContainer}>
 			{circlesClasses.map((circleClass, index) => (
-				<div className={classNames(styles.circle, circleClass)} key={index}></div>
+				<div className={circleClass} key={index}></div>
 			))}
 			<div className={styles.score}>{score}</div>
 		</div>
 	);
+
+	// TO DEEP ??
+
+	// return (
+	// 	<div className={styles.scoreContainer}>
+	// 		{[...Array(7).keys()].map((index) => (
+	// 			<div className={`styles.circle-${index}`} key={index}></div>
+	// 		))}
+	// 		<div className={styles.score}>{score}</div>
+	// 	</div>
+	// );
 };

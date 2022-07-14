@@ -1,3 +1,6 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
 .teamsContainer {
 	display: flex;
 	justify-content: space-between;
@@ -7,8 +10,6 @@
 		border-right: none;
 	}
 }
-
-// ====== TEAM NAME, PLAYERS NAMES, DARTS AND SCORE ======
 
 .teamBox {
 	display: flex;
@@ -28,8 +29,9 @@
 	background-color: #383838;
 	font-size: 26px;
 	border-radius: 5px;
-	color: white;
 	font-style: italic;
+	font-weight: $bold-weight;
+	color: white;
 	-webkit-writing-mode-: sideways-lr;
 	writing-mode: sideways-lr;
 }

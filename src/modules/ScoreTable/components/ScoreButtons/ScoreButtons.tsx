@@ -30,7 +30,7 @@ export const ScoreButtons = ({ onClick, isDisabled }: ScoreButtonsProps) => {
 					{'Manqué...'}
 				</button>
 				<button className={styles.fiftyButton} value={50} onClick={onClick} disabled={isDisabled}>
-					{'50 !'}
+					{'50'}
 				</button>
 				<button
 					className={classNames(styles.button, styles.twentyFive)}

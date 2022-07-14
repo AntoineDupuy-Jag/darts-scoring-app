@@ -1,37 +1,30 @@
 @import '../../../../scss/variables';
 @import '../../../../scss/mixins';
-// -- Buttons : even and odd --
 
 .buttonsContainer {
-	display: flex;
-	justify-content: center;
-	margin-top: 5px;
+	@include flexCenter(row);
 	flex-wrap: wrap;
-	border: 1px solid white;
-	border-radius: 10px;
+	margin-top: $margin-small;
+	border: 1px solid $custom-white;
+	border-radius: $border-radius-light;
 	overflow: hidden;
 }
 
+// General button (odd) and even button
 .button {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	@include flexCenter(row, #21485a);
 	width: 20%;
-	color: white;
-	font-style: italic;
-	font-size: 20px;
-	height: 30px;
-	background-color: #21485a;
+	height: 35px;
+	font-size: $font-size-large;
+	font-weight: $extra-bold-weight;
+	color: $custom-white;
 	border: none;
 	cursor: pointer;
 	&:hover:enabled {
 		color: #21485a;
-		background-color: white;
-		font-size: 30px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		transition: 0.4s all ease;
+		@include flexCenter(row, white);
+		font-size: $font-size-extra-large;
+		transition: $quick-transition;
 	}
 	&:nth-child(even) {
 		background-color: #132735;
@@ -42,51 +35,43 @@
 	}
 }
 
-// -- Three last buttons : missed, 50 and 25 --
-
+// Three last buttons (missed, 50 and 25)
 .threeLastButtonsContainer {
-	display: flex;
-	justify-content: center;
+	@include flexCenter(row);
 }
 
 .missed {
 	background-color: red;
 	border-left: 1px solid white;
 	border-bottom: 1px solid white;
-	border-radius: 0 0 0 10px;
+	border-radius: 0 0 0 $border-radius-light;
 	&:hover:enabled {
 		color: red;
-		background-color: white;
-		font-size: 22px;
+		background-color: $custom-white;
+		font-size: $font-size-extra-large;
 	}
 }
 
 // Exception (about &:nth-child(even) of button class)
 .fiftyButton {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	@include flexCenter(row);
 	width: 20%;
-	color: black;
-	font-style: italic;
-	font-size: 20px;
-	height: 30px;
+	height: 35px;
+	font-size: $font-size-large;
+	font-weight: $extra-bold-weight;
+	color: $custom-black;
 	background-color: yellow;
 	border: none;
 	border-bottom: 1px solid white;
 	cursor: pointer;
 	&:hover:enabled {
-		color: black;
 		background-color: white;
-		font-size: 30px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		transition: 0.4s all ease;
+		font-size: $font-size-extra-large;
+		transition: $quick-transition;
 	}
 	&:disabled {
 		cursor: default;
-		background-color: lightgray;
+		background-color: $disabled-primary;
 	}
 }
 
@@ -94,13 +79,13 @@
 	background-color: green;
 	border-right: 1px solid white;
 	border-bottom: 1px solid white;
-	border-radius: 0 0 10px 0;
+	border-radius: 0 0 $border-radius-light 0;
 	&:hover:enabled {
 		color: green;
 		background-color: white;
 	}
 	&:disabled {
 		cursor: default;
-		background-color: gray;
+		background-color: $disabled-secondary;
 	}
 }
