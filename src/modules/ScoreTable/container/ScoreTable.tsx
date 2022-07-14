@@ -4,9 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { Container } from '../../common-ui/Container/Container';
 import { Chip } from '../../common-ui/Chip/Chip';
 import { Separator } from '../../common-ui/Separator/Separator';
-import { BackArrowIcon, DartIcon1 } from '../../common-ui/Svg';
+import { DartIcon1 } from '../../common-ui/Svg';
 import { RulesReminder } from '../components/RulesReminder/RulesReminder';
 import { TargetContainer } from '../components/TargetContainer/TargetContainer';
+import { CancelDartButton } from '../components/CancelDartButton/CancelDartButton';
 import { Multiplier } from '../components/Multiplier/Multiplier';
 import { ScoreButtons } from '../components/ScoreButtons/ScoreButtons';
 import { selectedRulesType, teamsType, teamType } from '../../../utils/types';
@@ -30,7 +31,6 @@ export const ScoreTable = ({ teams, selectedRules, setWinningTeam }: ScoreTableP
 	const [disabledScoreButtons, setDisabledScoreButtons] = useState(false);
 	const navigate = useNavigate();
 
-	// useEffect() : à garder ?
 	useEffect(() => {
 		const newTeams = teams.map((t) => ({ ...t, score: +selectedRules.scoreToGoal }));
 		setTeamsWithScore(newTeams);
@@ -39,6 +39,7 @@ export const ScoreTable = ({ teams, selectedRules, setWinningTeam }: ScoreTableP
 
 	// ONCLICK FUNCTION ON SCORE'S BUTTONS
 	const handleDartValue = (e: any) => {
+		// Get value of the darts
 		const newDartArray = [...dartArray];
 		const dartValue = e.target.value * multiplier;
 		newDartArray.push(dartValue);
@@ -46,11 +47,6 @@ export const ScoreTable = ({ teams, selectedRules, setWinningTeam }: ScoreTableP
 		// To know if all the teams have played
 		if (teamsWithScore.length - 1 === turnToPlay.team && turnToPlay.player === 0) setRoundsNumber(1);
 		if (teamsWithScore.length - 1 === turnToPlay.team && turnToPlay.player === 1) setRoundsNumber(0);
-
-		// console.log('teamsWithScore.length ->', teamsWithScore.length - 1);
-		// console.log('turnToPlay.team ->', turnToPlay.team);
-		// console.log('roundsNumber ->', roundsNumber);
-
 		// Setup team turn and player turn
 		if (newDartArray.length >= 3) {
 			setTurnToPlay({
@@ -62,6 +58,7 @@ export const ScoreTable = ({ teams, selectedRules, setWinningTeam }: ScoreTableP
 			});
 			setDartArray([]);
 		}
+		// Updating score according to the situation
 		updateScoreWithDoubleRules(turnToPlay.team, dartValue);
 		if (teamsWithScore[turnToPlay.team].score - dartValue === 0) {
 			setWinningTeam(teamsWithScore[turnToPlay.team]);
@@ -69,7 +66,6 @@ export const ScoreTable = ({ teams, selectedRules, setWinningTeam }: ScoreTableP
 		}
 	};
 
-	// UPDATE SCORE SIMPLE
 	const updateScore = (indexTeam: number, dartValue: number) => {
 		const newArray = [...teamsWithScore];
 		newArray[indexTeam] = {
@@ -82,74 +78,27 @@ export const ScoreTable = ({ teams, selectedRules, setWinningTeam }: ScoreTableP
 		setTeamsWithScore(newArray);
 	};
 
-	// CANCEL DARTS IF THE SCORE EXCEEDS THE LIMIT
-	// const updateScore = (indexTeam: number, dartValue: number) => {
-	// 	const newArray = [...teamsWithScore];
-	// 	console.log('dartArray POUR UPDATE ->', dartArray);
-	// 	// console.log('dartValue ->', dartValue);
-	// 	if (newArray[indexTeam].score - dartValue < 0) {
-	// 		// console.log('dartArray.indexOf(dartValue) ->', dartArray.indexOf(dartValue));
-	// 		// Third dart
-	// 		if (dartArray.indexOf(dartValue) === -1) {
-	// 			newArray[indexTeam] = {
-	// 				...newArray[indexTeam],
-	// 				score: newArray[indexTeam].score + dartArray[0] + dartArray[1],
-	// 			};
-	// 		}
-	// 		// Second dart
-	// 		if (dartArray.indexOf(dartValue) === 1) {
-	// 			newArray[indexTeam] = {
-	// 				...newArray[indexTeam],
-	// 				score: newArray[indexTeam].score + dartArray[0],
-	// 			};
-	// 		}
-	// 		// First dart
-	// 		if (dartArray.indexOf(dartValue) === 0) {
-	// 			newArray[indexTeam] = {
-	// 				...newArray[indexTeam],
-	// 				score: newArray[indexTeam].score,
-	// 			};
-	// 		}
-	// 	} else {
-	// 		newArray[indexTeam] = {
-	// 			...newArray[indexTeam],
-	// 			score: newArray[indexTeam].score - dartValue,
-	// 		};
-	// 	}
-	// 	setTeamsWithScore(newArray);
-	// };
+	const updateScoreAtEntryOrExit = (
+		simpleRule: boolean,
+		bothRules: boolean,
+		indexTeam: number,
+		dartValue: number,
+	) => {
+		if ((simpleRule || bothRules) && multiplier == 2) updateScore(indexTeam, dartValue);
+		if (!simpleRule && !bothRules) updateScore(indexTeam, dartValue);
+	};
 
-	// UPDATE SCORE ACCORDING TO DOUBLE RULES
 	const updateScoreWithDoubleRules = (indexTeam: number, dartValue: number) => {
-		const beginning = teamsWithScore[indexTeam].score === +selectedRules.scoreToGoal;
-		const ending = teamsWithScore[indexTeam].score - dartValue <= 0;
 		const doubleIn = selectedRules.doublesOrNot === 'Double pour entrer';
 		const doubleOut = selectedRules.doublesOrNot === 'Double pour sortir';
 		const doubleInAndOut = selectedRules.doublesOrNot === 'Double pour entrer et sortir';
-		if (beginning) {
-			if ((doubleIn || doubleInAndOut) && multiplier == 2) updateScore(indexTeam, dartValue);
-			if (!doubleIn && !doubleInAndOut) updateScore(indexTeam, dartValue);
-		}
-		if (ending) {
-			if ((doubleOut || doubleInAndOut) && multiplier == 2) updateScore(indexTeam, dartValue);
-			if (!doubleOut && !doubleInAndOut) updateScore(indexTeam, dartValue);
-		}
-		if (!beginning && !ending) updateScore(indexTeam, dartValue);
-		if (!doubleIn && !doubleOut && !doubleInAndOut) updateScore(indexTeam, dartValue);
-	};
+		const beginning = teamsWithScore[indexTeam].score === +selectedRules.scoreToGoal;
+		const ending = teamsWithScore[indexTeam].score - dartValue <= 0;
 
-	// CANCEL DART FUNCTION
-	const cancelDart = () => {
-		const newDartArray = [...dartArray];
-		const cancelDart = newDartArray[newDartArray.length - 1];
-		const newArray = [...teamsWithScore];
-		newArray[turnToPlay.team] = {
-			...newArray[turnToPlay.team],
-			score: newArray[turnToPlay.team].score + cancelDart,
-		};
-		setTeamsWithScore(newArray);
-		newDartArray.pop();
-		setDartArray(newDartArray);
+		if (beginning) updateScoreAtEntryOrExit(doubleIn, doubleInAndOut, indexTeam, dartValue);
+		if (ending) updateScoreAtEntryOrExit(doubleOut, doubleInAndOut, indexTeam, dartValue);
+		if ((!beginning && !ending) || (!doubleIn && !doubleOut && !doubleInAndOut))
+			updateScore(indexTeam, dartValue);
 	};
 
 	return (
@@ -208,12 +157,13 @@ export const ScoreTable = ({ teams, selectedRules, setWinningTeam }: ScoreTableP
 					))}
 				</div>
 			)}
-			<div className={styles.cancelDart}>
-				<button className={styles.cancelButton} onClick={cancelDart} disabled={dartArray.length < 1}>
-					<BackArrowIcon />
-				</button>
-				<div className={styles.cancelButtonLabel}>{'Annuler la dernière fléchette'}</div>
-			</div>
+			<CancelDartButton
+				dartArray={dartArray}
+				teamsWithScore={teamsWithScore}
+				teamToPlay={turnToPlay.team}
+				setTeamsWithScore={setTeamsWithScore}
+				setDartArray={setDartArray}
+			/>
 			<Multiplier setMultiplier={setMultiplier} setDisabled={setDisabledScoreButtons} />
 			<ScoreButtons onClick={handleDartValue} isDisabled={disabledScoreButtons} />
 		</Container>

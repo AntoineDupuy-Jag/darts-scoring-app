@@ -1,0 +1,37 @@
+@import '../../../../scss/variables';
+@import '../../../../scss/mixins';
+
+.cancelDart {
+	display: flex;
+	align-items: center;
+}
+
+.cancelButton {
+	@include flexCenter(row);
+	border-radius: $border-radius-full;
+	background-color: hsl(0%, 50%, 50%);
+	padding: $padding-small;
+	margin-left: $margin-extra-small;
+	border: none;
+	cursor: pointer;
+	&:hover + .cancelButtonLabel {
+		visibility: visible;
+	}
+	&:disabled {
+		background-color: rgb(146, 146, 146);
+		cursor: default;
+		&:hover + .cancelButtonLabel {
+			visibility: hidden;
+		}
+	}
+}
+
+.cancelButtonLabel {
+	margin-left: $margin-small;
+	padding: $padding-small;
+	background-color: hsl(0%, 50%, 50%);
+	font-size: $font-size-small;
+	color: $custom-white;
+	border-radius: $border-radius-light;
+	visibility: hidden;
+}
