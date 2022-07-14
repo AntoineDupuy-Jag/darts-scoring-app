@@ -5,7 +5,7 @@
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
-	margin-top: 20px;
+	margin-top: $margin-medium2;
 	&:last-child {
 		border-right: none;
 	}
@@ -14,7 +14,7 @@
 .teamBox {
 	display: flex;
 	width: 50%;
-	margin-bottom: 20px;
+	margin-bottom: $margin-medium2;
 }
 
 .teamBoxPerThree {
@@ -22,11 +22,9 @@
 }
 
 .teamNameLabel {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	@include flexCenter(row);
 	width: 10%;
-	background-color: #383838;
+	background-color: $custom-black;
 	font-size: 26px;
 	border-radius: 5px;
 	font-style: italic;
@@ -36,49 +34,42 @@
 	writing-mode: sideways-lr;
 }
 
-.teamNames {
+.playersNameContainer {
 	width: 25%;
-	padding-left: 8px;
+	padding-left: $padding-small;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 }
 
-.teamScore {
-	width: 65%;
-	color: white;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+.playerName {
+	font-style: italic;
+	font-size: $font-size-medium;
+	font-weight: $bold-weight;
+	margin-top: 2px;
 }
 
-.playerName {
-	color: white;
-	font-style: italic;
-	font-size: 16px;
-	margin-top: 2px;
+.teamScore {
+	@include flexCenter(column);
+	width: 65%;
 }
 
 .playerNameOn {
-	font-style: italic;
-	font-size: 16px;
-	margin-top: 2px;
-	border-radius: 20px;
+	border-radius: $border-radius-large;
 	position: relative;
-	// Animation
 	animation: playerTurn 1s;
 	animation-fill-mode: forwards;
 }
 
 .playerNameOnSecond {
-	font-style: italic;
-	font-size: 16px;
-	margin-top: 2px;
-	border-radius: 20px;
+	border-radius: $border-radius-large;
 	position: relative;
-	// Animation
 	animation: playerTurn2 1s;
 	animation-fill-mode: forwards;
+}
+
+.dartsContainer {
+	display: flex;
 }
 
 // Animation for player turn visibility (.playerNameOn)
@@ -93,7 +84,7 @@
 		color: #383838;
 		background-color: rgb(249, 249, 87);
 		top: 86%;
-		left: 180%;
+		left: 190%;
 	}
 }
 
@@ -109,10 +100,6 @@
 		color: #383838;
 		background-color: rgb(249, 249, 87);
 		top: 36%;
-		left: 180%;
+		left: 190%;
 	}
-}
-
-.dartsContainer {
-	display: flex;
 }

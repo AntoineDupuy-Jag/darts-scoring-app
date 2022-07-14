@@ -60,10 +60,11 @@ export const ScoreTable = ({ teams, selectedRules, setWinningTeam }: ScoreTableP
 		}
 		// Updating score according to the situation
 		updateScoreWithDoubleRules(turnToPlay.team, dartValue);
-		if (teamsWithScore[turnToPlay.team].score - dartValue === 0) {
-			setWinningTeam(teamsWithScore[turnToPlay.team]);
-			navigate('/results');
-		}
+		// Go to the next page if a team has won
+		// if (teamsWithScore[turnToPlay.team].score === 0) {
+		// 	setWinningTeam(teamsWithScore[turnToPlay.team]);
+		// 	navigate('/results');
+		// }
 	};
 
 	const updateScore = (indexTeam: number, dartValue: number) => {
@@ -119,7 +120,7 @@ export const ScoreTable = ({ teams, selectedRules, setWinningTeam }: ScoreTableP
 						>
 							{/* PLAYER'S NAMES */}
 							<div className={styles.teamNameLabel}>{'Joueurs'}</div>
-							<div className={styles.teamNames}>
+							<div className={styles.playersNameContainer}>
 								<div>
 									{team.players.map((player, indexPlayer) => (
 										<div

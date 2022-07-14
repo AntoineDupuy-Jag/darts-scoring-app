@@ -7,8 +7,8 @@ type CancelDartButtonProps = {
 	dartArray: number[];
 	teamsWithScore: teamsType;
 	teamToPlay: number;
-	setTeamsWithScore: any;
-	setDartArray: any;
+	setTeamsWithScore: React.Dispatch<React.SetStateAction<teamsType>>;
+	setDartArray: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
 export const CancelDartButton = ({
