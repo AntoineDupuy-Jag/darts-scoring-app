@@ -5,31 +5,39 @@
 	@include flexCenter(row);
 	flex-wrap: wrap;
 	margin-top: $margin-small;
-	border: 1px solid $custom-white;
-	border-radius: $border-radius-light;
 	overflow: hidden;
 }
 
 // General button (odd) and even button
 .button {
-	@include flexCenter(row, #21485a);
-	width: 20%;
-	height: 35px;
+	@include flexCenter(row, #662d91);
+	width: calc(100% / 20);
+	height: 45px;
+	margin-right: calc(100% / 20);
+	margin-bottom: $margin-small;
 	font-size: $font-size-large;
 	font-weight: $extra-bold-weight;
-	color: $custom-white;
+	color: white;
+	border-radius: $border-radius-full;
 	border: none;
 	cursor: pointer;
 	&:hover:enabled {
-		color: #21485a;
 		@include flexCenter(row, white);
+		color: #662d91;
 		font-size: $font-size-extra-large;
-		transition: $quick-transition;
+		transition: $smooth-transition;
+		border-radius: $border-radius-light;
+	}
+	&:nth-of-type(10) {
+		margin-right: 0;
+	}
+	&:nth-of-type(20) {
+		margin-right: 0;
 	}
 	&:nth-child(even) {
-		background-color: #132735;
+		background-color: #d8bfd8;
+		color: #662d91;
 		&:hover {
-			color: #132735;
 			background-color: white;
 		}
 	}
@@ -89,3 +97,83 @@
 		background-color: $disabled-secondary;
 	}
 }
+
+// // General button (odd) and even button
+// .button {
+// 	@include flexCenter(row, #21485a);
+// 	width: 20%;
+// 	height: 35px;
+// 	font-size: $font-size-large;
+// 	font-weight: $extra-bold-weight;
+// 	color: $custom-white;
+// 	border: none;
+// 	cursor: pointer;
+// 	&:hover:enabled {
+// 		color: #21485a;
+// 		@include flexCenter(row, white);
+// 		font-size: $font-size-extra-large;
+// 		transition: $quick-transition;
+// 	}
+// 	&:nth-child(even) {
+// 		background-color: #132735;
+// 		&:hover {
+// 			color: #132735;
+// 			background-color: white;
+// 		}
+// 	}
+// }
+
+// // Three last buttons (missed, 50 and 25)
+// .threeLastButtonsContainer {
+// 	@include flexCenter(row);
+// }
+
+// .missed {
+// 	background-color: red;
+// 	border-left: 1px solid white;
+// 	border-bottom: 1px solid white;
+// 	border-radius: 0 0 0 $border-radius-light;
+// 	&:hover:enabled {
+// 		color: red;
+// 		background-color: $custom-white;
+// 		font-size: $font-size-extra-large;
+// 	}
+// }
+
+// // Exception (about &:nth-child(even) of button class)
+// .fiftyButton {
+// 	@include flexCenter(row);
+// 	width: 20%;
+// 	height: 35px;
+// 	font-size: $font-size-large;
+// 	font-weight: $extra-bold-weight;
+// 	color: $custom-black;
+// 	background-color: yellow;
+// 	border: none;
+// 	border-bottom: 1px solid white;
+// 	cursor: pointer;
+// 	&:hover:enabled {
+// 		background-color: white;
+// 		font-size: $font-size-extra-large;
+// 		transition: $quick-transition;
+// 	}
+// 	&:disabled {
+// 		cursor: default;
+// 		background-color: $disabled-primary;
+// 	}
+// }
+
+// .twentyFive {
+// 	background-color: green;
+// 	border-right: 1px solid white;
+// 	border-bottom: 1px solid white;
+// 	border-radius: 0 0 $border-radius-light 0;
+// 	&:hover:enabled {
+// 		color: green;
+// 		background-color: white;
+// 	}
+// 	&:disabled {
+// 		cursor: default;
+// 		background-color: $disabled-secondary;
+// 	}
+// }

@@ -144,7 +144,7 @@ export const ScoreTable = ({ teams, selectedRules, setWinningTeam }: ScoreTableP
 								{indexTeam === turnToPlay.team && (
 									<div className={styles.dartsContainer}>
 										{[...Array(3).keys()].map((index) => (
-											<DartIcon1 color={dartArray.length >= index + 1 ? '' : 'white'} key={index} />
+											<DartIcon1 color={dartArray.length >= index + 1 ? '#bf4040' : 'white'} key={index} />
 										))}
 									</div>
 								)}

@@ -8,6 +8,7 @@
 	border: 2px solid white;
 	border-radius: $border-radius-light;
 	font-size: $font-size-medium;
+	color: $custom-black;
 	&:invalid[data-focused='true'] {
 		border: 2px solid $error-primary;
 		background-color: $error-secondary;

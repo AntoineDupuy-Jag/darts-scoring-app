@@ -11,6 +11,7 @@ import { Footer } from './modules/Footer/Footer';
 import { selectedRulesType, teamsType, teamType } from './utils/types';
 
 import styles from './scss/global.module.scss';
+import { MainContainer } from './modules/MainContainer/MainContainer';
 
 function App() {
 	const [teams, setTeams] = useState([
@@ -31,8 +32,7 @@ function App() {
 	const [winningTeam, setWinningTeam] = useState({} as teamType);
 
 	return (
-		<div className={styles.mainContainer}>
-			<AppTitle title="darts scoring app" />
+		<MainContainer>
 			<Routes>
 				<Route path="/" element={<HomePage />} />
 				<Route
@@ -46,8 +46,7 @@ function App() {
 				/>
 				<Route path="/results" element={<Results winningTeam={winningTeam} />} />
 			</Routes>
-			<Footer />
-		</div>
+		</MainContainer>
 	);
 }
 

@@ -7,6 +7,24 @@
 	margin-bottom: $margin-small;
 	padding-left: $padding-small;
 	word-spacing: 4px;
+	&::before {
+		content: '';
+		background-color: #dda0dd;
+		display: inline-block;
+		height: 3px;
+		width: 20px;
+		margin-right: 8px;
+		margin-bottom: 5px;
+	}
+	&::after {
+		content: '';
+		background-color: #dda0dd;
+		display: inline-block;
+		height: 3px;
+		width: 20px;
+		margin-left: 8px;
+		margin-bottom: 5px;
+	}
 }
 
 .radioBox {
@@ -16,6 +34,20 @@
 .radio {
 	@include flexCenter(row);
 	margin-right: $margin-medium;
+	background-color: white;
+	border-radius: $border-radius-medium;
+	&:hover {
+		transform: translate(6px, -4px);
+		transition: $smooth-transition;
+	}
+}
+
+.isClicked {
+	@include flexCenter(row);
+	margin-right: $margin-medium;
+	background-color: white;
+	border-radius: $border-radius-medium;
+	transform: translate(0);
 }
 
 .input {
@@ -23,15 +55,18 @@
 }
 
 .input + label {
-	padding: $padding-small;
-	border-radius: $border-radius-light;
+	padding: $padding-extra-small $padding-medium;
+	border-radius: $border-radius-medium;
+	color: $custom-black;
 	cursor: pointer;
 	&:hover {
 		background-color: $valid-primary;
+		color: $custom-white;
 		transition: $smooth-transition;
 	}
 }
 
 .input:checked + label {
 	background-color: $valid-primary;
+	color: $custom-white;
 }

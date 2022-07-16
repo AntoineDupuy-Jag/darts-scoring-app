@@ -24,12 +24,11 @@
 .teamNameLabel {
 	@include flexCenter(row);
 	width: 10%;
-	background-color: $custom-black;
+	background-color: #dda0dd;
+	color: $custom-black;
 	font-size: 26px;
 	border-radius: 5px;
-	font-style: italic;
-	font-weight: $bold-weight;
-	color: white;
+	font-weight: $extra-bold-weight;
 	-webkit-writing-mode-: sideways-lr;
 	writing-mode: sideways-lr;
 }

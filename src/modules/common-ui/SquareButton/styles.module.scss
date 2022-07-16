@@ -1,22 +1,24 @@
 .squareButton {
-  margin-right: 8px;
-  background-color: white;
-  border: none;
-  border-radius: 5px;
-  height: 50px;
-  width: 50px;
-  font-size: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  &:hover:enabled {
-    border: 2px solid #43C6AC;
-    color: #43C6AC;
-    font-size: 40px;
-    cursor: pointer;
-    transition: all 0.2s ease-out;
-  };
-  &:disabled {
-    color: lightgray
-  };
-};
+	margin-right: 8px;
+	background-color: white;
+	color: #383838;
+	border: none;
+	border-radius: 5px;
+	height: 50px;
+	width: 50px;
+	font-size: 28px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 2px solid white;
+	&:hover:enabled {
+		border: 2px solid #dda0dd;
+		color: #dda0dd;
+		font-size: 40px;
+		cursor: pointer;
+		transition: all 0.2s ease-out;
+	}
+	&:disabled {
+		color: lightgray;
+	}
+}

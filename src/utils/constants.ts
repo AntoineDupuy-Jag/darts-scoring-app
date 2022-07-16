@@ -29,7 +29,7 @@ export const bgColors = {
 
 export const rules = [
 	{
-		ruleLabel: 'Répartition des joueurs :',
+		ruleLabel: 'Répartition des joueurs',
 		name: 'ffaOrTeam',
 		choices: [
 			{
@@ -43,7 +43,7 @@ export const rules = [
 		],
 	},
 	{
-		ruleLabel: 'Score à atteindre :',
+		ruleLabel: 'Score à atteindre',
 		name: 'scoreToGoal',
 		choices: [
 			{
@@ -61,7 +61,7 @@ export const rules = [
 		],
 	},
 	{
-		ruleLabel: 'Score à atteindre :',
+		ruleLabel: 'Règles des doubles',
 		name: 'doublesOrNot',
 		choices: [
 			{
