@@ -1,17 +1,13 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import { AppTitle } from './modules/AppTitle/AppTitle';
+import { MainContainer } from './modules/MainContainer/container/MainContainer';
 import { HomePage } from './modules/HomePage/HomePage';
 import { RulesSelect } from './modules/RulesSelect/container/RulesSelect';
 import { PlayerSelect } from './modules/PlayerSelect/container/PlayerSelect';
 import { ScoreTable } from './modules/ScoreTable/container/ScoreTable';
 import { Results } from './modules/Results/container/Results';
-import { Footer } from './modules/Footer/Footer';
 import { selectedRulesType, teamsType, teamType } from './utils/types';
-
-import styles from './scss/global.module.scss';
-import { MainContainer } from './modules/MainContainer/MainContainer';
 
 function App() {
 	const [teams, setTeams] = useState([

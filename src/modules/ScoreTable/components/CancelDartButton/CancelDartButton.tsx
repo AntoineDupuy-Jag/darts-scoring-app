@@ -1,5 +1,5 @@
 import { teamsType } from '../../../../utils/types';
-import { BackArrowIcon } from '../../../common-ui/Svg';
+import { BackArrowIcon } from '../../../common-ui/SvgComponents';
 
 import styles from './styles.module.scss';
 

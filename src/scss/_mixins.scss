@@ -10,8 +10,9 @@
 	}
 }
 
-@mixin fontStyleTitle($font-size) {
-	font-weight: 700;
-	font-style: italic;
+@mixin fontStyles($font-size, $font-style, $font-weight, $color) {
 	font-size: $font-size;
+	font-style: $font-style;
+	font-weight: $font-weight;
+	color: $color;
 }

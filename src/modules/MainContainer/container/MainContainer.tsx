@@ -1,3 +1,6 @@
+import { Dropright } from '../components/Dropright/Dropright';
+import { Title } from '../components/Title/Title';
+
 import styles from './styles.module.scss';
 
 type MainContainerProps = {
@@ -7,10 +10,9 @@ type MainContainerProps = {
 export const MainContainer = ({ children }: MainContainerProps) => {
 	return (
 		<div className={styles.background}>
-			<div className={styles.title}>
-				<div className={styles.logo}></div>
-				<div className={styles.text}>{"Dart's scoring app"}</div>
-				<div className={styles.by}>{'by Qoophee ©'}</div>
+			<div className={styles.titleContainer}>
+				<Title />
+				<Dropright />
 			</div>
 			<div className={styles.picture}></div>
 			<div className={styles.wave1}></div>

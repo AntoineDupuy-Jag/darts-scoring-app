@@ -1,18 +1,15 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
 .chipContainer {
+	@include flexCenter(row, $target-beige);
+	@include fontStyles($font-size-extra-large, italic, $bold-weight, $custom-black);
 	padding: 10px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 10px;
-	font-weight: 700;
-	font-size: 24px;
-	font-style: italic;
-	background-color: #dda0dd;
-	color: #383838;
+	border-radius: $border-radius-light;
 }
 
 .smallChip {
-	padding: 4px;
-	font-size: 22px;
-	color: white;
+	padding: $padding-extra-small;
+	font-size: $font-size-large;
+	color: $custom-white;
 }

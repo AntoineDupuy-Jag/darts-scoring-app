@@ -1,0 +1,41 @@
+@import '../../../../scss/variables';
+@import '../../../../scss/mixins';
+
+.logo {
+	background-image: url('../../../../../public/img/icons8-bullseye-48.png');
+	width: 48px;
+	height: 48px;
+	margin-right: 10px;
+}
+
+.title {
+	position: relative;
+	color: $custom-black;
+	cursor: pointer;
+	&:hover:after {
+		animation: underlined 0.3s linear;
+		animation-fill-mode: forwards;
+	}
+}
+
+.title::after {
+	content: '';
+	display: block;
+	position: absolute;
+	bottom: -2px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 70%;
+	height: 3px;
+	background: rgb(3, 192, 60);
+	background: linear-gradient(10deg, rgba(3, 192, 60, 1) 0%, rgba(204, 0, 0, 1) 100%);
+}
+
+@keyframes underlined {
+	0% {
+		width: 70%;
+	}
+	100% {
+		width: 100%;
+	}
+}

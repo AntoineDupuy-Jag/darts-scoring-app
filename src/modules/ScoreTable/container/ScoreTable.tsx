@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Container } from '../../common-ui/Container/Container';
 import { Chip } from '../../common-ui/Chip/Chip';
 import { Separator } from '../../common-ui/Separator/Separator';
-import { DartIcon1 } from '../../common-ui/Svg';
+import { DartIcon1 } from '../../common-ui/SvgComponents';
 import { RulesReminder } from '../components/RulesReminder/RulesReminder';
 import { TargetContainer } from '../components/TargetContainer/TargetContainer';
 import { CancelDartButton } from '../components/CancelDartButton/CancelDartButton';

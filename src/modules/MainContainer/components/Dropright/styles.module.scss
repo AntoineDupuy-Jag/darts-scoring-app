@@ -1,0 +1,112 @@
+@import '../../../../scss/variables';
+@import '../../../../scss/mixins';
+
+.dropdown {
+	@include fontStyles($font-size-small, italic, $regular-weight, $custom-black);
+	display: flex;
+	padding: $padding-extra-small $padding-small;
+	margin: 6px 0px 0 10px;
+	color: $custom-black;
+	border-radius: $border-radius-medium;
+	border: 1px solid $custom-black;
+	cursor: pointer;
+	&:hover {
+		border: 1px solid $valid-primary;
+		color: $custom-white;
+		background-color: $valid-primary;
+		transition: $quick-transition;
+		.content {
+			display: flex;
+		}
+		.buttonTriangle {
+			border: 0 solid transparent;
+			border-right: 8px solid $custom-black;
+			border-top-width: 5px;
+			border-bottom-width: 5px;
+			transition: $quick-transition;
+		}
+	}
+}
+
+.button {
+	@include flexCenter(row);
+	width: calc(100px + $padding-small * 2);
+}
+
+.buttonLabel {
+	color: $custom-black;
+}
+
+.buttonTriangle {
+	width: 0;
+	height: 0;
+	border: 0 solid transparent;
+	border-left: 8px solid $custom-black;
+	border-top-width: 5px;
+	border-bottom-width: 5px;
+	margin-left: 8px;
+}
+
+.content {
+	display: none;
+	position: absolute;
+	right: -332px;
+	cursor: default;
+}
+
+.item {
+	display: flex;
+	align-items: center;
+	min-height: 20px;
+	padding: 0 $padding-medium;
+	border-right: 2px solid $custom-black;
+	&:last-child {
+		border-right: none;
+	}
+}
+
+.itemLink {
+	position: relative;
+	font-style: normal;
+	color: $custom-black;
+	text-decoration: none;
+	&:hover:after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		height: 2px;
+		background-color: #383838;
+		animation: linkUnderlined 0.2s linear;
+		animation-fill-mode: forwards;
+	}
+}
+
+@keyframes linkUnderlined {
+	0% {
+		width: 0%;
+	}
+	100% {
+		width: 90%;
+	}
+}
+
+.itemLogo {
+	width: 20px;
+	height: 20px;
+	margin-right: 6px;
+	background-size: cover;
+}
+
+.linkedIn {
+	background-image: url('../../../../../public/img/linkedinLogo.png');
+}
+
+.gitHub {
+	background-image: url('../../../../../public/img/githubLogo.png');
+}
+
+.contact {
+	background-image: url('../../../../../public/img/envelop.png');
+}
