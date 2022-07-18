@@ -14,7 +14,7 @@
 .teamBox {
 	display: flex;
 	width: 50%;
-	margin-bottom: $margin-medium2;
+	margin-bottom: $margin-small;
 }
 
 .teamBoxPerThree {
@@ -24,7 +24,7 @@
 .teamNameLabel {
 	@include flexCenter(row);
 	width: 10%;
-	background-color: #dda0dd;
+	background-color: $target-beige;
 	color: $custom-black;
 	font-size: 26px;
 	border-radius: 5px;
@@ -82,7 +82,7 @@
 		text-align: center;
 		color: #383838;
 		background-color: rgb(249, 249, 87);
-		top: 86%;
+		top: 80%;
 		left: 190%;
 	}
 }
@@ -98,7 +98,13 @@
 		text-align: center;
 		color: #383838;
 		background-color: rgb(249, 249, 87);
-		top: 36%;
+		top: 30%;
 		left: 190%;
 	}
+}
+
+.cancelAndMultiplierContainer {
+	display: flex;
+	margin: $margin-small 0;
+	align-items: center;
 }

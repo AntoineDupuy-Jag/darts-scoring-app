@@ -1,21 +1,21 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
 .squareButton {
-	margin-right: 8px;
-	background-color: white;
-	color: #383838;
-	border: none;
-	border-radius: 5px;
+	@include flexCenter(row);
 	height: 50px;
 	width: 50px;
+	margin-right: $margin-small;
 	font-size: 28px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	color: $custom-black;
+	background-color: white;
+	border-radius: 5px;
 	border: 2px solid white;
 	&:hover:enabled {
-		border: 2px solid #dda0dd;
-		color: #dda0dd;
-		font-size: 40px;
+		border: 2px solid $target-green;
+		color: $target-green;
 		cursor: pointer;
+		font-size: 40px;
 		transition: all 0.2s ease-out;
 	}
 	&:disabled {

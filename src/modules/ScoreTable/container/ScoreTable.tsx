@@ -158,14 +158,16 @@ export const ScoreTable = ({ teams, selectedRules, setWinningTeam }: ScoreTableP
 					))}
 				</div>
 			)}
-			<CancelDartButton
-				dartArray={dartArray}
-				teamsWithScore={teamsWithScore}
-				teamToPlay={turnToPlay.team}
-				setTeamsWithScore={setTeamsWithScore}
-				setDartArray={setDartArray}
-			/>
-			<Multiplier setMultiplier={setMultiplier} setDisabled={setDisabledScoreButtons} />
+			<div className={styles.cancelAndMultiplierContainer}>
+				<CancelDartButton
+					dartArray={dartArray}
+					teamsWithScore={teamsWithScore}
+					teamToPlay={turnToPlay.team}
+					setTeamsWithScore={setTeamsWithScore}
+					setDartArray={setDartArray}
+				/>
+				<Multiplier setMultiplier={setMultiplier} setDisabled={setDisabledScoreButtons} />
+			</div>
 			<ScoreButtons onClick={handleDartValue} isDisabled={disabledScoreButtons} />
 		</Container>
 	);

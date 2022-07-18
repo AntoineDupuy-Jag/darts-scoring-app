@@ -2,10 +2,9 @@
 @import '../../../../scss/mixins';
 
 .labelsContainer {
-	width: 18%;
-	margin: $margin-small auto 0 auto;
-	display: flex;
-	justify-content: space-between;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 .radioInput {
@@ -14,10 +13,14 @@
 
 .radioInput + label {
 	padding: 2px $padding-small;
+	margin-right: $margin-small;
 	border-radius: $border-radius-light;
 	font-size: $font-size-extra-large;
 	font-weight: $extra-bold-weight;
 	cursor: pointer;
+	&:last-child {
+		margin-right: 0;
+	}
 	&:hover {
 		padding: 2px $padding-small;
 		border-radius: $border-radius-light;
