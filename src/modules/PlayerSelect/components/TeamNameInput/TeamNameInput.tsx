@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { Edit } from '@mui/icons-material';
 
 import styles from './styles.module.scss';
-import classNames from 'classnames';
-import { minHeight } from '@mui/system';
 
 type TeamNameInputProps = {
 	id: string;

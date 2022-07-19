@@ -1,18 +1,17 @@
-.winningTeamTitle {
-	text-align: center;
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
+.winnerTeam {
+	width: fit-content;
+	margin: $margin-medium auto;
+	padding: $padding-small;
+	font-size: $font-size-extra-large;
 	color: white;
-	font-style: italic;
-	margin: 20px 0;
+	border-radius: $border-radius-large;
 }
 
 .stats {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 10px 0 20px 0;
-	color: black;
-	font-size: 30px;
-	height: 200px;
-	background-color: white;
-	border-radius: 20px;
+	@include flexCenter(row);
+	color: $custom-white;
+	font-size: $font-size-medium;
 }

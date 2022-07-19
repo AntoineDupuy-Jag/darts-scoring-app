@@ -3,14 +3,24 @@
 
 $primary-target-color: white;
 $secondary-target-color: rgb(226, 76, 106);
+$opacity: 0.7;
 $index: 1;
 $base-value: 140px;
 
 .scoreContainer {
+	@include flexCenter(row);
 	width: 150px;
 	height: 150px;
-	@include flexCenter(row);
 	margin-top: 28px;
+}
+
+// For correct background opacity on the first circle
+.background {
+	@include flexCenter(row);
+	width: 140px;
+	height: 140px;
+	border-radius: 100%;
+	background-color: white;
 }
 
 // Loop for cercles (7)
@@ -19,7 +29,7 @@ $base-value: 140px;
 		float: left;
 		position: absolute;
 		border-radius: $border-radius-full;
-		opacity: 0.7;
+		opacity: $opacity;
 		background-color: $primary-target-color;
 		width: $base-value;
 		height: $base-value;

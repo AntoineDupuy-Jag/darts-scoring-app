@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import classNames from 'classnames';
 
+import { selectedRulesType, StatisticsType, teamsType, teamType } from '../../../utils/types';
 import { Container } from '../../common-ui/Container/Container';
 import { Chip } from '../../common-ui/Chip/Chip';
 import { Separator } from '../../common-ui/Separator/Separator';
@@ -10,18 +12,24 @@ import { TargetContainer } from '../components/TargetContainer/TargetContainer';
 import { CancelDartButton } from '../components/CancelDartButton/CancelDartButton';
 import { Multiplier } from '../components/Multiplier/Multiplier';
 import { ScoreButtons } from '../components/ScoreButtons/ScoreButtons';
-import { selectedRulesType, teamsType, teamType } from '../../../utils/types';
-import classNames from 'classnames';
 
 import styles from './styles.module.scss';
 
 type ScoreTableProps = {
 	teams: teamsType;
 	selectedRules: selectedRulesType;
+	statistics: StatisticsType;
+	setStatistics: React.Dispatch<React.SetStateAction<StatisticsType>>;
 	setWinningTeam: React.Dispatch<React.SetStateAction<teamType>>;
 };
 
-export const ScoreTable = ({ teams, selectedRules, setWinningTeam }: ScoreTableProps) => {
+export const ScoreTable = ({
+	teams,
+	selectedRules,
+	statistics,
+	setStatistics,
+	setWinningTeam,
+}: ScoreTableProps) => {
 	const [teamsWithScore, setTeamsWithScore] = useState({} as teamsType);
 	const [isLoading, setIsLoading] = useState(true);
 	const [multiplier, setMultiplier] = useState(1 as number);
@@ -36,6 +44,29 @@ export const ScoreTable = ({ teams, selectedRules, setWinningTeam }: ScoreTableP
 		setTeamsWithScore(newTeams);
 		setIsLoading(false);
 	}, []);
+
+	useEffect(() => {
+		const newStats = [] as StatisticsType;
+		if (!isLoading) {
+			teamsWithScore.map((team, indexTeam) =>
+				team.players.map((player, indexPlayer) =>
+					newStats.push({
+						team: indexTeam + 1,
+						player: indexPlayer + 1,
+						playerName: player,
+						scores: [],
+						multiples: {
+							doubles: 0,
+							triples: 0,
+						},
+					}),
+				),
+			);
+		}
+		setStatistics(newStats);
+	}, [isLoading]);
+
+	console.log('statistics ->', statistics);
 
 	// ONCLICK FUNCTION ON SCORE'S BUTTONS
 	const handleDartValue = (e: any) => {
@@ -60,11 +91,25 @@ export const ScoreTable = ({ teams, selectedRules, setWinningTeam }: ScoreTableP
 		}
 		// Updating score according to the situation
 		updateScoreWithDoubleRules(turnToPlay.team, dartValue);
+		// Setup statistics
+		setupStatistics(turnToPlay.team, turnToPlay.player, dartValue);
 		// Go to the next page if a team has won
-		// if (teamsWithScore[turnToPlay.team].score === 0) {
-		// 	setWinningTeam(teamsWithScore[turnToPlay.team]);
-		// 	navigate('/results');
-		// }
+		if (teamsWithScore[turnToPlay.team].score === 0) {
+			setWinningTeam(teamsWithScore[turnToPlay.team]);
+			navigate('/results');
+		}
+	};
+
+	const setupStatistics = (indexTeam: number, indexPlayer: number, dartValue: number) => {
+		const statsToUpdate = statistics.find(
+			(stat) => stat.team === indexTeam + 1 && stat.player === indexPlayer + 1,
+		);
+		console.log('statsToUpdate', statsToUpdate, ' / dartValue ->', dartValue);
+		if (statsToUpdate !== undefined) {
+			statsToUpdate.scores.push(dartValue);
+			if (multiplier === 2) statsToUpdate.multiples.doubles = statsToUpdate.multiples.doubles + 1;
+			if (multiplier === 3) statsToUpdate.multiples.triples = statsToUpdate.multiples.triples + 1;
+		}
 	};
 
 	const updateScore = (indexTeam: number, dartValue: number) => {

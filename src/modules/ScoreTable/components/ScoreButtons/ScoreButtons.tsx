@@ -27,10 +27,10 @@ export const ScoreButtons = ({ onClick, isDisabled }: ScoreButtonsProps) => {
 			{/* MISSED, 50 AND 25 BUTTONS */}
 			<div className={styles.threeLastButtonsContainer}>
 				<button className={classNames(styles.button, styles.missed)} value={0} onClick={onClick}>
-					{'Manqué...'}
+					{'Manqué 😢'}
 				</button>
 				<button className={styles.fiftyButton} value={50} onClick={onClick} disabled={isDisabled}>
-					{'50'}
+					{'50 🎯'}
 				</button>
 				<button
 					className={classNames(styles.button, styles.twentyFive)}
@@ -38,7 +38,7 @@ export const ScoreButtons = ({ onClick, isDisabled }: ScoreButtonsProps) => {
 					onClick={onClick}
 					disabled={isDisabled}
 				>
-					{'25'}
+					{'25 💪'}
 				</button>
 			</div>
 		</>

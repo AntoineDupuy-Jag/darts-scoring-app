@@ -1,6 +1,6 @@
-/*----------------------
-|       TEAM TYPES      |
------------------------*/
+/*------------------
+|				TEAMS				|
+-------------------*/
 
 export type teamType = {
 	name: string;
@@ -11,9 +11,9 @@ export type teamType = {
 
 export type teamsType = teamType[];
 
-/*----------------------
-|      RULES TYPES      |
------------------------*/
+/*------------------
+|				RULES				|
+-------------------*/
 
 export type ruleType = {
 	ruleLabel: string;
@@ -31,6 +31,31 @@ export type selectedRulesType = {
 	scoreToGoal: string;
 	doublesOrNot: string;
 };
+
+/*-------------------
+|				SCORES	     |
+--------------------*/
+
+// Usefull ???
+export type scores = {
+	team: string;
+	score: number;
+}[];
+
+/*---------------------
+|      STATISTICS      |
+----------------------*/
+
+export type StatisticsType = {
+	team: number;
+	player: number;
+	playerName: string;
+	scores: number[];
+	multiples: {
+		doubles: number;
+		triples: number;
+	};
+}[];
 
 // Voir avec Arthur les typages. Comment typer la clé d'un objet selon les clés d'un autre objet ?
 
@@ -51,13 +76,3 @@ export type selectedRulesType = {
 // type car = {
 // 	bmw | renault
 // };
-
-/*--------------------
-|     SCORES TYPE     |
----------------------*/
-
-// Usefull ???
-export type scores = {
-	team: string;
-	score: number;
-}[];

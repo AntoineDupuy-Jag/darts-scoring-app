@@ -16,14 +16,16 @@ export const TargetContainer = ({ score }: TargetContainerProps) => {
 
 	return (
 		<div className={styles.scoreContainer}>
-			{circlesClasses.map((circleClass, index) => (
-				<div className={circleClass} key={index}></div>
-			))}
-			<div className={styles.score}>{score}</div>
+			<div className={styles.background}>
+				{circlesClasses.map((circleClass, index) => (
+					<div className={circleClass} key={index}></div>
+				))}
+				<div className={styles.score}>{score}</div>
+			</div>
 		</div>
 	);
 
-	// TO DEEP ??
+	// TO DIG ??
 
 	// return (
 	// 	<div className={styles.scoreContainer}>
