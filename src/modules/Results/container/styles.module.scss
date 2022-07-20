@@ -15,3 +15,9 @@
 	color: $custom-white;
 	font-size: $font-size-medium;
 }
+
+.leftSide {
+	@include flexCenter(row);
+	width: 50%;
+	padding: $padding-medium;
+}

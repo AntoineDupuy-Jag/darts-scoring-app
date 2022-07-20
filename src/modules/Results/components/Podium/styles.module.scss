@@ -1,0 +1,86 @@
+@import '../../../../scss/variables';
+@import '../../../../scss/mixins';
+
+$border-radius: 10px;
+$border: 2px solid white;
+$width: calc(100% / 3);
+
+.container {
+	display: flex;
+	align-items: end;
+	width: 50%;
+	padding: $padding-medium;
+}
+
+.column1 {
+	width: $width;
+}
+.column2 {
+	width: $width;
+}
+.column3 {
+	width: $width;
+}
+
+.place {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	font-size: $font-size-large;
+	background-color: $valid-primary;
+}
+
+.secondPlace {
+	height: 160px;
+	border-radius: $border-radius 0 0 $border-radius;
+	border: $border;
+	border-right: none;
+}
+
+.thirdPlace {
+	height: 120px;
+	border-radius: 0 $border-radius $border-radius 0;
+	border: $border;
+	border-left: none;
+}
+
+.firstPlace {
+	height: 220px;
+	border-radius: $border-radius $border-radius 0 0;
+	border-top: $border;
+	border-bottom: $border;
+	border-left: $border;
+	border-left-width: $border;
+	border-right: $border;
+}
+
+.label {
+	font-size: $font-size-large;
+	color: $custom-white;
+	text-align: center;
+	margin-bottom: $margin-small;
+}
+
+.value {
+	font-size: $font-size-extra-large;
+}
+
+.position {
+	width: 50px;
+	text-align: center;
+	padding: $padding-small;
+	border: 2px solid $custom-white;
+	border-radius: $border-radius-full;
+	color: $custom-black;
+}
+
+.position1 {
+	background-color: #ffd700;
+}
+.position2 {
+	background-color: silver;
+}
+.position3 {
+	background-color: #c0a354;
+}
