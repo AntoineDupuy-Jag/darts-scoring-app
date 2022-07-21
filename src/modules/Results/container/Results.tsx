@@ -19,14 +19,7 @@ export const Results = ({ statistics, winningTeam }: ResultsProps) => {
 			</div>
 			<div className={styles.stats}>
 				<div className={styles.leftSide}>React-select and others stats...</div>
-				<Podium />
-				{/* {statistics.map((stat) => (
-					<div>
-						<div>{stat.playerName}</div>
-						<div>{stat.multiples.doubles}</div>
-						<div>{stat.multiples.triples}</div>
-					</div>
-				))} */}
+				<Podium label={['Marine', 'Antoine', 'Alice']} value={[62, 54, 48]} />
 			</div>
 		</Container>
 	);

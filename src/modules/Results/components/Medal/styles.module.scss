@@ -1,0 +1,67 @@
+@import '../../../../scss/variables';
+@import '../../../../scss/mixins';
+
+$gold-primary: gold;
+$gold-secondary: #cc8a0c;
+$silver-primary: silver;
+$silver-secondary: rgb(133, 133, 133);
+$bronze-primary: #e9894c;
+$bronze-secondary: #bc5616;
+
+.container {
+	position: relative;
+	z-index: 0;
+}
+
+.medal {
+	@include flexCenter(row);
+	position: relative;
+	width: 50px;
+	height: 50px;
+	border-radius: $border-radius-full;
+	border: 1px dashed;
+	&::before,
+	&::after {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		bottom: -22px;
+		left: 7px;
+		width: 16px;
+		height: 30px;
+		background: linear-gradient(to right, red 8px, rgb(255, 109, 109) 8px);
+		transform: rotate(25deg);
+		box-shadow: inset -2px -2px rgb(145, 0, 0);
+		border-bottom-left-radius: 5px;
+		border-left: 1px solid white;
+	}
+	&::after {
+		left: 25px;
+		transform: rotate(-25deg);
+		border-bottom-right-radius: 5px;
+	}
+}
+
+.gold {
+	background-color: $gold-primary;
+	box-shadow: inset -2px -2px $gold-secondary;
+	border-color: $gold-secondary;
+}
+
+.silver {
+	background-color: $silver-primary;
+	box-shadow: inset -2px -2px $silver-secondary;
+	border-color: $silver-secondary;
+}
+
+.bronze {
+	background-color: $bronze-primary;
+	box-shadow: inset -2px -2px $bronze-secondary;
+	border-color: $bronze-secondary;
+}
+
+.numero {
+	font-size: 30px;
+	text-shadow: 1px 1px 1px white;
+	color: $custom-black;
+}
