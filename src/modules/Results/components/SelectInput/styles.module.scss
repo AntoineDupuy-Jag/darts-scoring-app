@@ -1,0 +1,20 @@
+@import '../../../../scss/variables';
+@import '../../../../scss/mixins';
+
+.selectInputContainer {
+	width: 80%;
+}
+
+.dropdownIndicator {
+	color: $custom-black;
+}
+
+.optionLabel {
+	color: $custom-black;
+}
+
+.label {
+	margin-bottom: $margin-small;
+	font-size: $font-size-large;
+	text-shadow: 1px 1px 1px black;
+}

@@ -7,7 +7,7 @@ $border-radius: 10px;
 	display: flex;
 	align-items: end;
 	width: 50%;
-	height: 300px;
+	height: 350px;
 	padding: $padding-medium;
 }
 
@@ -64,10 +64,10 @@ $border-radius: 10px;
 	margin: 8px 0;
 	font-size: $font-size-extra-large;
 	text-shadow: 1px 1px 1px black;
-	animation: podiumContentAppears 2s forwards;
+	animation: progressiveOpacity 2s forwards;
 }
 
 .medal {
 	margin-bottom: 30px;
-	animation: podiumContentAppears 2s forwards;
+	animation: progressiveOpacity 2s forwards;
 }

@@ -61,7 +61,7 @@
 	}
 }
 
-@include keyframes(podiumContentAppears) {
+@include keyframes(progressiveOpacity) {
 	0% {
 		opacity: 0;
 	}
@@ -84,3 +84,12 @@
 		transform: translateY(0%);
 	}
 }
+
+// @include keyframes(barAppears) {
+// 	0% {
+// 		transform: translateX(-100%);
+// 	}
+// 	100% {
+// 		transform: translateX(0%);
+// 	}
+// }
