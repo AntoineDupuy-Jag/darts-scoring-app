@@ -12,7 +12,12 @@ type selectProps = {
 	isSelected: boolean;
 };
 
-export const SelectInput = () => {
+type selectInputProps = {
+	selectedOption: string;
+	setSelectedOption: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export const SelectInput = ({ selectedOption, setSelectedOption }: selectInputProps) => {
 	const colourStyles = {
 		dropdownIndicator: (styles: any) => ({
 			...styles,
@@ -41,12 +46,12 @@ export const SelectInput = () => {
 	};
 
 	const options = [
-		{ value: 'chocolate', label: 'La meilleure moyenne' },
-		{ value: 'strawberry', label: 'Le plus grand nombre de doubles' },
-		{ value: 'vanilla', label: 'Le plus grand nombre de triples' },
-		{ value: 'cacao', label: 'Le plus de 25 !' },
-		{ value: 'mint', label: 'Le plus de 50 !!!' },
-		{ value: 'coconuts', label: 'Le plus grand nombre de fléchettes manquées' },
+		{ value: 'averages', label: 'La meilleure moyenne' },
+		{ value: 'doubles', label: 'Le plus grand nombre de doubles' },
+		{ value: 'triples', label: 'Le plus grand nombre de triples' },
+		{ value: 'twentyFive', label: 'Le plus de 25 !' },
+		{ value: 'fifty', label: 'Le plus de 50 !!!' },
+		{ value: 'missed', label: 'Le plus grand nombre de fléchettes manquées' },
 	];
 
 	const formatOption = ({ value, label }: formatOptionLabelType) => (
@@ -62,6 +67,8 @@ export const SelectInput = () => {
 				styles={colourStyles}
 				formatOptionLabel={formatOption}
 				options={options}
+				value={options.find((option) => option.value === selectedOption)}
+				onChange={(e: any) => setSelectedOption(e.value)}
 				defaultValue={options[0]}
 				isSearchable={false}
 				blurInputOnSelect

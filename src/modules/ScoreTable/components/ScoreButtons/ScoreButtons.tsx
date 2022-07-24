@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import React from 'react';
 
 import styles from './styles.module.scss';
 
@@ -8,38 +9,54 @@ type ScoreButtonsProps = {
 };
 
 export const ScoreButtons = ({ onClick, isDisabled }: ScoreButtonsProps) => {
+	const threeLastButtons = [
+		{
+			buttonClass: styles.missed,
+			value: 0,
+			content: 'Manqué',
+			emoji: '😢',
+		},
+		{
+			buttonClass: styles.fifty,
+			value: 50,
+			content: '50',
+			emoji: '🎯',
+		},
+		{
+			buttonClass: styles.twentyFive,
+			value: 25,
+			content: '25',
+			emoji: '💪',
+		},
+	];
 	return (
 		<>
 			{/* SCORE BUTTON KEYBOARD */}
 			<div className={styles.buttonsContainer}>
 				{[...Array(20).keys()].map((index) => (
-					<button
-						className={styles.button}
-						key={index}
-						name={String(index + 1)}
-						value={index + 1}
-						onClick={onClick}
-					>
-						{index + 1}
-					</button>
+					<React.Fragment key={index}>
+						<button className={styles.button} name={String(index + 1)} value={index + 1} onClick={onClick}>
+							<div className={styles.buttonContent}>{index + 1}</div>
+						</button>
+					</React.Fragment>
 				))}
-			</div>
-			{/* MISSED, 50 AND 25 BUTTONS */}
-			<div className={styles.threeLastButtonsContainer}>
-				<button className={classNames(styles.button, styles.missed)} value={0} onClick={onClick}>
-					{'Manqué 😢'}
-				</button>
-				<button className={styles.fiftyButton} value={50} onClick={onClick} disabled={isDisabled}>
-					{'50 🎯'}
-				</button>
-				<button
-					className={classNames(styles.button, styles.twentyFive)}
-					value={25}
-					onClick={onClick}
-					disabled={isDisabled}
-				>
-					{'25 💪'}
-				</button>
+				{/* MISSED, 50 AND 25 BUTTONS */}
+				<div className={styles.threeLastButtonsContainer}>
+					{threeLastButtons.map((button, index) => (
+						<button
+							key={index}
+							className={classNames(styles.button, styles.threeLastButtons, button.buttonClass)}
+							value={button.value}
+							onClick={onClick}
+							disabled={isDisabled}
+						>
+							<div className={styles.buttonContent}>
+								{button.content}
+								<span className={styles.emoji}>{button.emoji}</span>
+							</div>
+						</button>
+					))}
+				</div>
 			</div>
 		</>
 	);

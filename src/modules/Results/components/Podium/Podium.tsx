@@ -9,6 +9,15 @@ type PodiumProps = {
 	value: number[];
 };
 
+// type expectedType = [
+// 	{
+// 		player: {
+// 			name: string;
+// 			value: number;
+// 		};
+// 	},
+// ];
+
 export const Podium = ({ label, value }: PodiumProps) => {
 	const columns = [
 		{
@@ -37,10 +46,10 @@ export const Podium = ({ label, value }: PodiumProps) => {
 				<React.Fragment key={index}>
 					<div className={styles.column}>
 						<div className={styles.labelContainer}>
-							<div className={styles.label}>{column.label}</div>
+							<div className={styles.label}>{column.value ? column.label : ''}</div>
 						</div>
 						<div className={classNames(styles.step, column.stepClass)}>
-							<div className={styles.value}>{column.value}</div>
+							<div className={styles.value}>{column.value ? column.value : ''}</div>
 							<div className={styles.medal}>
 								<Medal numero={column.medalNumber} />
 							</div>

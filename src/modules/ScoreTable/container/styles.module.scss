@@ -21,16 +21,18 @@
 	width: calc(100% / 3);
 }
 
-.teamNameLabel {
+.teamNameLabelContainer {
 	@include flexCenter(row);
 	width: 10%;
-	background-color: $target-beige;
-	color: $custom-black;
-	font-size: 26px;
+	background-color: gray;
 	border-radius: 5px;
+}
+
+.teamNameLabel {
+	font-size: 26px;
 	font-weight: $extra-bold-weight;
-	-webkit-writing-mode-: sideways-lr;
-	writing-mode: sideways-lr;
+	text-shadow: 1px 1px 10px black;
+	transform: rotate(-90deg);
 }
 
 .playersNameContainer {
@@ -105,6 +107,6 @@
 
 .cancelAndMultiplierContainer {
 	display: flex;
-	margin: $margin-small 0;
+	margin: $margin-extra-small 0 $margin-medium 0;
 	align-items: center;
 }

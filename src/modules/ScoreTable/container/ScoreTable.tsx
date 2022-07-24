@@ -66,10 +66,11 @@ export const ScoreTable = ({
 		setStatistics(newStats);
 	}, [isLoading]);
 
-	console.log('statistics ->', statistics);
-
 	// ONCLICK FUNCTION ON SCORE'S BUTTONS
 	const handleDartValue = (e: any) => {
+		console.log('test ->', e.target.value);
+		// Reset multiplier to 1
+		setMultiplier(1);
 		// Get value of the darts
 		const newDartArray = [...dartArray];
 		const dartValue = e.target.value * multiplier;
@@ -79,7 +80,7 @@ export const ScoreTable = ({
 		if (teamsWithScore.length - 1 === turnToPlay.team && turnToPlay.player === 0) setRoundsNumber(1);
 		if (teamsWithScore.length - 1 === turnToPlay.team && turnToPlay.player === 1) setRoundsNumber(0);
 		// Setup team turn and player turn
-		if (newDartArray.length >= 3) {
+		if (newDartArray.length >= 3 || teamsWithScore[turnToPlay.team].score - dartValue < 0) {
 			setTurnToPlay({
 				team:
 					turnToPlay.team + 1 !== teamsWithScore.length
@@ -130,7 +131,8 @@ export const ScoreTable = ({
 		indexTeam: number,
 		dartValue: number,
 	) => {
-		if ((simpleRule || bothRules) && multiplier == 2) updateScore(indexTeam, dartValue);
+		if (((simpleRule || bothRules) && multiplier === 2) || ((simpleRule || bothRules) && dartValue === 50))
+			updateScore(indexTeam, dartValue);
 		if (!simpleRule && !bothRules) updateScore(indexTeam, dartValue);
 	};
 
@@ -164,7 +166,9 @@ export const ScoreTable = ({
 							key={indexTeam}
 						>
 							{/* PLAYER'S NAMES */}
-							<div className={styles.teamNameLabel}>{'Joueurs'}</div>
+							<div className={styles.teamNameLabelContainer}>
+								<div className={styles.teamNameLabel}>{'Joueurs'}</div>
+							</div>
 							<div className={styles.playersNameContainer}>
 								<div>
 									{team.players.map((player, indexPlayer) => (
@@ -211,7 +215,11 @@ export const ScoreTable = ({
 					setTeamsWithScore={setTeamsWithScore}
 					setDartArray={setDartArray}
 				/>
-				<Multiplier setMultiplier={setMultiplier} setDisabled={setDisabledScoreButtons} />
+				<Multiplier
+					multiplier={multiplier}
+					setMultiplier={setMultiplier}
+					setDisabled={setDisabledScoreButtons}
+				/>
 			</div>
 			<ScoreButtons onClick={handleDartValue} isDisabled={disabledScoreButtons} />
 		</Container>

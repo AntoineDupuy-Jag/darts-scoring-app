@@ -3,11 +3,12 @@ import React from 'react';
 import styles from './styles.module.scss';
 
 type MultiplierProps = {
+	multiplier: number;
 	setMultiplier: React.Dispatch<React.SetStateAction<number>>;
 	setDisabled: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const Multiplier = ({ setMultiplier, setDisabled }: MultiplierProps) => {
+export const Multiplier = ({ multiplier, setMultiplier, setDisabled }: MultiplierProps) => {
 	return (
 		<div className={styles.labelsContainer}>
 			{[...Array(3).keys()].map((index) => (
@@ -22,7 +23,7 @@ export const Multiplier = ({ setMultiplier, setDisabled }: MultiplierProps) => {
 							setMultiplier(+e.target.value);
 							+e.target.value === 1 ? setDisabled(false) : setDisabled(true);
 						}}
-						defaultChecked={index === 0}
+						checked={multiplier === index + 1}
 					/>
 					<label htmlFor={`x${index + 1}`}>{`x${index + 1}`}</label>
 				</React.Fragment>
