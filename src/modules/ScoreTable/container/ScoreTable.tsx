@@ -69,8 +69,9 @@ export const ScoreTable = ({
 	// ONCLICK FUNCTION ON SCORE'S BUTTONS
 	const handleDartValue = (e: any) => {
 		console.log('test ->', e.target.value);
-		// Reset multiplier to 1
+		// Reset multiplier to 1 & disabledScoreButton to false
 		setMultiplier(1);
+		setDisabledScoreButtons(false);
 		// Get value of the darts
 		const newDartArray = [...dartArray];
 		const dartValue = e.target.value * multiplier;
@@ -90,15 +91,10 @@ export const ScoreTable = ({
 			});
 			setDartArray([]);
 		}
-		// Updating score according to the situation
-		updateScoreWithDoubleRules(turnToPlay.team, dartValue);
 		// Setup statistics
 		setupStatistics(turnToPlay.team, turnToPlay.player, dartValue);
-		// Go to the next page if a team has won
-		if (teamsWithScore[turnToPlay.team].score === 0) {
-			setWinningTeam(teamsWithScore[turnToPlay.team]);
-			navigate('/results');
-		}
+		// Updating score according to the situation
+		updateScoreWithDoubleRules(turnToPlay.team, dartValue);
 	};
 
 	const setupStatistics = (indexTeam: number, indexPlayer: number, dartValue: number) => {
@@ -114,6 +110,11 @@ export const ScoreTable = ({
 	};
 
 	const updateScore = (indexTeam: number, dartValue: number) => {
+		// Go to the results page if a team has won
+		if (teamsWithScore[indexTeam].score - dartValue === 0) {
+			setWinningTeam(teamsWithScore[turnToPlay.team]);
+			navigate('/results');
+		}
 		const newArray = [...teamsWithScore];
 		newArray[indexTeam] = {
 			...newArray[indexTeam],
@@ -141,7 +142,7 @@ export const ScoreTable = ({
 		const doubleOut = selectedRules.doublesOrNot === 'Double pour sortir';
 		const doubleInAndOut = selectedRules.doublesOrNot === 'Double pour entrer et sortir';
 		const beginning = teamsWithScore[indexTeam].score === +selectedRules.scoreToGoal;
-		const ending = teamsWithScore[indexTeam].score - dartValue <= 0;
+		const ending = teamsWithScore[indexTeam].score - dartValue <= 1;
 
 		if (beginning) updateScoreAtEntryOrExit(doubleIn, doubleInAndOut, indexTeam, dartValue);
 		if (ending) updateScoreAtEntryOrExit(doubleOut, doubleInAndOut, indexTeam, dartValue);

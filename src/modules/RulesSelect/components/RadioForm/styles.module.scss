@@ -36,18 +36,12 @@
 	margin-right: $margin-medium;
 	background-color: white;
 	border-radius: $border-radius-medium;
-	&:hover {
-		transform: translate(6px, -4px);
-		transition: $smooth-transition;
+	position: relative;
+	&:active {
+		background-color: $valid-primary;
+		bottom: 2px;
+		left: 2px;
 	}
-}
-
-.isClicked {
-	@include flexCenter(row);
-	margin-right: $margin-medium;
-	background-color: white;
-	border-radius: $border-radius-medium;
-	transform: translate(0);
 }
 
 .input {
@@ -55,6 +49,7 @@
 }
 
 .input + label {
+	position: relative;
 	padding: $padding-extra-small $padding-medium;
 	border-radius: $border-radius-medium;
 	color: $custom-black;

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 
 import { selectedRulesType, StatisticsType, teamsType, teamType } from './utils/types';
 import { MainContainer } from './modules/MainContainer/container/MainContainer';
@@ -28,6 +28,8 @@ function App() {
 	const [statistics, setStatistics] = useState({} as StatisticsType);
 	const [winningTeam, setWinningTeam] = useState({} as teamType);
 
+	let test = 0;
+
 	return (
 		<MainContainer>
 			<Routes>
@@ -40,16 +42,29 @@ function App() {
 				<Route
 					path="/scores"
 					element={
-						<ScoreTable
-							teams={teams}
-							selectedRules={selectedRules}
-							statistics={statistics}
-							setStatistics={setStatistics}
-							setWinningTeam={setWinningTeam}
-						/>
+						Object.keys(selectedRules).length !== 0 ? (
+							<ScoreTable
+								teams={teams}
+								selectedRules={selectedRules}
+								statistics={statistics}
+								setStatistics={setStatistics}
+								setWinningTeam={setWinningTeam}
+							/>
+						) : (
+							<Navigate to="/" />
+						)
 					}
 				/>
-				<Route path="/results" element={<Results statistics={statistics} winningTeam={winningTeam} />} />
+				<Route
+					path="/results"
+					element={
+						Object.keys(winningTeam).length !== 0 ? (
+							<Results statistics={statistics} winningTeam={winningTeam} />
+						) : (
+							<Navigate to="/" />
+						)
+					}
+				/>
 			</Routes>
 		</MainContainer>
 	);

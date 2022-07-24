@@ -13,51 +13,50 @@ export const ScoreButtons = ({ onClick, isDisabled }: ScoreButtonsProps) => {
 		{
 			buttonClass: styles.missed,
 			value: 0,
-			content: 'Manqué',
+			label: 'Manqué! ',
 			emoji: '😢',
 		},
 		{
 			buttonClass: styles.fifty,
 			value: 50,
-			content: '50',
+			label: '50! ',
 			emoji: '🎯',
 		},
 		{
 			buttonClass: styles.twentyFive,
 			value: 25,
-			content: '25',
+			label: '25! ',
 			emoji: '💪',
 		},
 	];
 	return (
-		<>
-			{/* SCORE BUTTON KEYBOARD */}
-			<div className={styles.buttonsContainer}>
-				{[...Array(20).keys()].map((index) => (
-					<React.Fragment key={index}>
-						<button className={styles.button} name={String(index + 1)} value={index + 1} onClick={onClick}>
-							<div className={styles.buttonContent}>{index + 1}</div>
-						</button>
-					</React.Fragment>
+		<div className={styles.buttonsContainer}>
+			{/* SCORE BUTTONS 1 TO 20 */}
+			{[...Array(20).keys()].map((index) => (
+				<button
+					key={index}
+					className={styles.button}
+					name={String(index + 1)}
+					value={index + 1}
+					onClick={onClick}
+				>
+					{index + 1}
+				</button>
+			))}
+			{/* MISSED, 50 AND 25 BUTTONS */}
+			<div className={styles.threeLastButtonsContainer}>
+				{threeLastButtons.map((button, index) => (
+					<button
+						key={index}
+						className={classNames(styles.button, styles.threeLastButtons, button.buttonClass)}
+						value={button.value}
+						onClick={onClick}
+						disabled={isDisabled}
+					>
+						{button.label + button.emoji}
+					</button>
 				))}
-				{/* MISSED, 50 AND 25 BUTTONS */}
-				<div className={styles.threeLastButtonsContainer}>
-					{threeLastButtons.map((button, index) => (
-						<button
-							key={index}
-							className={classNames(styles.button, styles.threeLastButtons, button.buttonClass)}
-							value={button.value}
-							onClick={onClick}
-							disabled={isDisabled}
-						>
-							<div className={styles.buttonContent}>
-								{button.content}
-								<span className={styles.emoji}>{button.emoji}</span>
-							</div>
-						</button>
-					))}
-				</div>
 			</div>
-		</>
+		</div>
 	);
 };
