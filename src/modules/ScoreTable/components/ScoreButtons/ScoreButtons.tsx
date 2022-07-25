@@ -14,7 +14,7 @@ export const ScoreButtons = ({ onClick, isDisabled }: ScoreButtonsProps) => {
 			buttonClass: styles.missed,
 			value: 0,
 			label: 'Manqué! ',
-			emoji: '😢',
+			emoji: '🤬',
 		},
 		{
 			buttonClass: styles.fifty,

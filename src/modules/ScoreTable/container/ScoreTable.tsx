@@ -81,7 +81,7 @@ export const ScoreTable = ({
 		if (teamsWithScore.length - 1 === turnToPlay.team && turnToPlay.player === 0) setRoundsNumber(1);
 		if (teamsWithScore.length - 1 === turnToPlay.team && turnToPlay.player === 1) setRoundsNumber(0);
 		// Setup team turn and player turn
-		if (newDartArray.length >= 3 || teamsWithScore[turnToPlay.team].score - dartValue < 0) {
+		if (newDartArray.length >= 3 || teamsWithScore[turnToPlay.team].score - dartValue <= 1) {
 			setTurnToPlay({
 				team:
 					turnToPlay.team + 1 !== teamsWithScore.length
@@ -142,7 +142,7 @@ export const ScoreTable = ({
 		const doubleOut = selectedRules.doublesOrNot === 'Double pour sortir';
 		const doubleInAndOut = selectedRules.doublesOrNot === 'Double pour entrer et sortir';
 		const beginning = teamsWithScore[indexTeam].score === +selectedRules.scoreToGoal;
-		const ending = teamsWithScore[indexTeam].score - dartValue <= 1;
+		const ending = teamsWithScore[indexTeam].score - dartValue < 2;
 
 		if (beginning) updateScoreAtEntryOrExit(doubleIn, doubleInAndOut, indexTeam, dartValue);
 		if (ending) updateScoreAtEntryOrExit(doubleOut, doubleInAndOut, indexTeam, dartValue);
