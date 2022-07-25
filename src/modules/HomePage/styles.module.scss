@@ -1,15 +1,108 @@
 @import '../../scss/variables';
 @import '../../scss/mixins';
 
+.titleContainer {
+	overflow: hidden;
+}
+
 .title {
 	text-align: center;
 	font-size: $font-size-big;
 	font-weight: $extra-bold-weight;
+	text-shadow: 2px 2px 2px black;
+	transform: translateY(-100%);
+	animation: textFadeIn 1s ease-out forwards;
 }
 
-.content {
-	margin: 20px 0;
+.container {
+	display: flex;
+	justify-content: space-between;
+	margin: 16px 0;
+}
+
+.left {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	margin: 0 16px 0 0;
+}
+
+.introduction {
 	text-align: center;
+	font-size: 18px;
+	position: relative;
+	span {
+		color: $valid-primary;
+		text-shadow: 1px 1px 1px black;
+		text-transform: uppercase;
+	}
+}
+
+.stepContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: fit-content;
+	overflow: hidden;
+}
+
+.step,
+.step3 {
+	display: flex;
+	align-items: center;
+	width: fit-content;
+	border-radius: $border-radius-light;
+	padding: 8px;
+	margin-bottom: 16px;
+	font-size: 18px;
+	color: $custom-black;
+	background-color: #85ffbd;
+	background-image: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
+	transform: translateX(-105%);
+	animation: stepAnimationFromLeft 1s ease-out forwards;
+	span {
+		@include flexCenter(row);
+		width: 25px;
+		height: 25px;
+		margin-right: 4px;
+		background-color: $custom-black;
+		border-radius: $border-radius-full;
+	}
+}
+
+.step2,
+.step4 {
+	transform: translateX(120%);
+	background-color: #a9c9ff;
+	background-image: linear-gradient(180deg, #a9c9ff 0%, #ffbbec 100%);
+	animation: stepAnimationFromRight 1s ease-out forwards;
+	animation-delay: 1s;
+}
+
+.step3 {
+	animation-delay: 2s;
+}
+
+.step4 {
+	animation-delay: 3s;
+}
+
+@keyframes stepAnimationFromLeft {
+	0% {
+		transform: translateX(-120%);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
+
+@keyframes stepAnimationFromRight {
+	0% {
+		transform: translateX(120%);
+	}
+	100% {
+		transform: translateX(0);
+	}
 }
 
 .startButton {

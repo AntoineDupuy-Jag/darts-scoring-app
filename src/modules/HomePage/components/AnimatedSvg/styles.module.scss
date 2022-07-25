@@ -1,0 +1,64 @@
+.container {
+	text-align: center;
+}
+
+.armDart {
+	transform: rotateZ(15deg);
+	transform: translateY(12px);
+	animation: armDartAnimation 2s linear infinite;
+	transform-origin: center;
+}
+
+.dart1 {
+	visibility: hidden;
+	animation: dartAnimation 4s linear infinite;
+	animation-delay: 1s;
+}
+
+.dart2 {
+	visibility: hidden;
+	animation: dartAnimation 4s linear infinite;
+	animation-delay: 3s;
+}
+
+@keyframes dartAnimation {
+	0% {
+		visibility: visible;
+	}
+	50% {
+		visibility: hidden;
+	}
+	100% {
+		visibility: hidden;
+	}
+}
+
+@keyframes armDartAnimation {
+	0% {
+		transform: rotateZ(12deg);
+	}
+	25% {
+		transform: rotateZ(6deg);
+	}
+	50% {
+		transform: rotateZ(-4deg);
+	}
+	75% {
+		transform: rotateZ(6deg);
+	}
+	100% {
+		transform: rotateZ(12deg);
+	}
+}
+
+@keyframes targetAnimation {
+	0% {
+		transform: rotateZ(5deg);
+	}
+	50% {
+		transform: rotateZ(-4deg);
+	}
+	100% {
+		transform: rotateZ(5deg);
+	}
+}
