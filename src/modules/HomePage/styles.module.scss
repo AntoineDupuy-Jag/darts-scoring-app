@@ -1,12 +1,20 @@
 @import '../../scss/variables';
 @import '../../scss/mixins';
 
+.homepage {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
 .titleContainer {
 	overflow: hidden;
 }
 
 .title {
 	text-align: center;
+	color: white;
 	font-size: $font-size-big;
 	font-weight: $extra-bold-weight;
 	text-shadow: 2px 2px 2px black;
@@ -31,6 +39,7 @@
 	text-align: center;
 	font-size: 18px;
 	position: relative;
+	color: white;
 	span {
 		color: $valid-primary;
 		text-shadow: 1px 1px 1px black;
@@ -65,6 +74,7 @@
 		width: 25px;
 		height: 25px;
 		margin-right: 4px;
+		color: white;
 		background-color: $custom-black;
 		border-radius: $border-radius-full;
 	}
@@ -107,6 +117,7 @@
 
 .startButton {
 	@include flexCenter(row, $valid-primary);
+	width: fit-content;
 	margin: 0 auto;
 	color: $custom-white;
 	text-decoration: none;

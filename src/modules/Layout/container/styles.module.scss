@@ -13,10 +13,9 @@
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
-	color: white;
 }
 
-// MainContainer styles
+// Title
 
 .titleContainer {
 	position: absolute;
@@ -26,15 +25,6 @@
 	left: 0;
 	margin: 10px 0 0 10px;
 	font-size: 34px;
-}
-
-.appContainer {
-	position: absolute;
-	z-index: 999;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: min(60%);
 }
 
 // Background

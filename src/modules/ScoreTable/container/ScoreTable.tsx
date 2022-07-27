@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 
 import { selectedRulesType, StatisticsType, teamsType, teamType } from '../../../utils/types';
-import { Container } from '../../common-ui/Container/Container';
 import { Chip } from '../../common-ui/Chip/Chip';
+import { Modal } from '../../common-ui/Modal/Modal';
 import { Separator } from '../../common-ui/Separator/Separator';
 import { DartIcon1 } from '../../common-ui/SvgComponents';
 import { RulesReminder } from '../components/RulesReminder/RulesReminder';
@@ -14,6 +14,7 @@ import { Multiplier } from '../components/Multiplier/Multiplier';
 import { ScoreButtons } from '../components/ScoreButtons/ScoreButtons';
 
 import styles from './styles.module.scss';
+import { useModal } from '../../../utils/hooks/useModal';
 
 type ScoreTableProps = {
 	teams: teamsType;
@@ -37,6 +38,11 @@ export const ScoreTable = ({
 	const [roundsNumber, setRoundsNumber] = useState(0);
 	const [turnToPlay, setTurnToPlay] = useState({ team: 0, player: 0 });
 	const [disabledScoreButtons, setDisabledScoreButtons] = useState(false);
+
+	const [hideModal, setHideModal] = useState(false);
+	const [secondsCounter, setSecondsCounter] = useState(3);
+	const { isShowing: showAlertMessage, toggle: toggleAlertMessage } = useModal();
+
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -134,6 +140,10 @@ export const ScoreTable = ({
 	) => {
 		if (((simpleRule || bothRules) && multiplier === 2) || ((simpleRule || bothRules) && dartValue === 50))
 			updateScore(indexTeam, dartValue);
+		else {
+			setSecondsCounter(3);
+			toggleAlertMessage(3000, hideModal);
+		}
 		if (!simpleRule && !bothRules) updateScore(indexTeam, dartValue);
 	};
 
@@ -144,14 +154,26 @@ export const ScoreTable = ({
 		const beginning = teamsWithScore[indexTeam].score === +selectedRules.scoreToGoal;
 		const ending = teamsWithScore[indexTeam].score - dartValue < 2;
 
-		if (beginning) updateScoreAtEntryOrExit(doubleIn, doubleInAndOut, indexTeam, dartValue);
-		if (ending) updateScoreAtEntryOrExit(doubleOut, doubleInAndOut, indexTeam, dartValue);
+		if (beginning && (doubleIn || doubleInAndOut))
+			updateScoreAtEntryOrExit(doubleIn, doubleInAndOut, indexTeam, dartValue);
+		if (ending && dartValue !== 50 && (doubleOut || doubleInAndOut))
+			updateScoreAtEntryOrExit(doubleOut, doubleInAndOut, indexTeam, dartValue);
 		if ((!beginning && !ending) || (!doubleIn && !doubleOut && !doubleInAndOut))
 			updateScore(indexTeam, dartValue);
 	};
 
 	return (
-		<Container>
+		<>
+			<Modal
+				isShowing={showAlertMessage}
+				hide={toggleAlertMessage}
+				setHideModal={setHideModal}
+				seconds={secondsCounter}
+				setSeconds={setSecondsCounter}
+			>
+				<span>{'!'}</span>
+				{'Vous devez faire un DOUBLE pour commencer et/ou pour finir !'}
+			</Modal>
 			<Chip name={'Scores'} />
 			<RulesReminder selectedRules={selectedRules} />
 			<Separator />
@@ -223,6 +245,6 @@ export const ScoreTable = ({
 				/>
 			</div>
 			<ScoreButtons onClick={handleDartValue} isDisabled={disabledScoreButtons} />
-		</Container>
+		</>
 	);
 };

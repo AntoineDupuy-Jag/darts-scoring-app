@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 
 import { selectedRulesType, StatisticsType, teamsType, teamType } from './utils/types';
-import { MainContainer } from './modules/MainContainer/container/MainContainer';
+import { Layout } from './modules/Layout/container/Layout';
 import { HomePage } from './modules/HomePage/HomePage';
 import { RulesSelect } from './modules/RulesSelect/container/RulesSelect';
 import { PlayerSelect } from './modules/PlayerSelect/container/PlayerSelect';
@@ -31,7 +31,7 @@ function App() {
 	let test = 0;
 
 	return (
-		<MainContainer>
+		<Layout>
 			<Routes>
 				<Route path="/" element={<HomePage />} />
 				<Route
@@ -66,7 +66,7 @@ function App() {
 					}
 				/>
 			</Routes>
-		</MainContainer>
+		</Layout>
 	);
 }
 

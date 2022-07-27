@@ -26,7 +26,11 @@
 }
 
 .editIcon {
+	color: white;
 	margin-right: $margin-small;
+	border: 1px solid white;
+	border-radius: 5px;
+	padding: 2px;
 	cursor: pointer;
 	&:hover {
 		background-color: $custom-black;

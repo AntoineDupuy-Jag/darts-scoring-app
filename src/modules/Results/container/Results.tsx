@@ -118,7 +118,7 @@ export const Results = ({ statistics, winningTeam }: ResultsProps) => {
 	}, [isLoading, selectedOption]);
 
 	return (
-		<Container>
+		<div>
 			<Chip name={'Résultats'} />
 			{/* {isLoading && <Loader />} */}
 			<div className={styles.winnerTeam} style={{ backgroundColor: winningTeam.color }}>
@@ -141,6 +141,6 @@ export const Results = ({ statistics, winningTeam }: ResultsProps) => {
 			>
 				ICI
 			</div>
-		</Container>
+		</div>
 	);
 };

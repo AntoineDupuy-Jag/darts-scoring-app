@@ -11,6 +11,7 @@ import { TeamNameInput } from '../components/TeamNameInput/TeamNameInput';
 import { useState } from 'react';
 import { teamColors } from '../../../utils/constants';
 import { useNavigate } from 'react-router-dom';
+import { Chip } from '../../common-ui/Chip/Chip';
 
 type PlayerSelectProps = {
 	teams: teamsType;
@@ -58,8 +59,9 @@ export const PlayerSelect = ({ teams, setTeams }: PlayerSelectProps) => {
 	};
 
 	return (
-		<Container>
-			<form>
+		<>
+			<Chip name={'Équipes et joueurs'} />
+			<form className={styles.formContainer}>
 				{teams.map((team, teamIndex) => (
 					<div key={teamIndex}>
 						<TeamNameInput
@@ -141,6 +143,6 @@ export const PlayerSelect = ({ teams, setTeams }: PlayerSelectProps) => {
 					</Button>
 				</div>
 			</form>
-		</Container>
+		</>
 	);
 };

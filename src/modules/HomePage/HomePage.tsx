@@ -7,7 +7,7 @@ import styles from './styles.module.scss';
 
 export const HomePage = () => {
 	return (
-		<Container>
+		<div className={styles.homepage}>
 			<div className={styles.titleContainer}>
 				<div className={styles.title}>{'Bienvenue !'}</div>
 			</div>
@@ -49,6 +49,6 @@ export const HomePage = () => {
 			<Link className={styles.startButton} to={'/rules'}>
 				{'Commencez une nouvelle partie'}
 			</Link>
-		</Container>
+		</div>
 	);
 };

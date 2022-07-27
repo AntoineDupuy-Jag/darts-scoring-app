@@ -2,8 +2,10 @@
 @import '../../../../scss/mixins';
 
 .superLabel {
+	color: white;
 	font-size: $font-size-large;
 	font-weight: $extra-bold-weight;
+	text-shadow: 1px 1px 1px black;
 	margin-bottom: $margin-small;
 	padding-left: $padding-small;
 	word-spacing: 4px;

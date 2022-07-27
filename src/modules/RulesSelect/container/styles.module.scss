@@ -1,8 +1,15 @@
 @import '../../../scss/variables';
 @import '../../../scss/mixins';
 
+.rulesSelect {
+	height: fit-content;
+}
+
 .form {
 	padding-top: $padding-medium2;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .buttonsContainer {

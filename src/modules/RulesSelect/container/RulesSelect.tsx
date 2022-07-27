@@ -21,7 +21,7 @@ export const RulesSelect = ({ selectedRules, setSelectedRules }: RulesSelectProp
 	const errorMsg = 'Veuillez séléctionner une option pour chacune des 3 règles avant de pouvoir commencer !';
 
 	return (
-		<Container>
+		<div className={styles.rulesSelect}>
 			<Chip name={'Paramètre ta partie'} />
 			<form className={styles.form}>
 				{rules.map((rule, index) => (
@@ -33,6 +33,7 @@ export const RulesSelect = ({ selectedRules, setSelectedRules }: RulesSelectProp
 						<Separator margin={'20px 0'} />
 					</React.Fragment>
 				))}
+
 				<div className={styles.buttonsContainer}>
 					<Button
 						customStyle="valid"
@@ -47,6 +48,6 @@ export const RulesSelect = ({ selectedRules, setSelectedRules }: RulesSelectProp
 					</Button>
 				</div>
 			</form>
-		</Container>
+		</div>
 	);
 };
