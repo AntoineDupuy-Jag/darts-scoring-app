@@ -13,6 +13,13 @@
 	word-spacing: 4px;
 }
 
+.doubleLabel {
+	font-size: 18px;
+	margin-top: 12px;
+	text-decoration: underline;
+	font-weight: 900;
+}
+
 .chipContainer {
 	display: flex;
 }
@@ -24,4 +31,8 @@
 	padding: $padding-extra-small $padding-medium;
 	border-radius: $border-radius-large;
 	margin-right: $margin-small;
+	cursor: help;
+	&:hover {
+		opacity: 0.8;
+	}
 }

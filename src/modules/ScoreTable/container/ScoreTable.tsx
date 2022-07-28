@@ -165,6 +165,7 @@ export const ScoreTable = ({
 	return (
 		<>
 			<Modal
+				context="scores"
 				isShowing={showAlertMessage}
 				hide={toggleAlertMessage}
 				setHideModal={setHideModal}
