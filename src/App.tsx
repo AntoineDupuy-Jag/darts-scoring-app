@@ -28,8 +28,6 @@ function App() {
 	const [statistics, setStatistics] = useState({} as StatisticsType);
 	const [winningTeam, setWinningTeam] = useState({} as teamType);
 
-	let test = 0;
-
 	return (
 		<Layout>
 			<Routes>

@@ -9,15 +9,6 @@ type PodiumProps = {
 	value: number[];
 };
 
-// type expectedType = [
-// 	{
-// 		player: {
-// 			name: string;
-// 			value: number;
-// 		};
-// 	},
-// ];
-
 export const Podium = ({ label, value }: PodiumProps) => {
 	const columns = [
 		{

@@ -74,7 +74,6 @@ export const ScoreTable = ({
 
 	// ONCLICK FUNCTION ON SCORE'S BUTTONS
 	const handleDartValue = (e: any) => {
-		console.log('test ->', e.target.value);
 		// Reset multiplier to 1 & disabledScoreButton to false
 		setMultiplier(1);
 		setDisabledScoreButtons(false);
@@ -107,7 +106,7 @@ export const ScoreTable = ({
 		const statsToUpdate = statistics.find(
 			(stat) => stat.team === indexTeam + 1 && stat.player === indexPlayer + 1,
 		);
-		console.log('statsToUpdate', statsToUpdate, ' / dartValue ->', dartValue);
+		// console.log('statsToUpdate', statsToUpdate, ' / dartValue ->', dartValue);
 		if (statsToUpdate !== undefined) {
 			statsToUpdate.scores.push(dartValue);
 			if (multiplier === 2) statsToUpdate.multiples.doubles = statsToUpdate.multiples.doubles + 1;
@@ -154,12 +153,11 @@ export const ScoreTable = ({
 		const beginning = teamsWithScore[indexTeam].score === +selectedRules.scoreToGoal;
 		const ending = teamsWithScore[indexTeam].score - dartValue < 2;
 
-		if (beginning && (doubleIn || doubleInAndOut))
+		if ((beginning && doubleIn) || (beginning && doubleInAndOut))
 			updateScoreAtEntryOrExit(doubleIn, doubleInAndOut, indexTeam, dartValue);
-		if (ending && dartValue !== 50 && (doubleOut || doubleInAndOut))
+		else if ((ending && dartValue !== 50 && doubleOut) || (ending && dartValue !== 50 && doubleInAndOut))
 			updateScoreAtEntryOrExit(doubleOut, doubleInAndOut, indexTeam, dartValue);
-		if ((!beginning && !ending) || (!doubleIn && !doubleOut && !doubleInAndOut))
-			updateScore(indexTeam, dartValue);
+		else updateScore(indexTeam, dartValue);
 	};
 
 	return (
